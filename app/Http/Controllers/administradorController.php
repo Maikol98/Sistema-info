@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Administrador;
 use Illuminate\Http\Request;
 
 class administradorController extends Controller
@@ -34,7 +35,16 @@ class administradorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $administrador=new Administrador();
+        $administrador->Cod_Admin=$request->input('CodAdmin');
+        $administrador->Nombre=$request->input('nombre');
+        $administrador->Telefono=$request->input('telefono');
+        $administrador->Email=$request->input('email');
+        $administrador->Estado=1;
+
+        $administrador->save();
+
+        return redirect()->route('CrearAdmin');
     }
 
     /**

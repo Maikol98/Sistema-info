@@ -19,6 +19,7 @@ class CreateChoferTable extends Migration
             $table->string('Nombre');
             $table->integer('Telefono');
             $table->string('Direccion');
+            $table->integer('Estado');
         });
     }
 

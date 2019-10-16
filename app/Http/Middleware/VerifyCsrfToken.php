@@ -22,6 +22,7 @@ class VerifyCsrfToken extends Middleware
         //
         'RegCliente',
         'RegCiudad',
-        'RegDistrito'
+        'RegDistrito',
+        'RegAdmin'
     ];
 }

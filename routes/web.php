@@ -37,6 +37,8 @@ Route::get('Proveedor',['as'=>'Proveedor','uses'=>'PagesController@Proveedor']);
 //VENTAS
 Route::get('Ventas',['as'=>'Ventas','uses'=>'PagesController@Ventas']);
 
+Route::get('CrearAdmin',['as'=>'Admin','uses'=>'PagesController@createAdmin'] );
+Route::post('RegAdmin','administradorController@store');
 
 //CIUDAD
 Route::get('createCiudad', ['as'=>'Ciudad','uses'=>'PagesController@CiudadDistrito'] );

@@ -11,6 +11,6 @@ class Administrador extends Model
     public $timestamps=false;
 
     protected $fillable=[
-        'Id','Cod_Admin','Nombre','Nombre','Telefono','Email'
+        'Id','Cod_Admin','Nombre','Nombre','Telefono','Email','Estado'
     ];
 }

@@ -20,6 +20,7 @@ class CreateClienteTable extends Migration
             $table->string('Direccion');
             $table->integer('Telefono')->nullable();
             $table->string('Correo')->nullable();
+            $table->integer('Estado');
             $table->integer('Id_Distrito')->unsigned();
             $table->foreign('Id_Distrito')->references('Id')->on('distrito')
             ->onDelete('cascade');

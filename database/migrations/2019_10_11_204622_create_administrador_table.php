@@ -19,6 +19,7 @@ class CreateAdministradorTable extends Migration
             $table->string('Nombre');
             $table->integer('Telefono');
             $table->string('Email');
+            $table->integer('Estado');
         });
     }
 

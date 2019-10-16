@@ -36,4 +36,7 @@ class PagesController extends Controller
         return view('Ciudad/createCiudad');
     }
 
+    public function createAdmin(){
+        return view('Venta/createAdmin');
+    }
 }

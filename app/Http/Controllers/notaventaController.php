@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notaventa;
 use Illuminate\Http\Request;
 
 class notaventaController extends Controller
@@ -34,7 +35,7 @@ class notaventaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $notaventa=new Notaventa();
     }
 
     /**
