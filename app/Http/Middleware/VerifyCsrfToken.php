@@ -20,9 +20,9 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        'RegCliente',
-        'RegCiudad',
-        'RegDistrito',
-        'RegAdmin'
+        //'Cliente',
+        //'RegCiudad',
+        //'RegDistrito',
+        //'RegAdmin'
     ];
 }

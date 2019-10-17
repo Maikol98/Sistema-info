@@ -16,7 +16,11 @@ class clienteController extends Controller
      */
     public function index()
     {
-        //
+        $cliente = DB::table('cliente')
+        ->select('Id','Ci_Cliente','Nombre', 'Direccion','Telefono','Correo')
+        ->where('cliente.Estado','=','1')
+        ->get();
+        return view('Cliente/index',compact('cliente'));
     }
 
     /**
@@ -26,7 +30,7 @@ class clienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('Cliente/Cliente');
     }
 
     /**
@@ -43,11 +47,12 @@ class clienteController extends Controller
         $cliente->Direccion=$request->input('direccion');
         $cliente->Telefono=$request->input('telefono');
         $cliente->Correo=$request->input('correo');
+        $cliente->Estado=1;
         $cliente->Id_Distrito=$request->input('id_Distrito');
 
         $cliente->save();
 
-        return redirect()->route('Cliente');
+        return redirect()->route('Cliente.index');
     }
 
     /**
@@ -69,7 +74,8 @@ class clienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente=Cliente::findOrFail($id);
+        return view('Cliente/edit',compact('cliente'));
     }
 
     /**
@@ -81,7 +87,18 @@ class clienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //actualizar
+        $cliente=Cliente::findOrFail($id);
+        $cliente->Ci_Cliente=$request->input('CiCliente');
+        $cliente->Nombre=$request->input('nombre');
+        $cliente->Direccion=$request->input('direccion');
+        $cliente->Telefono=$request->input('telefono');
+        $cliente->Correo=$request->input('correo');
+        $cliente->Estado=1;
+        $cliente->Id_Distrito=$request->input('id_Distrito');
+        $cliente->update();
+        //redireccionar
+        return redirect()->route('Cliente.index');
     }
 
     /**
@@ -92,6 +109,11 @@ class clienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //actualizar
+        $cliente=Cliente::findOrFail($id);
+        $cliente->Estado=0;
+        $cliente->update();
+        //redireccionar
+        return redirect()->route('Cliente.index');
     }
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <style>
         .active{
             text-decoration: none;
@@ -11,10 +12,12 @@
 
         }
     </style>
+
     <title>Mi sitio</title>
 </head>
 <body>
     <header>
+
         <?php function activeMenu($url){
             return request()->is($url)? 'active':'';
         }?>
@@ -22,7 +25,9 @@
         <nav>
             <a class="{{activeMenu('/')}}" href="/">Inicio</a>
 
-            <a class="{{activeMenu('Cliente')}}" href="<?php echo route('Cliente')?>">Cliente</a>
+            <a class="{{activeMenu('Cliente/create')}}" href="<?php echo route('Cliente.create')?>">Cliente</a>
+
+            <a class="{{activeMenu('Cliente')}}" href="<?php echo route('Cliente.index')?>">Listar Cliente</a>
 
             <a class="{{activeMenu('Producto')}}" href="<?php echo route('Producto')?>">Producto</a>
 

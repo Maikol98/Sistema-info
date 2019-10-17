@@ -14,9 +14,13 @@
 Route::get('/',['as'=>'home','uses'=>'PagesController@home']);
 
 //CLIENTE
-Route::get('Cliente',['as'=>'Cliente','uses'=>'PagesController@Cliente']);
-
-Route::post('RegCliente', 'clienteController@store' );
+Route::resource('Cliente', 'clienteController');
+//Route::get('Cliente/create',['as'=>'Cliente.create','uses'=>'clienteController@create']);
+//Route::post('Cliente',['as'=>'Cliente.store','uses'=>'clienteController@store'] );
+//Route::get('Cliente',['as'=>'Cliente.index','uses'=>'clienteController@index']);
+//Route::get('Cliente/{id}/edit',['as'=>'Cliente.edit','uses'=>'clienteController@edit'] );
+//Route::put('Cliente/{id}',['as'=>'Cliente.update','uses'=>'clienteController@update'] );
+//Route::delete('Cliente/{id}',['as'=>'Cliente.destroy','uses'=>'clienteController@destroy'] );
 
 
 //COMPRAS

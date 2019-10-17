@@ -3,7 +3,7 @@
 @section('contenido')
 <h1>Registrar Cliente</h1>
 
-<form action="RegCliente" method="post">
+<form action="{{route('Cliente.store')}}" method="post">
 
    <p><label for="CiCleinte">
         CiCliente
