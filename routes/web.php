@@ -13,6 +13,7 @@
 //HOME
 Route::get('/',['as'=>'home','uses'=>'PagesController@home']);
 
+
 //CLIENTE
 Route::resource('Cliente', 'clienteController');
 //Route::get('Cliente/create',['as'=>'Cliente.create','uses'=>'clienteController@create']);
@@ -21,6 +22,9 @@ Route::resource('Cliente', 'clienteController');
 //Route::get('Cliente/{id}/edit',['as'=>'Cliente.edit','uses'=>'clienteController@edit'] );
 //Route::put('Cliente/{id}',['as'=>'Cliente.update','uses'=>'clienteController@update'] );
 //Route::delete('Cliente/{id}',['as'=>'Cliente.destroy','uses'=>'clienteController@destroy'] );
+
+// login
+Route::get('login','Auth\LoginController@showLoginForm');
 
 
 //COMPRAS
@@ -45,11 +49,10 @@ Route::get('CrearAdmin',['as'=>'Admin','uses'=>'PagesController@createAdmin'] );
 Route::post('RegAdmin','administradorController@store');
 
 //CIUDAD
-Route::get('createCiudad', ['as'=>'Ciudad','uses'=>'PagesController@CiudadDistrito'] );
-
-Route::post('RegCiudad','ciudadController@store');
-
-Route::post('RegCiudad', 'ciudadController@store');
-
-Route::post('RegDistrito','distritoController@store');
+Route::resource('Ciudad', 'ciudadController');
+Route::resource('Distrito', 'distritoController');
+//Route::get('createCiudad', ['as'=>'Ciudad','uses'=>'PagesController@CiudadDistrito'] );
+//Route::post('RegCiudad','ciudadController@store');
+//Route::post('RegCiudad', 'ciudadController@store');
+//Route::post('RegDistrito','distritoController@store');
 

@@ -2,18 +2,6 @@
 
 @section('contenido')
 
-<style type="text/css">
-    .boton_personalizado{
-      text-decoration: none;
-      padding: 10px;
-      font-weight: 80;
-      font-size: 5px;
-      color: #ffffff;
-      background-color: #1883ba;
-      border-radius: 6px;
-      border: 2px solid #0016b0;
-    }
-  </style>
     <h1>Todos los Clientes</h1>
     <table width="100%" border="1">
         <thead>

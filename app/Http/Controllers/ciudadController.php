@@ -14,7 +14,8 @@ class ciudadController extends Controller
      */
     public function index()
     {
-        //
+        $ciudad=Ciudad::all();
+        return view('Ciudad/indexCiudad',compact('ciudad'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ciudadController extends Controller
      */
     public function create()
     {
-        //
+        return view('Ciudad/createCiudad');
     }
 
     /**
@@ -39,7 +40,7 @@ class ciudadController extends Controller
         $ciudad->Nombre=$request->input('Nombre');
         $ciudad->save();
 
-        return redirect()-> route('Ciudad');
+        return redirect()-> route('Ciudad.index');
     }
 
     /**
@@ -50,7 +51,8 @@ class ciudadController extends Controller
      */
     public function show($id)
     {
-        //
+        $ciudad=Ciudad::findOrFail($id);
+        return view('Ciudad/showCiudad', compact('ciudad'));
     }
 
     /**
@@ -61,7 +63,8 @@ class ciudadController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ciudad=Ciudad::findOrFail($id);
+        return view('Ciudad/editCiudad',compact('ciudad'));
     }
 
     /**
@@ -73,7 +76,11 @@ class ciudadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ciudad=Ciudad::findOrFail($id);
+        $ciudad->Nombre=$request->input('Nombre');
+        $ciudad->update();
+
+        return redirect()-> route('Ciudad.index');
     }
 
     /**
@@ -84,6 +91,8 @@ class ciudadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Ciudad::findOrFail($id)->delete();
+
+        return redirect()-> route('Ciudad.index');
     }
 }

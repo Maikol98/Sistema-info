@@ -11,7 +11,7 @@ class PagesController extends Controller
     }
 
 
-    public function Cliente(){
+    public function Cliente(Request $request){
         return view('Cliente/Cliente');
     }
 

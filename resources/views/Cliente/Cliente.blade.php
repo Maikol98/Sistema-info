@@ -5,6 +5,8 @@
 
 <form action="{{route('Cliente.store')}}" method="post">
 
+        {!!csrf_field()!!}
+
    <p><label for="CiCleinte">
         CiCliente
             <input type="text" name="CiCliente">

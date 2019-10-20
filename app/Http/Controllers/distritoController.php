@@ -14,7 +14,8 @@ class distritoController extends Controller
      */
     public function index()
     {
-        //
+        $distrito=Distrito::all();
+        return view('Ciudad/indexDistrito',compact('distrito'));
     }
 
     /**
@@ -24,7 +25,7 @@ class distritoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Ciudad/createDistrito');
     }
 
     /**
@@ -41,7 +42,7 @@ class distritoController extends Controller
         $distrito->Id_Ciudad=$request->input('CodCiudad');
         $distrito->save();
 
-        return redirect()->route('createCiudad');
+        return redirect()->route('Distrito.index');
     }
 
     /**
@@ -63,7 +64,8 @@ class distritoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $distrito=Distrito::findOrFail($id);
+        return view('Ciudad/editDistrito',compact('distrito'));
     }
 
     /**
@@ -75,7 +77,14 @@ class distritoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $distrito=Distrito::findOrFail($id);
+        $distrito->Nro_Distrito=$request->input('NroDistrito');
+        $distrito->Nombre=$request->input('Nombre');
+        $distrito->Id_Ciudad=$request->input('CodCiudad');
+        $distrito->update();
+
+        return redirect()->route('Distrito.index');
+
     }
 
     /**
@@ -86,6 +95,7 @@ class distritoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Distrito::findOrFail($id)->delete();
+        return redirect()->route('Distrito.index');
     }
 }
