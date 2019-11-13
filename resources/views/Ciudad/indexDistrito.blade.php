@@ -7,7 +7,7 @@
         <thead>
             <th>Nro Distrito</th>
             <th>Nombre</th>
-            <th>ID Ciudad</th>
+            <th>Ciudad</th>
             <th>Acciones</th>
         </thead>
         <tbody>
@@ -15,7 +15,7 @@
                 <tr>
                 <td>{{$datosDistrito->Nro_Distrito}}</td>
                 <td>{{$datosDistrito->Nombre}}</td>
-                <td>{{$datosDistrito->Id_Ciudad}}</td>
+                <td>{{$datosDistrito->ciudad}}</td>
                 <td><a  href="{{route('Distrito.edit',$datosDistrito->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Distrito.destroy', $datosDistrito->Id)}}" method="post">
                         {!!csrf_field()!!}

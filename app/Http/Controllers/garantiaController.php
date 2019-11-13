@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Garantia;
 use Illuminate\Http\Request;
 
 class garantiaController extends Controller
@@ -13,7 +14,9 @@ class garantiaController extends Controller
      */
     public function index()
     {
-        //
+        $garantia=Garantia::all();
+
+        return view('Producto/Garantia/index', compact('garantia'));
     }
 
     /**
@@ -23,7 +26,7 @@ class garantiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Producto/Garantia/create');
     }
 
     /**
@@ -34,7 +37,13 @@ class garantiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $garantia= new Garantia();
+        $garantia->Cod_Garantia=$request->input('codigo');
+        $garantia->Duracion=$request->input('duracion');
+
+        $garantia->save();
+
+        return redirect()->route('Garantia.index');
     }
 
     /**
@@ -56,7 +65,8 @@ class garantiaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $garantia=Garantia::findOrFail($id);
+        return view('Producto/Garantia/edit',compact('garantia'));
     }
 
     /**
@@ -68,7 +78,12 @@ class garantiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $garantia=Garantia::findOrFail($id);
+        $garantia->Duracion=$request->input('duracion');
+
+        $garantia->update();
+
+        return redirect()->route('Garantia.index');
     }
 
     /**

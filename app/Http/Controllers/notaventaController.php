@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notaventa;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class notaventaController extends Controller
@@ -14,7 +15,10 @@ class notaventaController extends Controller
      */
     public function index()
     {
-        //
+        $notaventa=DB::table('notaventa')
+        ->select('Id','PrecioTotal','Fechaventa','Id_Cliente','Id_Admin')
+        ->get();
+        return view('Venta/NotaVenta/index',compact('notaventa'));
     }
 
     /**
@@ -24,7 +28,7 @@ class notaventaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Venta/Notaventa/createVentas');
     }
 
     /**
@@ -36,6 +40,12 @@ class notaventaController extends Controller
     public function store(Request $request)
     {
         $notaventa=new Notaventa();
+        $notaventa->PrecioTotal=0;
+        $notaventa->FechaVenta=date('d-m-Y H:i:s');
+        $notaventa->Id_Cliente=$request->input('CiCliente');
+        $notaventa->Id_Admin=$request->input('CodAdmin');
+        $notaventa->save();
+        return redirect()->route('Notaventa.index');
     }
 
     /**
@@ -57,7 +67,9 @@ class notaventaController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$notaventa=Notaventa::findOrFail($id);
+
+        //return view('Venta/NotaVenta/edit',compact('notaventa'));
     }
 
     /**
@@ -80,6 +92,7 @@ class notaventaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Notaventa::findOrFail($id)->delete();
+        return redirect()->route('Notaventa.index');
     }
 }

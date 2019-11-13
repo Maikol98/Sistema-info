@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Estante;
 use Illuminate\Http\Request;
 
 class estanteController extends Controller
@@ -13,7 +14,12 @@ class estanteController extends Controller
      */
     public function index()
     {
-        //
+        $estante=DB::table('Estante')
+        ->select('Id','Capacidad','Descripcion','Id_Almacen','Id_Categoria')
+        ->where('Estado','=','1')
+        ->get();
+
+        return view('Almacen/Estante/index',compact('estante'));
     }
 
     /**
@@ -23,7 +29,7 @@ class estanteController extends Controller
      */
     public function create()
     {
-        //
+        return view('Almacen/Estante/create');
     }
 
     /**
@@ -34,7 +40,16 @@ class estanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estante=new Estante();
+        $estante->Capacidad=$request->input('capacidad');
+        $estante->Descripcion=$request->input('descripcion');
+        $estante->Estado=1;
+        $estante->Id_Almacen=$request->input('idAlma');
+        $estante->Id_Categoria=$request->input('idCate');
+
+        $estante->save();
+
+        return redirect()->route('Estante.index');
     }
 
     /**
@@ -56,7 +71,9 @@ class estanteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $estante=Estante::findOrFail($id);
+
+        return view('Almacen/Estante/edit', compact('estante'));
     }
 
     /**
@@ -68,7 +85,15 @@ class estanteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $estante=Estante::findOrFail($id);
+        $estante->Capacidad=$request->input('capacidad');
+        $estante->Descripcion=$request->input('descripcion');
+        $estante->Id_Almacen=$request->input('idAlma');
+        $estante->Id_Categoria=$request->input('idCate');
+
+        $estante->update();
+
+        return redirect()->route('Estante.index');
     }
 
     /**
@@ -79,6 +104,11 @@ class estanteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estante=Estante::findOrFail($id);
+        $estante->Estado=0;
+
+        $estante->update();
+
+        return redirect()->route('Estante.index');
     }
 }

@@ -52,7 +52,7 @@ class ciudadController extends Controller
     public function show($id)
     {
         $ciudad=Ciudad::findOrFail($id);
-        return view('Ciudad/showCiudad', compact('ciudad'));
+        return view('Ciudad/createDistrito', compact('ciudad'));
     }
 
     /**

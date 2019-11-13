@@ -4,7 +4,7 @@
 
 <h1>Registrar Distrito</h1>
 
-<form action="{{route('Distrito.store')}}" method="post">
+<form action="{{route('Distrito.store',$ciudad->Id)}}" method="post">
 
     {!! csrf_field() !!}
 
@@ -19,7 +19,7 @@
     </label></p>
     <p><label for="CodCiudad">
         Codigo Ciudad
-            <input type="text" name="CodCiudad">
+    <input type="text" name="CodCiudad" value="{{$ciudad->Id}}">
     </label></p>
     <input type="submit" value="Enviar">
 </form>

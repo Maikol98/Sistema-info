@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Notaproductoventa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class notaproductoventaController extends Controller
 {
@@ -13,7 +15,10 @@ class notaproductoventaController extends Controller
      */
     public function index()
     {
-        //
+        $nota=DB::table('Notaproductoventa')
+        ->select('Id_Producto','Id_NotaVenta','Cantidad','PrecioUnitario')
+        ->get();
+        return view('Venta/NotaProducto/index',compact('nota'));
     }
 
     /**
@@ -23,7 +28,7 @@ class notaproductoventaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Venta/NotaProducto/crearNota');
     }
 
     /**
@@ -34,7 +39,13 @@ class notaproductoventaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nota=new Notaproductoventa();
+        $nota->Id_Producto=$request->input('CodProducto');
+        $nota->Id_NotaVenta=$request->input('IdVenta');
+        $nota->Cantidad=$request->input('Cantidad');
+        $nota->PrecioUnitario=$request->input('Preciounitario');
+        $nota->save();
+        return redirect()->route('DetalleVenta.index');
     }
 
     /**
@@ -56,7 +67,8 @@ class notaproductoventaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $nota=Notaproductoventa::findOrFail($id);
+        return view('Venta/NotaProducto/edit',compact('nota'));
     }
 
     /**
@@ -68,7 +80,13 @@ class notaproductoventaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $nota=Notaproductoventa::findOrFail($id);
+        $nota->Capacidad=$request->input('Capacidad');
+        $nota->PrecioUnitario=$request->input('Preciounitario');
+
+        $nota->update();
+
+        return redirect()->route('DetalleVenta.index');
     }
 
     /**
@@ -79,6 +97,7 @@ class notaproductoventaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Notaproductoventa::findOrFail($id)->delete();
+        return redirect()->route('DetalleVenta.index');
     }
 }

@@ -32,8 +32,13 @@
             <input type="text" name="correo">
         </label></p>
 
+    <p><label for="Ciudad">
+        Nombre Ciudad
+         <input type="text" name="Ciudad">
+    </label></p>
+
     <p><label for="id_Distrito">
-        IdDistrito
+        Nro Distrito
          <input type="text" name="id_Distrito">
     </label></p>
     <input type="submit" value="Enviar">

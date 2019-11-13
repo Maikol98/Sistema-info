@@ -4,6 +4,7 @@
 <h1>Editar Cliente</h1>
 
 <form action="{{route('Cliente.update',$cliente->Id)}}" method="post">
+
     {!!method_field('PUT')!!}
 
     {!! csrf_field() !!}

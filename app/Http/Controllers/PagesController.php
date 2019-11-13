@@ -11,11 +11,6 @@ class PagesController extends Controller
     }
 
 
-    public function Cliente(Request $request){
-        return view('Cliente/Cliente');
-    }
-
-
     public function Compras(){
         return view('Compra/Compras');
     }
@@ -32,9 +27,6 @@ class PagesController extends Controller
         return view('Venta/Ventas');
     }
 
-    public function CiudadDistrito(){
-        return view('Ciudad/createCiudad');
-    }
 
     public function createAdmin(){
         return view('Venta/createAdmin');

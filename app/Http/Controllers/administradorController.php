@@ -14,7 +14,10 @@ class administradorController extends Controller
      */
     public function index()
     {
-        //
+        $admin=DB::table('administrador')
+        ->select('Id','Cod_Admin','Nombre','Telefono','Email')
+        ->where('Estado','=','1')->get();
+        return view('Venta/Administrador/index', compact('admin'));
     }
 
     /**
@@ -24,7 +27,7 @@ class administradorController extends Controller
      */
     public function create()
     {
-        //
+        return view('Venta/Administrador/createAdmin');
     }
 
     /**
@@ -66,7 +69,8 @@ class administradorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $administrador=Administrador::findOrFail($id);
+        return view('Venta/Administrador/edit',compact('administrador'));
     }
 
     /**
@@ -78,7 +82,14 @@ class administradorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $administrador=Administrado::findOrFail($id);
+
+        $administrador->Nombre=$request->input('nombre');
+        $administrador->Telefono=$request->input('telefono');
+        $administrador->Email=$request->input('email');
+
+        $administrador->update();
+        return redirect()->route('Administrador.index');
     }
 
     /**
@@ -89,6 +100,10 @@ class administradorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $administrador=Administrado::findOrFail($id);
+        $administrador->Estado=0;
+
+        $administrador->update();
+        return redirect()->route('Administrador.index');
     }
 }

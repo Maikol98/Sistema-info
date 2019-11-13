@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Almacen;
 use Illuminate\Http\Request;
 
 class almacenController extends Controller
@@ -13,7 +14,11 @@ class almacenController extends Controller
      */
     public function index()
     {
-        //
+        $almacen=DB::table('almacen')
+        ->select('Id','Cod_Almacen','Dimension','Capacidad','Direccion')
+        ->where('Estado','=','1')
+        ->get();
+        return view('Almacen/almacen/index',compact('almacen'));
     }
 
     /**
@@ -23,7 +28,7 @@ class almacenController extends Controller
      */
     public function create()
     {
-        //
+        return view('Almacen/Almacen/almacen');
     }
 
     /**
@@ -34,7 +39,14 @@ class almacenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $almacen=new Almacen();
+        $almacen->Cod_Almacen=$request->input('Codigo');
+        $almacen->Dimension=$request->input('Dimension');
+        $almacen->Capacidad=$request->input('Capacidad');
+        $almacen->Direccion=$request->input('Direccion');
+        $almacen->Estado=1;
+        $almacen->save();
+        return redirect()->route('Almacen.index');
     }
 
     /**
@@ -56,7 +68,9 @@ class almacenController extends Controller
      */
     public function edit($id)
     {
-        //
+        $almacen=Almacen::findOrFail($id);
+
+        return view('Almacen/Almacen/edit',compact('almacen'));
     }
 
     /**
@@ -68,7 +82,12 @@ class almacenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $almacen=Almacen::findOrFail($id);
+        $almacen->Dimension=$request->input('Dimension');
+        $almacen->Capacidad=$request->input('Capacidad');
+
+        $almacen->update();
+        return redirect()->route('Almacen.index');
     }
 
     /**
@@ -79,6 +98,10 @@ class almacenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $almacen=Almacen::findOrFail($id);
+        $almacen->Estado=0;
+        $almacen->update();
+
+        return redirect()->route('Almacen.index');
     }
 }

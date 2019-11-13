@@ -3,7 +3,7 @@
 @section('contenido')
 <h1>Registrar Administrador</h1>
 
-<form action="RegAdmin" method="post">
+<form action="{{route('Administrador.store')}}" method="post">
 
    <p><label for="CodAdmin">
         CiCliente

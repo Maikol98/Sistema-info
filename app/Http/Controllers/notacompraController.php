@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notacompra;
 use Illuminate\Http\Request;
 
 class notacompraController extends Controller
@@ -13,7 +14,8 @@ class notacompraController extends Controller
      */
     public function index()
     {
-        //
+        $notacompra=Notacompra::all();
+        return view('Compra/Compra/index',compact('notacompra'));
     }
 
     /**
@@ -34,7 +36,8 @@ class notacompraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $notacompra=new Notacompra();
+        $notacompra->FechaCompra
     }
 
     /**

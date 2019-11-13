@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Proveedor;
 use Illuminate\Http\Request;
 
 class proveedorController extends Controller
@@ -13,7 +14,12 @@ class proveedorController extends Controller
      */
     public function index()
     {
-        //
+        $proveedor=DB::table('proveedor')
+        ->select('Id','Cod_Proveedor','NombreP','Direccion','Telefono','Email','Tipo')
+        ->where('Estado','=','1')
+        ->get();
+
+        return view('Compra/Proveedor/index',compact('proveedor'));
     }
 
     /**
@@ -23,7 +29,7 @@ class proveedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('Compra/Proveedor/create');
     }
 
     /**
@@ -34,7 +40,19 @@ class proveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proveedor=new Proveedor();
+        $proveedor->Cod_Proveedor=$request->input('codigo');
+        $proveedor->NombreP=$request->input('nombre');
+        $proveedor->Direccion=$request->input('direccion');
+        $proveedor->Telefono=$request->input('telefono');
+        $proveedor->Email=$request->input('email');
+        $proveedor->Tipo=$request->input('tipo');
+        $proveedor->Estado=1;
+
+        $proveedor->save();
+
+        return redirect()->route('Proveedor.index');
+
     }
 
     /**
@@ -45,7 +63,7 @@ class proveedorController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -56,7 +74,9 @@ class proveedorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $proveedor=Proveedor::findOrFail($id);
+
+        return view('Compra/Proveedor/edit', compact('proveedor'));
     }
 
     /**
@@ -68,7 +88,17 @@ class proveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $proveedor=Proveedor::findOrFail($id);
+
+        $proveedor->NombreP=$request->input('nombre');
+        $proveedor->Direccion=$request->input('direccion');
+        $proveedor->Telefono=$request->input('telefono');
+        $proveedor->Email=$request->input('email');
+        $proveedor->Tipo=$request->input('tipo');
+
+        $proveedor->update();
+
+        return redirect()->route('Proveedor.index');
     }
 
     /**
@@ -79,6 +109,10 @@ class proveedorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $proveedor=Proveedor::findOrFail($id);
+        $proveedor->Estado=0;
+        $proveedor->update();
+
+        return redirect()->route('Proveedor.index');
     }
 }

@@ -7,6 +7,7 @@
         <thead>
             <th>ID</th>
             <th>Nombre</th>
+            <th>Añadir</th>
             <th>Acciones</th>
         </thead>
         <tbody>
@@ -14,6 +15,7 @@
                 <tr>
                 <td>{{$datosCiudad->Id}}</td>
                 <td>{{$datosCiudad->Nombre}}</td>
+                <td><a  href="{{route('Ciudad.show',$datosCiudad->Id)}}">Añadir Distrito</a></td>
                 <td><a  href="{{route('Ciudad.edit',$datosCiudad->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Ciudad.destroy', $datosCiudad->Id)}}" method="post">
                         {!!csrf_field()!!}

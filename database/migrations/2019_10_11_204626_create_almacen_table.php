@@ -19,6 +19,7 @@ class CreateAlmacenTable extends Migration
             $table->string('Dimension');
             $table->integer('Capacidad');
             $table->string('Direccion');
+            $table->integer('Estado');
         });
     }
 

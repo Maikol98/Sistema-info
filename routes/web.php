@@ -10,9 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//HOME
-Route::get('/',['as'=>'home','uses'=>'PagesController@home']);
 
+
+//HOME
+
+use Illuminate\Routing\Route;
+
+Route::get('/',['as'=>'home','uses'=>'PagesController@home']);
 
 //CLIENTE
 Route::resource('Cliente', 'clienteController');
@@ -23,36 +27,55 @@ Route::resource('Cliente', 'clienteController');
 //Route::put('Cliente/{id}',['as'=>'Cliente.update','uses'=>'clienteController@update'] );
 //Route::delete('Cliente/{id}',['as'=>'Cliente.destroy','uses'=>'clienteController@destroy'] );
 
-// login
-Route::get('login','Auth\LoginController@showLoginForm');
+//ALMACEN
+Route::resource('Almacen', 'almacenController');
+
+Route::resource('Estante', 'estanteController');
+
+Route::resource('Categoria', 'categoriaController');
 
 
-//COMPRAS
+//CIUDAD Y DISTRITO
+Route::resource('Ciudad', 'ciudadController');
 
-Route::get('Compras',['as'=>'Compras','uses'=>'PagesController@Compras']);
-
+Route::resource('Distrito', 'distritoController');
 
 
 //PRODUCTO
-Route::get('Producto',['as'=>'Producto','uses'=>'PagesController@Producto']);
+Route::resource('Producto', 'productoController');
+
+Route::resource('Baja', 'bajaController');
+
+Route::resource('Garantia', 'garantiaController');
+
+
+//NOTA VENTA
+Route::resource('Notaventa', 'notaventaController');
+
+Route::resource('DetalleVenta', 'notaproductoventaController');
+
+Route::resource('Administrador', 'administradorController');
+
+
+//COMPRA
+Route::resource('Proveedor', 'proveedorController');
+//por hacer
+Route::resource('NotaCompra', 'notacompraController');
+//por hacer
+Route::resource('DetalleCompra', 'notaproductocompraController');
+
+
+//PEDIDOS
+
+
+//INGRESO SALIDA
 
 
 
-//PROVEEDOR
-Route::get('Proveedor',['as'=>'Proveedor','uses'=>'PagesController@Proveedor']);
 
 
-//VENTAS
-Route::get('Ventas',['as'=>'Ventas','uses'=>'PagesController@Ventas']);
 
-Route::get('CrearAdmin',['as'=>'Admin','uses'=>'PagesController@createAdmin'] );
-Route::post('RegAdmin','administradorController@store');
 
-//CIUDAD
-Route::resource('Ciudad', 'ciudadController');
-Route::resource('Distrito', 'distritoController');
-//Route::get('createCiudad', ['as'=>'Ciudad','uses'=>'PagesController@CiudadDistrito'] );
-//Route::post('RegCiudad','ciudadController@store');
-//Route::post('RegCiudad', 'ciudadController@store');
-//Route::post('RegDistrito','distritoController@store');
+// login
+Route::get('login','Auth\LoginController@showLoginForm');
 

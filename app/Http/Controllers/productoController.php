@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class productoController extends Controller
 {
@@ -13,7 +15,12 @@ class productoController extends Controller
      */
     public function index()
     {
-        //
+        $producto=DB::table('producto')
+        ->select('Id','Cod_Producto','Nombre','Marca','Precio','PrecioPromedio','Stock')
+        ->where('Estado','=','1')
+        ->get();
+
+        return view('Producto/Producto/index',compact('producto'));
     }
 
     /**
@@ -23,7 +30,7 @@ class productoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Producto/Producto/createProducto');
     }
 
     /**
@@ -34,7 +41,20 @@ class productoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto=new Producto();
+        $producto->Cod_producto=$request->input('Codigo');
+        $producto->Nombre=$request->input('Nombre');
+        $producto->Marca=$request->input('Marca');
+        $producto->Precio=$request->input('Precio');
+        $producto->PrecioPromedio=0;
+        $producto->Stock=0;
+        $producto->Estado=1;
+        $producto->Id_Garantia=$request->input('IdGarantia');
+
+        $producto->save();
+
+        return redirect()->route('Producto.create');
+
     }
 
     /**
@@ -56,7 +76,8 @@ class productoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto=Producto::findOrFail($id);
+        return view('Producto/Producto/edit', compact('producto'));
     }
 
     /**
@@ -68,7 +89,13 @@ class productoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $producto=Producto::findOrFail($id);
+        $producto->Nombre=$request->input('Nombre');
+        $producto->Marca=$request->input('Marca');
+        $producto->Precio=$request->input('Precio');
+
+        $producto->update();
+        return redirect()->route('Producto.index');
     }
 
     /**
@@ -79,6 +106,9 @@ class productoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $producto=Producto::findOrFail($id);
+        $producto->Estado=0;
+        $producto->update();
+        redirect()->route('Producto.index');
     }
 }

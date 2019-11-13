@@ -17,6 +17,7 @@ class CreateEstanteTable extends Migration
             $table->increments('Id');
             $table->integer('Capacidad');
             $table->string('Descripcion');
+            $table->integer('Estado');
             $table->integer('Id_Almacen')->unsigned();
             $table->integer('Id_Categoria')->unsigned();
             $table->foreign('Id_Almacen')->references('Id')->on('almacen')

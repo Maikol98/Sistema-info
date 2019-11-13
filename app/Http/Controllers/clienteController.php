@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+use App\Distrito;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -40,6 +41,18 @@ class clienteController extends Controller
      */
     public function store(Request $request)
     {
+
+        //añadir distrito
+        $distrito=DB::table('distrito')
+        ->join('ciudad','ciudad.Id','=','distrito.Id_Ciudad')
+        ->select('distrito.Id')
+        ->where('distrito.Nro_Distrito','=',$request->input('id_Distrito'),
+        'and','ciudad.Nombre','=',$request->input('Ciudad'))
+        ->pluck('distrito.Id');
+
+
+        //dd($distrito);
+
         $cliente=new Cliente();
         $cliente->Ci_Cliente=$request->input('CiCliente');
         $cliente->Nombre=$request->input('nombre');
@@ -47,7 +60,7 @@ class clienteController extends Controller
         $cliente->Telefono=$request->input('telefono');
         $cliente->Correo=$request->input('correo');
         $cliente->Estado=1;
-        $cliente->Id_Distrito=$request->input('id_Distrito');
+        $cliente->Id_Distrito=$distrito[0];
 
         $cliente->save();
 
@@ -74,6 +87,7 @@ class clienteController extends Controller
     public function edit($id)
     {
         $cliente=Cliente::findOrFail($id);
+
         return view('Cliente/edit',compact('cliente'));
     }
 

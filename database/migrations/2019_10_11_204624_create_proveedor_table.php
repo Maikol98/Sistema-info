@@ -21,6 +21,7 @@ class CreateProveedorTable extends Migration
             $table->integer('Telefono');
             $table->string('Email');
             $table->string('Tipo');
+            $table->integer('Estado');
         });
     }
 

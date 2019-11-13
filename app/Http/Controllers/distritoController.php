@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Distrito;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class distritoController extends Controller
 {
@@ -14,7 +15,11 @@ class distritoController extends Controller
      */
     public function index()
     {
-        $distrito=Distrito::all();
+        //$distrito=Distrito::all();
+        $distrito=DB::table('distrito')
+        ->join('ciudad','ciudad.Id','=','distrito.Id_Ciudad')
+        ->select('distrito.Id','ciudad.Nombre as ciudad','Nro_Distrito','distrito.Nombre')
+        ->get('Id','ciudad','Nro_Distrito','Nombre');
         return view('Ciudad/indexDistrito',compact('distrito'));
     }
 

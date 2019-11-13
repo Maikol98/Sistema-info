@@ -11,6 +11,6 @@ class Producto extends Model
     public $timestamps=false;
 
     protected $fillable=[
-        'Id','Cod_Producto','Nombre','Marca','Precio','PrecioPromedio','Stock','Id_Garantia'
+       'Id','Cod_Producto','Nombre','Marca','Precio','PrecioPromedio','Stock','Id_Garantia'
     ];
 }

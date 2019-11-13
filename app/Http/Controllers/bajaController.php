@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Baja;
 use Illuminate\Http\Request;
 
 class bajaController extends Controller
@@ -13,7 +14,9 @@ class bajaController extends Controller
      */
     public function index()
     {
-        //
+        $baja=Baja::all();
+
+        return view('Producto/Baja/index', compact('baja'));
     }
 
     /**
@@ -23,7 +26,7 @@ class bajaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Producto/Baja/create');
     }
 
     /**
@@ -34,7 +37,15 @@ class bajaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $baja=new Baja();
+        $baja->Fecha=date('d-m-Y H:i:s');
+        $baja->Descripcion=$request->input('Descripcion');
+        $baja->TipoBaja=$request->input('Tipo');
+        $baja->Id_Producto=$request->input('Id');
+
+        $baja->save();
+
+        return redirect()->route('Baja.index');
     }
 
     /**
