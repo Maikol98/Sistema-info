@@ -16,7 +16,9 @@
 
 use Illuminate\Routing\Route;
 
+
 Route::get('/',['as'=>'home','uses'=>'PagesController@home']);
+
 
 //CLIENTE
 Route::resource('Cliente', 'clienteController');

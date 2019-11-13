@@ -37,7 +37,7 @@ class notacompraController extends Controller
     public function store(Request $request)
     {
         $notacompra=new Notacompra();
-        $notacompra->FechaCompra
+        $notacompra->FechaCompra;
     }
 
     /**

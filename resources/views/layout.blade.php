@@ -30,11 +30,9 @@
 
             <a class="{{activeMenu('Cliente')}}" href="<?php echo route('Cliente.index')?>">Listar Cliente</a>
 
-            <a class="{{activeMenu('Producto.create')}}" href="<?php echo route('Producto.create')?>">Producto</a>
+            <a class="{{activeMenu('Producto/create')}}" href="<?php echo route('Producto.create')?>">Producto</a>
 
-            <a class="{{activeMenu('Compras')}}" href="<?php echo route('Compras')?>">Compras</a>
-
-            <a class="{{activeMenu('Proveedor')}}" href="<?php echo route('Proveedor')?>">Proveedor</a>
+            <a class="{{activeMenu('Proveedor/create')}}" href="<?php echo route('Proveedor.create')?>">Proveedor</a>
 
             <a class="{{activeMenu('Ventas/create')}}" href="<?php echo route('Notaventa.create')?>">Ventas</a>
 
