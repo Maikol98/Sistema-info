@@ -3,7 +3,7 @@
 
 @section('contenido')
 <nav class="navbar navbar-dark bg-primary">
-                <a href="" class="navbar-brand">REGISTRAR ALMACEN</a>
+                <a href="" class="navbar-brand">REGISTRAR GARANTIA</a>
 </nav>
     <form action="{{route('Garantia.store')}}" method="POST">
 
@@ -14,7 +14,7 @@
                         <input type="text" name="codigo" class="form-control">
                 </div>
                 <div class="form-group">
-                        <label for="">Duracion</label>
+                        <label for="">Duracion (meses)</label>
                         <input type="text" name="duracion" class="form-control">
                 </div>
         </div>

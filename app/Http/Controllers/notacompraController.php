@@ -25,7 +25,7 @@ class notacompraController extends Controller
      */
     public function create()
     {
-        //
+        return view('Compra/Compra/create');
     }
 
     /**
@@ -37,7 +37,12 @@ class notacompraController extends Controller
     public function store(Request $request)
     {
         $notacompra=new Notacompra();
-        $notacompra->FechaCompra;
+        $notacompra->FechaCompra=date('Y-m-d H:i:s');
+        $notacompra->PrecioTotal=0;
+        $notacompra->Id_Proveedor=$request->input('Codigo');
+        $notacompra->save();
+
+        return redirect()->route('NotaCompra.index');
     }
 
     /**

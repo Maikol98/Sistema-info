@@ -14,11 +14,7 @@
 
 //HOME
 
-use Illuminate\Routing\Route;
-
-
 Route::get('/',['as'=>'home','uses'=>'PagesController@home']);
-
 
 //CLIENTE
 Route::resource('Cliente', 'clienteController');
@@ -35,7 +31,6 @@ Route::resource('Almacen', 'almacenController');
 Route::resource('Estante', 'estanteController');
 
 Route::resource('Categoria', 'categoriaController');
-
 
 //CIUDAD Y DISTRITO
 Route::resource('Ciudad', 'ciudadController');
@@ -61,9 +56,9 @@ Route::resource('Administrador', 'administradorController');
 
 //COMPRA
 Route::resource('Proveedor', 'proveedorController');
-//por hacer
+
 Route::resource('NotaCompra', 'notacompraController');
-//por hacer
+
 Route::resource('DetalleCompra', 'notaproductocompraController');
 
 
@@ -78,6 +73,4 @@ Route::resource('DetalleCompra', 'notaproductocompraController');
 
 
 
-// login
-Route::get('login','Auth\LoginController@showLoginForm');
 

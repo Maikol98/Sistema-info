@@ -15,18 +15,6 @@ class PagesController extends Controller
         return view('Compra/Compras');
     }
 
-    public function Producto(){
-        return view('Producto/Producto');
-    }
-
-    public function Proveedor(){
-        return view('Compra/Proveedor');
-    }
-
-    public function Ventas(){
-        return view('Venta/Ventas');
-    }
-
 
     public function createAdmin(){
         return view('Venta/createAdmin');

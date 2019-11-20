@@ -8,7 +8,7 @@
         <table whidth='100%' border="1">
                 <thead>
                     <th>Cod Garantia</th>
-                    <th> Duracion</th>
+                    <th> Duracion (Meses)</th>
                     <th>Accion</th>
                 </thead>
         <tbody>
@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{$datos->Cod_Garantia}}</td>
                     <td>{{$datos->Duracion}}</td>
-                    <td><a  href="{{route('Garantia.edit',$datosDelAlmacen->Id)}}">Editar</a></td>
+                    <td><a  href="{{route('Garantia.edit',$datos->Id)}}">Editar</a></td>
                 </tr>
                 @endforeach
 

@@ -109,6 +109,7 @@ class clienteController extends Controller
         $cliente->Correo=$request->input('correo');
         $cliente->Estado=1;
         $cliente->Id_Distrito=$request->input('id_Distrito');
+
         $cliente->update();
         //redireccionar
         return redirect()->route('Cliente.index');

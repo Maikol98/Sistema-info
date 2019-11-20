@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Almacen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class almacenController extends Controller
 {

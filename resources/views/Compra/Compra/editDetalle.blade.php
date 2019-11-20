@@ -1,0 +1,26 @@
+@extends('layout')
+
+
+@section('contenido')
+<nav class="navbar navbar-dark bg-primary">
+                <a href="" class="navbar-brand">EDITAR DETALLE</a>
+</nav>
+    <form action="{{route('NotaCompra.update',$detallecompra->Id)}}" method="POST">
+
+        {!!method_field('PUT')!!}
+        
+        {!! csrf_field() !!}
+        <div class="container">
+                <div class="form-group">
+                        <label for="">Cantidad</label>
+                <input type="text" name="cantidad" value="{{$detallecompra->Cantidad}}" class="form-control">
+                </div>
+                <div class="form-group">
+                        <label for="">Precio Unitario</label>
+                        <input type="text" name="precio" value="{{$detallecompra->PrecioUnitario}}" class="form-control">
+                    </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar </button>
+    </form>
+    <br>
+@endsection

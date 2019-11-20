@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Estante;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class estanteController extends Controller
 {
     /**

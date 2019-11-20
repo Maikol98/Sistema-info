@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notaproductocompra;
 use App\Notaventa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class notaventaController extends Controller
     {
         $notaventa=new Notaventa();
         $notaventa->PrecioTotal=0;
-        $notaventa->FechaVenta=date('d-m-Y H:i:s');
+        $notaventa->FechaVenta=date('Y-m-d H:i:s');
         $notaventa->Id_Cliente=$request->input('CiCliente');
         $notaventa->Id_Admin=$request->input('CodAdmin');
         $notaventa->save();
