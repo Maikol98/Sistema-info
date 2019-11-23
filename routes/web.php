@@ -51,7 +51,7 @@ Route::resource('Administrador', 'administradorController');
 Route::resource('Proveedor', 'proveedorController');
 //NOTA COMPRA
 Route::resource('NotaCompra', 'notacompraController');
-Route::get('NotaCompra/{dato}',['as'=>'NotaCompra.detalle','uses'=>'notacompraController@detalle'] );
+Route::post('NotaCompra/{id}',['as'=>'NotaCompra.detalle','uses'=>'notacompraController@detalle'] );
 
 //DETALLE DE COMPRA
 Route::resource('DetalleCompra', 'notaproductocompraController');

@@ -58,11 +58,11 @@ class notacompraController extends Controller
     }
 
 
-    public function detalle($dato)
-    {
+    public function detalle($id)
+    {   $dato=$id;
         return view('Compra/Compra/DetalleCompra',compact('dato'));
     }
-    
+
     /**
      * Display the specified resource.
      *
