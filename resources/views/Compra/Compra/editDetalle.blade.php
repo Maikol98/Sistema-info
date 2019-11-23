@@ -5,10 +5,10 @@
 <nav class="navbar navbar-dark bg-primary">
                 <a href="" class="navbar-brand">EDITAR DETALLE</a>
 </nav>
-    <form action="{{route('NotaCompra.update',$detallecompra->Id)}}" method="POST">
+    <form action="{{route('DetalleCompra.actualizar',[$detallecompra->Id_Producto, $detallecompra->Id_Compra])}}" method="POST">
 
         {!!method_field('PUT')!!}
-        
+
         {!! csrf_field() !!}
         <div class="container">
                 <div class="form-group">
@@ -16,9 +16,9 @@
                 <input type="text" name="cantidad" value="{{$detallecompra->Cantidad}}" class="form-control">
                 </div>
                 <div class="form-group">
-                        <label for="">Precio Unitario</label>
-                        <input type="text" name="precio" value="{{$detallecompra->PrecioUnitario}}" class="form-control">
-                    </div>
+                    <label for="">Precio</label>
+                    <input type="text" name="Precio" value="{{$detallecompra->Precio}}" class="form-control">
+                </div>
         </div>
         <button type="submit" class="btn btn-primary">Guardar </button>
     </form>

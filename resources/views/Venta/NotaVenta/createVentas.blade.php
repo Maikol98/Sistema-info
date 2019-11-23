@@ -10,11 +10,6 @@
     <input type="text" name="CiCliente">
     </label></p>
 
-    <p><label for="Cod_Admin">
-    Codigo Administrador
-    <input type="text" name="CodAdmin">
-    </label></p>
-
     <p><input type="submit" value="Enviar"></p>
     </form>
 

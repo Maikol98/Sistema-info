@@ -7,22 +7,21 @@
     <p></p>
         <table whidth='100%' border="1">
                 <thead>
+                    <th>Id Proveedor</th>
                     <th>Fecha Compra</th>
                     <th>Precio Total</th>
-                    <th>Id Proveedor</th>
-                    <th>Accion</th>
                     <th>Accion</th>
                 </thead>
         <tbody>
                 @foreach ($notacompra as $datos)
                 <tr>
+                    <td>{{$datos->Cod_Proveedor}}</td>
                     <td>{{$datos->FechaCompra}}</td>
                     <td>{{$datos->PrecioTotal}}</td>
-                    <td>{{$datos->Id_Proveedor}}</td>
-                    <td><a  href="{{route('DetalleCompra.create',$datos->Id)}}">Nota Compra</a></td>
+                    <td><a class="btn btn-primary btn-sm" href="{{route('NotaCompra.show',$datos->id)}}" role="button">Detalle</a>
+                    <a style="display:inline" class="btn btn-primary btn-sm" href="{{route('NotaCompra.detalle',$datos->id)}}" role="button">Añadir detalle</a></td>
                 </tr>
                 @endforeach
-
         </tbody>
     </table>
 @endsection

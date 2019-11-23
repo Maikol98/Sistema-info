@@ -17,18 +17,22 @@
                 @foreach ($detallecompra as $datos)
                 <tr>
                     <td>{{$datos->Id_Producto}}</td>
+                    <td>{{$datos->Id_Compra}}</td>
                     <td>{{$datos->Cantidad}}</td>
                     <td>{{$datos->PrecioUnitario}}</td>
-                    <td><a  href="{{route('DetalleCompra.edit',$datos->Id)}}">Editar</a>
-                        <form style="display:inline" action="{{route('DetalleCompra.destroy', $datos->Id)}}" method="post">
+                    <td><a  href="{{route('DetalleCompra.editar',[$datos->Id_Producto, $datos->Id_Compra])}}">Editar</a>
+                        <form style="display:inline"
+                        action="{{route('DetalleCompra.eliminar',[$datos->Id_Producto, $datos->Id_Compra])}}" method="post">
+
                             {!!csrf_field()!!}
-                            {!!method_field('DELETE')!!}
+
                             <button type="submit">Elimnar</button>
                         </form>
                     </td>
                 </tr>
                 @endforeach
-
         </tbody>
     </table>
+    <p></p>
+    <a class="btn btn-primary btn-sm" href="{{route('NotaCompra.index')}}" role="button">Atras</a>
 @endsection

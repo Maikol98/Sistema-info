@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notacompra;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class notacompraController extends Controller
 {
@@ -14,7 +15,11 @@ class notacompraController extends Controller
      */
     public function index()
     {
-        $notacompra=Notacompra::all();
+        $notacompra=DB::table('notacompra')
+        ->join('proveedor','proveedor.Id','=','notacompra.Id_Proveedor')
+        ->select('notacompra.id','FechaCompra','PrecioTotal','proveedor.Cod_Proveedor')
+        ->get();
+
         return view('Compra/Compra/index',compact('notacompra'));
     }
 
@@ -36,15 +41,28 @@ class notacompraController extends Controller
      */
     public function store(Request $request)
     {
+        $IdProveedor=DB::table('proveedor')
+        ->select('Id')->where('Cod_Proveedor','=',$request->input('Codigo'))
+        ->pluck('Id');
+
         $notacompra=new Notacompra();
         $notacompra->FechaCompra=date('Y-m-d H:i:s');
         $notacompra->PrecioTotal=0;
-        $notacompra->Id_Proveedor=$request->input('Codigo');
+        $notacompra->Id_Proveedor=$IdProveedor[0];
+
         $notacompra->save();
 
-        return redirect()->route('NotaCompra.index');
+        $dato=$notacompra->Id;
+
+        return view('Compra/Compra/DetalleCompra',compact('dato'));
     }
 
+
+    public function detalle($dato)
+    {
+        return view('Compra/Compra/DetalleCompra',compact('dato'));
+    }
+    
     /**
      * Display the specified resource.
      *
@@ -53,7 +71,11 @@ class notacompraController extends Controller
      */
     public function show($id)
     {
-        //
+        $detallecompra=DB::table('notaproductocompra')
+        ->select('Id_Producto','Id_Compra','Cantidad','PrecioUnitario')
+        ->where('Id_Compra','=',$id)->get();
+
+        return view('Compra/Compra/indexDetalle',compact('detallecompra'));
     }
 
     /**

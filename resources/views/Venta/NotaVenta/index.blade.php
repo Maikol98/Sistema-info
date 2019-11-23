@@ -9,7 +9,6 @@
             <th>PrecioTotal</th>
             <th>FechaVenta</th>
             <th>Id Cliente</th>
-            <th>Id_Admin</th>
             <th>Acciones</th>
         </thead>
         <tbody>
@@ -18,7 +17,6 @@
                 <td>{{$datos->PrecioTotal}}</td>
                 <td>{{$datos->FechaVenta}}</td>
                 <td>{{$datos->Id_Cliente}}</td>
-                <td>{{$datos->Id_Admin}}</td>
                 <td><form style="display:inline" action="{{route('Notaventa.destroy', $datos->Id)}}" method="post">
                         {!!csrf_field()!!}
                         {!!method_field('DELETE')!!}

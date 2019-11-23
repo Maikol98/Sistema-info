@@ -11,6 +11,6 @@ class Notaventa extends Model
     public $timestamps=false;
 
     protected $fillable=[
-        'Id','PercioTotal','FechaVenta','Id_Cliente','Id_Admin'
+        'Id','PercioTotal','FechaVenta','Id_Cliente'
     ];
 }

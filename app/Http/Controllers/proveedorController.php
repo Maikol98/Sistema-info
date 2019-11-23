@@ -16,7 +16,7 @@ class proveedorController extends Controller
     public function index()
     {
         $proveedor=DB::table('proveedor')
-        ->select('Id','Cod_Proveedor','NombreP','Direccion','Telefono','Email','Tipo')
+        ->select('Id','Cod_Proveedor','Nombre','Direccion','Telefono','Email','Tipo')
         ->where('Estado','=','1')
         ->get();
 
@@ -43,7 +43,7 @@ class proveedorController extends Controller
     {
         $proveedor=new Proveedor();
         $proveedor->Cod_Proveedor=$request->input('codigo');
-        $proveedor->NombreP=$request->input('nombre');
+        $proveedor->Nombre=$request->input('nombre');
         $proveedor->Direccion=$request->input('direccion');
         $proveedor->Telefono=$request->input('telefono');
         $proveedor->Email=$request->input('email');
@@ -91,7 +91,7 @@ class proveedorController extends Controller
     {
         $proveedor=Proveedor::findOrFail($id);
 
-        $proveedor->NombreP=$request->input('nombre');
+        $proveedor->Nombre=$request->input('nombre');
         $proveedor->Direccion=$request->input('direccion');
         $proveedor->Telefono=$request->input('telefono');
         $proveedor->Email=$request->input('email');

@@ -18,10 +18,7 @@ class CreateNotaventaTable extends Migration
             $table->float('PrecioTotal');
             $table->date('FechaVenta');
             $table->integer('Id_Cliente')->unsigned();
-            $table->integer('Id_Admin')->unsigned();
             $table->foreign('Id_Cliente')->references('Id')->on('cliente')
-            ->onDelete('cascade');
-            $table->foreign('Id_Admin')->references('Id')->on('administrador')
             ->onDelete('cascade');
         });
     }

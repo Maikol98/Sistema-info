@@ -4,7 +4,7 @@
     <h1>Todas las Notas</h1>
     <hr>
 
-    <table>
+    <table  width="60%" border="1">
         <thead>
             <th>Id_Producto</th>
             <th>Id_NotaVenta</th>
@@ -20,7 +20,8 @@
                     <td>{{$datos->Cantidad}}</td>
                     <td>{{$datos->PrecioUnitario}}</td>
                      <td><a href="{{route('DetalleVenta.edit',$datos->Id_Producto)}}"></a>
-                        <form style="display:inline" action="{{route('DetalleVenta.destroy', $datos->Id)}}" method="post">
+                        <form style="display:inline"
+                            action="{{route('DetalleVenta.destroy', $datos->Id_Producto)}}"method="post">
                             {!!csrf_field()!!}
                             {!!method_field('DELETE')!!}
                             <button type="submit">Elimnar</button>
@@ -28,7 +29,6 @@
                      </td>
                 </tr>
             @endforeach
-
         </tbody>
     </table>
 @endsection

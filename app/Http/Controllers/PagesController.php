@@ -15,7 +15,6 @@ class PagesController extends Controller
         return view('Compra/Compras');
     }
 
-
     public function createAdmin(){
         return view('Venta/createAdmin');
     }

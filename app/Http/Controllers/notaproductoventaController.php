@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Notaproductoventa;
+use App\Notaventa;
+use App\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,13 +41,33 @@ class notaproductoventaController extends Controller
      */
     public function store(Request $request)
     {
+        //OBTENEMOS DATOS DEL PRODUCTO
+        $IdProducto=DB::table('producto')
+        ->select('Id')
+        ->where('Cod_Producto','=',$request->input('CodProducto'))
+        ->pluck('Id');
+
+        $datos=Producto::findOrFail($IdProducto[0]);
+
         $nota=new Notaproductoventa();
-        $nota->Id_Producto=$request->input('CodProducto');
+        $nota->Id_Producto=$IdProducto[0];
         $nota->Id_NotaVenta=$request->input('IdVenta');
         $nota->Cantidad=$request->input('Cantidad');
-        $nota->PrecioUnitario=$request->input('Preciounitario');
+        //CALCULAMOS EL PRECIO
+        $nota->PrecioUnitario=($nota->Cantidad)*($datos->Precio);
+        //PRECIOTOTAL
+        $venta=Notaventa::findOrFail($nota->Id_NotaVenta);
+        $Total=($venta->PrecioTotal)+($nota->PrecioUnitario);
+
+        $dato=$nota->Id_NotaVenta;
+
         $nota->save();
-        return redirect()->route('DetalleVenta.index');
+
+        //ACTUALIZAMOS EL PRECIOTOTAL
+        DB::table('notaventa')->where('Id',$venta->Id)
+        ->update(['PrecioTotal'=>$Total]);
+
+        return view('Venta/NotaProducto/crearNota', compact('dato'));
     }
 
     /**

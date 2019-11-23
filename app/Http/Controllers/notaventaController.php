@@ -17,7 +17,7 @@ class notaventaController extends Controller
     public function index()
     {
         $notaventa=DB::table('notaventa')
-        ->select('Id','PrecioTotal','Fechaventa','Id_Cliente','Id_Admin')
+        ->select('Id','PrecioTotal','FechaVenta','Id_Cliente')
         ->get();
         return view('Venta/NotaVenta/index',compact('notaventa'));
     }
@@ -40,13 +40,17 @@ class notaventaController extends Controller
      */
     public function store(Request $request)
     {
+        $dato=DB::table('cliente')->select('Id')
+        ->where('Ci_Cliente','=',$request->input('CiCliente'))
+        ->pluck('Id');
+
         $notaventa=new Notaventa();
         $notaventa->PrecioTotal=0;
         $notaventa->FechaVenta=date('Y-m-d H:i:s');
-        $notaventa->Id_Cliente=$request->input('CiCliente');
-        $notaventa->Id_Admin=$request->input('CodAdmin');
+        $notaventa->Id_Cliente=$dato[0];
         $notaventa->save();
-        return redirect()->route('Notaventa.index');
+        $dato=$notaventa->Id;
+        return view('Venta/NotaProducto/crearNota', compact('dato'));
     }
 
     /**
