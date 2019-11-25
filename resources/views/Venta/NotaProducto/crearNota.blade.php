@@ -21,10 +21,6 @@
                         <label for="">Cantidad</label>
                         <input type="text" name="cantidad" class="form-control">
                 </div>
-                <div class="form-group">
-                        <label for="">Precio</label>
-                        <input type="text" name="Precio" class="form-control">
-                </div>
         </div>
         <button type="submit" class="btn btn-success">Guardar </button>
         <a class="btn btn-primary" href="<?php echo route('Notaventa.index')?>" role="button">lista de compras</a>

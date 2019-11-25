@@ -35,4 +35,6 @@
             @endforeach
         </tbody>
     </table>
+    <p></p>
+    <a class="btn btn-primary" href="{{route('Notaventa.index')}}" role="button">Atras</a>
 @endsection

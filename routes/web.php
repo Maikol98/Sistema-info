@@ -58,6 +58,8 @@ Route::post('DetalleVenta/{Id_Producto}/{Id_Venta}/eliminar',['as'
 =>'DetalleVenta.eliminar','uses'=>'notaproductoventaController@eliminar'] );
 
 
+
+
 Route::resource('Administrador', 'administradorController');
 
 

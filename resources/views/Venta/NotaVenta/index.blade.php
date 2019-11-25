@@ -23,7 +23,7 @@
                 <td>{{$datos->FechaVenta}}</td>
                 <td>{{$datos->PrecioTotal}}</td>
                 <td><a class="btn btn-primary" href="{{route('Notaventa.show',$datos->Id)}}" role="button">Detalle</a>
-                    <a style="display:inline" class="btn btn-success" href="{{route('NotaCompra.detalle',$datos->Id)}}" role="button">Añadir Producto</a></td>
+                    <a style="display:inline" class="btn btn-success" href="{{route('Notaventa.detalle',$datos->Id)}}" role="button">Añadir Producto</a></td>
                 </tr>
             @endforeach
 
