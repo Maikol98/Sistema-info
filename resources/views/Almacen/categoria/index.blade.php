@@ -5,7 +5,8 @@
         <a href="" class="navbar-brand">TODOS LAS CATEGORIAS</a>
     </nav>
     <p></p>
-        <table whidth='60%' border="1">
+    <p><a class="btn btn-success" href="{{route('Categoria.create')}}">Añadir Categoria</a></p>
+        <table whidth='60%' border="2">
                 <thead>
                     <th>Cod Categoria</th>
                     <th> Nombre</th>
@@ -16,11 +17,11 @@
                 <tr>
                     <td>{{$datos->Cod_Categoria}}</td>
                     <td>{{$datos->Nombre}}</td>
-                    <td><a  href="{{route('Categoria.edit',$datos->Id)}}">Editar</a>
+                    <td><a class="btn btn-primary btn-sm" href="{{route('Categoria.edit',$datos->Id)}}">Editar</a>
                         <form style="display:inline" action="{{route('Categoria.destroy', $datos->Id)}}" method="post">
                             {!!csrf_field()!!}
                             {!!method_field('DELETE')!!}
-                            <button type="submit">Elimnar</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Elimnar</button>
                         </form>
                     </td>
                 </tr>

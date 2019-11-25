@@ -1,26 +1,30 @@
 @extends('layout')
 @section('contenido')
 
+<nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand">REGISTRAR DISTRITO</a>
+    </nav>
+<p></p>
 
-<h1>Registrar Distrito</h1>
-
-<form action="{{route('Distrito.store',$ciudad->Id)}}" method="post">
+<form action="{{route('Distrito.store',$ciudad)}}" method="post">
 
     {!! csrf_field() !!}
-
-    <p><label for="NroDistrito">
-        Nro Distrito
-            <input type="text" name="NroDistrito">
-    </label>
-    </p>
-    <p><label for="Nombre">
-        Nombre
-            <input type="text" name="Nombre">
-    </label></p>
-    <p><label for="CodCiudad">
-        Codigo Ciudad
-    <input type="text" name="CodCiudad" value="{{$ciudad->Id}}">
-    </label></p>
-    <input type="submit" value="Enviar">
+    <div class="container">
+            <div class="form-group">
+                    <label for="">Nro Distrito</label>
+                    <input type="text" name="NroDistrito" class="form-control">
+            </div>
+            <div class="form-group">
+                     <label for="">Nombre</label>
+                     <input type="text" name="Nombre" class="form-control">
+            </div>
+            <div class="form-group">
+                    <label for="">Codigo Ciudad</label>
+                <input type="text" name="CodCiudad" value="{{$ciudad}}" class="form-control">
+            </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar </button>
+    <a style="display:inline" class="btn btn-info" href="{{route('Distrito.index')}}">Listado de Distritos</a>
+    <a style="display:inline" class="btn btn-secondary" href="{{route('Ciudad.index')}}">Volver</a>
 </form>
 @endsection

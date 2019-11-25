@@ -67,16 +67,6 @@ class clienteController extends Controller
         return redirect()->route('Cliente.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -86,7 +76,12 @@ class clienteController extends Controller
      */
     public function edit($id)
     {
-        $cliente=Cliente::findOrFail($id);
+        $cliente=DB::table('cliente')
+        ->join('distrito','distrito.Id','=','cliente.Id_Distrito')
+        ->join('ciudad','ciudad.Id','=','distrito.Id_Ciudad')
+        ->select('distrito.Nro_Distrito','ciudad.Nombre as nombreCiudad','cliente.Id as IdCliente','Ci_Cliente',
+                'cliente.Nombre','Direccion','Telefono','Correo')
+        ->where('cliente.Id','=',$id)->first();
         return view('Cliente/edit',compact('cliente'));
     }
 
@@ -100,15 +95,19 @@ class clienteController extends Controller
     public function update(Request $request, $id)
     {
         //actualizar
+        $distrito=DB::table('distrito')
+        ->join('ciudad','ciudad.Id','=','distrito.Id_Ciudad')
+        ->select('distrito.Id')
+        ->where('distrito.Nro_Distrito','=',$request->input('id_Distrito'),
+        'and','ciudad.Nombre','=',$request->input('Ciudad'))
+        ->pluck('distrito.Id');
+
         $cliente=Cliente::findOrFail($id);
-        $cliente->Ci_Cliente=$request->input('CiCliente');
         $cliente->Nombre=$request->input('nombre');
         $cliente->Direccion=$request->input('direccion');
         $cliente->Telefono=$request->input('telefono');
         $cliente->Correo=$request->input('correo');
-        $cliente->Estado=1;
-        $cliente->Id_Distrito=$request->input('id_Distrito');
-
+        $cliente->Id_Distrito=$distrito[0];
         $cliente->update();
         //redireccionar
         return redirect()->route('Cliente.index');

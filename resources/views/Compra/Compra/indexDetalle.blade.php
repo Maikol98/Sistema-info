@@ -3,30 +3,32 @@
 @section('contenido')
 <nav class="navbar navbar-dark bg-primary">
         <a href="" class="navbar-brand">DETALLE DE LA COMPRA</a>
-    </nav>
+      </nav>
     <p></p>
-        <table whidth='100%' border="1">
-                <thead>
-                    <th>Id Prodcto</th>
-                    <th>Id Compra</th>
-                    <th>Cantidad</th>
-                    <th>PrecioUnitario</th>
-                    <th>Accion</th>
+        <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id Prodcto</th>
+                        <th scope="col">Id Compra</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">PrecioUnitario</th>
+                        <th scope="col">Accion</th>
+                    </tr>
                 </thead>
         <tbody>
                 @foreach ($detallecompra as $datos)
                 <tr>
-                    <td>{{$datos->Id_Producto}}</td>
-                    <td>{{$datos->Id_Compra}}</td>
+                    <th scope="raw">{{$datos->Id_Producto}}</th>
+                    <th scope="raw">{{$datos->Id_Compra}}</th>
                     <td>{{$datos->Cantidad}}</td>
                     <td>{{$datos->PrecioUnitario}}</td>
-                    <td><a  href="{{route('DetalleCompra.editar',[$datos->Id_Producto, $datos->Id_Compra])}}">Editar</a>
+                    <td><a class="btn btn-success" href="{{route('DetalleCompra.editar',[$datos->Id_Producto, $datos->Id_Compra])}}">Editar</a>
                         <form style="display:inline"
                         action="{{route('DetalleCompra.eliminar',[$datos->Id_Producto, $datos->Id_Compra])}}" method="post">
 
                             {!!csrf_field()!!}
 
-                            <button type="submit">Elimnar</button>
+                            <button type="submit" class="btn btn-danger">Elimnar</button>
                         </form>
                     </td>
                 </tr>

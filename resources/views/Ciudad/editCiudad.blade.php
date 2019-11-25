@@ -2,19 +2,24 @@
 @section('contenido')
 
 
-<h1>Registrar Ciudad</h1>
+<nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand">EDITAR CIUDAD</a>
+    </nav>
+<p></p>
 
 <form action="{{route('Ciudad.update',$ciudad->Id)}}" method="post">
 
     {!!method_field('PUT')!!}
 
     {!!csrf_field()!!}
-
-    <p><label for="Nombre">
-        Nombre Ciudad
-        <input type="text" name="Nombre" value="{{$ciudad->Nombre}}">
-    </label></p>
-    <input type="submit" value="Enviar">
+    <div class="container">
+        <div class="form-group">
+            <label for="">Nombre Ciudad</label>
+            <input type="text" name="Nombre" value="{{$ciudad->Nombre}}" class="form-control">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar </button>
+    <a style="display:inline" class="btn btn-secondary" href="{{route('Ciudad.index')}}">Volver</a>
 </form>
 <p></p>
 <hr>

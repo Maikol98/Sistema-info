@@ -10,21 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class notaproductocompraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-      //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('Compra/Compra/DetalleCompra');
@@ -80,20 +66,15 @@ class notaproductocompraController extends Controller
 
 
 
-
     //NOS MANDA A LA INTERFACE PARA EDITAR
     public function editar($Id,$IdCompra)
     {
         $detallecompra=DB::table('notaproductocompra')
         ->select('Id_Producto','Id_Compra','Cantidad','Precio','PrecioUnitario')
-        ->where('Id_Producto','=',$Id,'and','Id_Compra','=',$IdCompra)
+        ->where('Id_Producto','=',$Id)->where('Id_Compra','=',$IdCompra)
         ->first();
         return view('Compra/Compra/editDetalle', compact('detallecompra'));
     }
-
-
-
-
 
 
 
@@ -102,27 +83,35 @@ class notaproductocompraController extends Controller
     public function actualizar(Request $request,$id,$idCompra)
     {
         $Cantidad=$request->input('cantidad');
-        //BUSCAMOS EL PRECIO DEL PRODUCTO
-        $dato=Producto::findOrFail($id);
-        $PrecioUn=($Cantidad)*($dato->Precio);
+        $PrecioUn=($Cantidad)*($request->input('Precio'));
 
-        //BUSCAMOS EL PRECIOUNITARIO Y MODIFICAMOS
-        $detallecompra=DB::table('notaproductocompra')
-        ->select('Id_Producto','Id_Compra','Cantidad','PrecioUnitario')
-        ->where('Id_Producto','=',$id,'and','Id_Compra','=',$idCompra)
+        $laststock=DB::table('notaproductocompra')->select('Cantidad')
+        ->where('Id_Producto','=',$id)->where('Id_Compra','=',$idCompra)
         ->first();
 
-        $lastPrecioUni=$detallecompra->PrecioUnitario;
-
-        $detallecompra=DB::table('notaproductocompra')
-        ->where('Id_Producto','=',$id,'and','Id_Compra','=',$idCompra)
+        // ACTUALIZAMOS DATOS DEL DETALLE
+        DB::table('notaproductocompra')
+        ->where('Id_Producto','=',$id)->where('Id_Compra','=',$idCompra)
         ->update(['Cantidad'=>$Cantidad,'Precio'=>$request->input('Precio'),'PrecioUnitario'=>$PrecioUn]);
+        //ACTUALIZAMOS DATOS DE LA COMPRA
+        $nota=DB::table('notaproductocompra')->select(DB::raw('SUM(PrecioUnitario) as PrecioTot'))
+        ->where('notaproductocompra.Id_Compra','=',$idCompra)->first();
 
-        $notacompra=Notacompra::findOrFail($idCompra);
-        $precioTot=($notacompra->PrecioTotal)+$PrecioUn-$lastPrecioUni;
+        DB::table('notacompra')->where('notacompra.id','=',$idCompra)
+        ->update(['PrecioTotal'=>$nota->PrecioTot]);
 
-        DB::table('notacompra')->where('id',$notacompra->id)
-        ->update(['PrecioTotal'=>$precioTot]);
+        //ACTUALIZAMOS EL STOCK DEL PRODUCTO
+        $stock=DB::table('producto')->select('Stock')->where('Id','=',$id)
+        ->first();
+        $stock->Stock=($stock->Stock)+$Cantidad-($laststock->Cantidad);
+
+        //ACTUALIZAMOS EL PROMEDIO Y STOCK DEL PRODUCTO
+        $preciopromedio=DB::table('notaproductocompra')
+        ->select(DB::raw('AVG(notaproductocompra.Precio) as Promedio'))
+        ->where('Id_Producto','=',$id)->first();
+
+        DB::table('producto')->where('Id',$id)
+        ->update(['Stock'=>$stock->Stock,'PrecioPromedio'=>$preciopromedio->Promedio]);
 
         return redirect()->route('NotaCompra.show',$idCompra);
     }
@@ -131,16 +120,21 @@ class notaproductocompraController extends Controller
 
 
     public function eliminar($Id,$IdCompra)
-    {   //OBTENEMOS EL PRECIO UNITARIO
+    {
+        //OBTENEMOS EL PRECIO UNITARIO
         $detallecompra=DB::table('notaproductocompra')
         ->select('Id_Producto','Id_Compra','Cantidad','PrecioUnitario')
-        ->where('Id_Producto','=',$Id,'and','Id_Compra','=',$IdCompra)
+        ->where('Id_Producto','=',$Id)->where('Id_Compra','=',$IdCompra)
         ->first();
+        //ACTUALIZAMOS EL STOCK DEL PRODUCTO
+        $stock=DB::table('producto')->select('Stock')->where('Id','=',$Id)
+        ->first();
+        $stock->Stock=($stock->Stock)-($detallecompra->Cantidad);
 
         $lastPrecioUni=$detallecompra->PrecioUnitario;
         //ELIMINAMOS EL DETALLE
         $detallecompra=DB::table('notaproductocompra')
-        ->where('Id_Producto','=',$Id,'and','Id_Compra','=',$IdCompra)
+        ->where('Id_Producto','=',$Id)->where('Id_Compra','=',$IdCompra)
         ->delete();
         //ACTUALIZAMOS EL PRECIOTOTAL
         $notacompra=Notacompra::findOrFail($IdCompra);
@@ -148,6 +142,13 @@ class notaproductocompraController extends Controller
 
         DB::table('notacompra')->where('id',$notacompra->id)
         ->update(['PrecioTotal'=>$precioTot]);
+        //ACTUALIZAMOS PRECIO PROMEDIO
+        $preciopromedio=DB::table('notaproductocompra')
+        ->select(DB::raw('AVG(notaproductocompra.Precio) as Promedio'))
+        ->where('Id_Producto','=',$Id)->first();
+
+        DB::table('producto')->where('Id',$Id)
+        ->update(['Stock'=>$stock->Stock,'PrecioPromedio'=>$preciopromedio->Promedio]);
 
         return redirect()->route('NotaCompra.show',$IdCompra);
     }

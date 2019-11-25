@@ -22,10 +22,7 @@ class CreatePedidoTable extends Migration
             $table->string('Descripcion')->nullable();
             $table->string('Estado');
             $table->integer('Id_Cliente')->unsigned();
-            $table->string('Placa');
             $table->foreign('Id_Cliente')->references('Id')->on('cliente')
-            ->onDelete('cascade');
-            $table->foreign('Placa')->references('Placa')->on('vehiculo')
             ->onDelete('cascade');
         });
     }

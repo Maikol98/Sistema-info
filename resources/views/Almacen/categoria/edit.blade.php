@@ -20,6 +20,7 @@
     </div>
 </div>
 <button type="submit" class="btn btn-primary">Guardar </button>
+<a style="display:inline" class="btn btn-secondary" href="{{route('Categoria.index')}}">Volver</a>
 </form>
 <br>
 @endsection

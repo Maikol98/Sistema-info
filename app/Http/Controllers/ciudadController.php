@@ -51,7 +51,8 @@ class ciudadController extends Controller
      */
     public function show($id)
     {
-        $ciudad=Ciudad::findOrFail($id);
+        $dato=Ciudad::findOrFail($id);
+        $ciudad=$dato->Id;
         return view('Ciudad/createDistrito', compact('ciudad'));
     }
 

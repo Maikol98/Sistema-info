@@ -1,47 +1,38 @@
 @extends('layout')
 
 @section('contenido')
+    <nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand">REGISTRAR PRODUCTO</a>
+    </nav>
 
-    <h1>Registrar Producto</h1>
+    <form action="{{route('Producto.store')}}" method="POST">
+        {!! csrf_field() !!}
+        <div class="container">
+            <div class="form-group">
+                <label for="">Codigo Producto</label>
+                <input type="text" name="Codigo" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Nombre</label>
+                <input type="text" name="Nombre" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Marca</label>
+                <input type="text" name="Marca" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Precio</label>
+                <input type="text" name="Precio" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Id Garantia</label>
+                <input type="text" name="IdGarantia" class="form-control">
+            </div>
+        </div>
+         <input type="submit" class="btn btn-primary" value="Enviar">
+        <a class="btn btn-secondary" href="{{route('Producto.index')}}">Volver</a>
+    </form>
 
-<form action="{{route('Producto.store')}}" method="POST">
-
-    {!! csrf_field() !!}
-
-    <p><label for="Cod_producto">
-        Codigo Producto
-        <input type="text" name="Codigo">
-    </label></p>
-
-
-    <p><label for="Nombre">
-            Nombre
-        <input type="text" name="Nombre">
-    </label></p>
-
-
-    <p><label for="Marca">
-        Marca
-        <input type="text" name="Marca">
-    </label></p>
-
-
-    <p><label for="Precio">
-            Precio
-            <input type="text" name="Precio">
-    </label></p>
-
-
-
-    <p><label for="Id_Garantia">
-            Id Garantia
-            <input type="text" name="IdGarantia">
-        </label></p>
-
-    <input type="submit" value="Enviar">
-
-</form>
-
-<hr>
+    <hr>
 
 @endsection

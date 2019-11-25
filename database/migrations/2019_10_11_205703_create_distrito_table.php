@@ -15,8 +15,9 @@ class CreateDistritoTable extends Migration
     {
         Schema::create('distrito', function (Blueprint $table) {
             $table->increments('Id');
-            $table->integer('Nro_Distrito')->unique();
+            $table->integer('Nro_Distrito');
             $table->string('Nombre');
+            $table->integer('Estado');
             $table->integer('Id_Ciudad')->unsigned();
             $table->foreign('Id_Ciudad')->references('Id')->on('ciudad')
             ->onDelete('cascade');

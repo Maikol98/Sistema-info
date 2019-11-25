@@ -16,7 +16,7 @@ class almacenController extends Controller
     public function index()
     {
         $almacen=DB::table('almacen')
-        ->select('Id','Cod_Almacen','Dimension','Capacidad','Direccion')
+        ->select('Id','Dimension','Capacidad','Direccion')
         ->where('Estado','=','1')
         ->get();
         return view('Almacen/almacen/index',compact('almacen'));
@@ -41,7 +41,6 @@ class almacenController extends Controller
     public function store(Request $request)
     {
         $almacen=new Almacen();
-        $almacen->Cod_Almacen=$request->input('Codigo');
         $almacen->Dimension=$request->input('Dimension');
         $almacen->Capacidad=$request->input('Capacidad');
         $almacen->Direccion=$request->input('Direccion');
@@ -58,7 +57,11 @@ class almacenController extends Controller
      */
     public function show($id)
     {
-        //
+        $estante=DB::table('estante')
+        ->join('categoria','categoria.Id','=','estante.Id_Categoria')
+        ->select('estante.Id as idEstante','Capacidad','Descripcion','Id_Almacen','Id_Categoria','Nombre','Estado')
+        ->where('estante.Estado','=','1','and','Id_Almacen','=',$id)->get();
+        return view('Almacen/Estante/index',compact('estante'));
     }
 
     /**

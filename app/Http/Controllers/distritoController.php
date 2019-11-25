@@ -15,10 +15,10 @@ class distritoController extends Controller
      */
     public function index()
     {
-        //$distrito=Distrito::all();
         $distrito=DB::table('distrito')
         ->join('ciudad','ciudad.Id','=','distrito.Id_Ciudad')
         ->select('distrito.Id','ciudad.Nombre as ciudad','Nro_Distrito','distrito.Nombre')
+        ->where('distrito.Estado','=','1')
         ->get('Id','ciudad','Nro_Distrito','Nombre');
         return view('Ciudad/indexDistrito',compact('distrito'));
     }
@@ -45,9 +45,12 @@ class distritoController extends Controller
         $distrito->Nro_Distrito=$request->input('NroDistrito');
         $distrito->Nombre=$request->input('Nombre');
         $distrito->Id_Ciudad=$request->input('CodCiudad');
+        $distrito->Estado=1;
+        //obtenemos el id de la ciudad
+        $ciudad=$distrito->Id_Ciudad;
         $distrito->save();
 
-        return redirect()->route('Distrito.index');
+        return view('Ciudad/createDistrito', compact('ciudad'));
     }
 
     /**
@@ -58,7 +61,12 @@ class distritoController extends Controller
      */
     public function show($id)
     {
-        //
+        $distrito=DB::table('distrito')
+        ->join('ciudad','ciudad.Id','=','distrito.Id_Ciudad')
+        ->select('distrito.Id','Id_Ciudad','ciudad.Nombre as ciudad','Nro_Distrito','distrito.Nombre','distrito.Estado')
+        ->where('ciudad.Id','=',$id)->where('distrito.Estado','=','1')
+        ->get();
+        return view('Ciudad/indexDistrito',compact('distrito'));
     }
 
     /**
@@ -85,10 +93,11 @@ class distritoController extends Controller
         $distrito=Distrito::findOrFail($id);
         $distrito->Nro_Distrito=$request->input('NroDistrito');
         $distrito->Nombre=$request->input('Nombre');
-        $distrito->Id_Ciudad=$request->input('CodCiudad');
+        $distrito->Id_Ciudad=$request->input('Ciudad');
+        $id=$distrito->Id_Ciudad;
         $distrito->update();
 
-        return redirect()->route('Distrito.index');
+        return redirect()->route('Distrito.show',$id);
 
     }
 
@@ -100,7 +109,11 @@ class distritoController extends Controller
      */
     public function destroy($id)
     {
-        Distrito::findOrFail($id)->delete();
-        return redirect()->route('Distrito.index');
+        $distrito=Distrito::findOrFail($id);
+        $distrito->Estado=0;
+        $id=$distrito->Id_Ciudad;
+        $distrito->update();
+
+        return redirect()->route('Distrito.show',$id);
     }
 }

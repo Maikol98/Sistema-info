@@ -1,29 +1,26 @@
 @extends('layout')
 
 @section('contenido')
-    <h1>Editar Detalle de Venta</h1>
-    <hr>
-<form action="{{route('DetalleVenta.update')}}" method="post">
+    <nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand">EDITAR DETALLE</a>
+    </nav>
+    <form action="{{route('Detalleventa.actualizar',[$detalleventa->Id_Producto, $detalleventa->Id_NotaVenta])}}" method="post">
 
-    {!! csrf_field('PUT') !!}
-    {!! csrf_field() !!}
+         {!! csrf_field('PUT') !!}
+        {!! csrf_field() !!}
+         <div class="container">
+            <div class="form-group">
+                <label for="">Cantidad</label>
+                <input type="text" name="cantidad" value="{{$detalleventa->Cantidad}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Precio</label>
+                <input type="text" name="Precio" value="{{$detalleventa->Precio}}" class="form-control">
+            </div>
+        </div>
+            <button type="submit" class="btn btn-primary">Guardar </button>
+            <a class="btn btn-info" href="{{route('Notaventa.show',$detalleventa->Id_NotaVenta)}}" role="button">Volver</a>
+    </form>
+<br>
 
-    <p><label for="Id_Producto">
-    Codigo Producto
-    <input type="text" name="CodProducto" value="{{$nota->Id_Producto}}">
-    </label></p>
-
-    <p><label for="Cantidad">
-    Cantidad
-    <input type="text" name="Cantidad" value="{{$nota->Cantidad}}">
-    </label></p>
-
-    <p><label for="PrecioUnitario" value="{{$nota->PrecioUnitario}}">
-    Precio Unitario
-    <input type="text" name="Preciounitario">
-    </label></p>
-
-    <p><input type="submit" value="Enviar"></p>
-
-</form>
 @endsection

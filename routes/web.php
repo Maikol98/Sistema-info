@@ -27,6 +27,7 @@ Route::resource('Cliente', 'clienteController');
 
 //ALMACEN
 Route::resource('Almacen', 'almacenController');
+//ESTANTE
 Route::resource('Estante', 'estanteController');
 Route::resource('Categoria', 'categoriaController');
 
@@ -43,17 +44,32 @@ Route::resource('Garantia', 'garantiaController');
 
 //NOTA VENTA
 Route::resource('Notaventa', 'notaventaController');
+Route::get('Notaventa/{id}/Detalle',['as'=>'Notaventa.detalle','uses'=>'notaventaController@detalle'] );
+
 Route::resource('DetalleVenta', 'notaproductoventaController');
+
+Route::get('DetalleVenta/{Id_Producto}/{Id_Compra}/editar',['as'
+=>'DetalleVenta.editar','uses'=>'notaproductoventaController@editar']);
+
+Route::put('DetalleVenta/{Id_Producto}/{Id_Venta}',['as'
+=>'DetalleVenta.actualizar','uses'=>'notaproductoventaController@actualizar'] );
+
+Route::post('DetalleVenta/{Id_Producto}/{Id_Venta}/eliminar',['as'
+=>'DetalleVenta.eliminar','uses'=>'notaproductoventaController@eliminar'] );
+
+
 Route::resource('Administrador', 'administradorController');
 
 
 //COMPRA
 Route::resource('Proveedor', 'proveedorController');
+
 //NOTA COMPRA
 Route::resource('NotaCompra', 'notacompraController');
-Route::post('NotaCompra/{id}',['as'=>'NotaCompra.detalle','uses'=>'notacompraController@detalle'] );
+Route::get('NotaCompra/{id}/Detalle',['as'=>'NotaCompra.detalle','uses'=>'notacompraController@detalle'] );
 
-//DETALLE DE COMPRA
+
+//DETALLE DE COMPRA //ELIMINAR ALGUNAS RUTAS
 Route::resource('DetalleCompra', 'notaproductocompraController');
 
 Route::get('DetalleCompra/{Id_Producto}/{Id_Compra}/editar',['as'
@@ -65,8 +81,14 @@ Route::put('DetalleCompra/{Id_Producto}/{Id_Compra}',['as'
 Route::post('DetalleCompra/{Id_Producto}/{Id_Compra}/eliminar',['as'
 =>'DetalleCompra.eliminar','uses'=>'notaproductocompraController@eliminar'] );
 
+
+
 //PEDIDOS
 
+//CHOFER
+Route::resource('Chofer', 'choferController');
+//VEHICULO
+Route::resource('Vehiculo', 'vehiculoController');
 
 //INGRESO SALIDA
 

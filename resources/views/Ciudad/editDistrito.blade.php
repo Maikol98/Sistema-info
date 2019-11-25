@@ -2,25 +2,31 @@
 @section('contenido')
 
 
-<h1>Registrar Distrito</h1>
+<nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand">EDITAR DISTRITO</a>
+    </nav>
+<p></p>
 
 <form action="{{route('Distrito.update',$distrito->Id)}}" method="post">
 
-<!--   ESTO ES PARA GENERAR LA RUTA 'PUT' YA QUE SOLO HAY 'GET' Y 'POST' EN LARAVEL -->
-    {!!method()_field('PUT')!!}
-
-<!--   ESTO ES PARA VALIDAR EL FORMULARIO -->
+    {!!method_field('PUT')!!}
     {!! csrf_field() !!}
 
-    <p><label for="NroDistrito">
-        Nro Distrito
-            <input type="text" name="NroDistrito" value={{"$distrito->Nro_Distrito"}}>
-    </label>
-    </p>
-    <p><label for="Nombre">
-        Nombre
-            <input type="text" name="Nombre" value={{"$distrito->Nombre"}}>
-    </label></p>
-    <input type="submit" value="Enviar">
+    <div class="container">
+            <div class="form-group">
+                <label for="">Nro Distrito</label>
+                <input type="text" name="NroDistrito" value={{"$distrito->Nro_Distrito"}} class="form-control">
+            </div>
+            <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input type="text" name="Nombre" value={{"$distrito->Nombre"}} class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Id Ciudad</label>
+                    <input type="text" name="Ciudad" value={{"$distrito->Id_Ciudad"}} class="form-control">
+                </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar </button>
+    <a style="display:inline" class="btn btn-secondary" href="{{route('Distrito.show',$distrito->Id_Ciudad)}}">Volver</a>
 </form>
 @endsection

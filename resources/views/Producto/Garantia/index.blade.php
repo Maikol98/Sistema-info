@@ -5,7 +5,8 @@
         <a href="" class="navbar-brand">TODAS LAS GARANTIAS</a>
     </nav>
     <p></p>
-        <table whidth='100%' border="1">
+    <p><a class="btn btn-success" href="{{route('Garantia.create')}}">Añadir Garantia</a></p>
+        <table whidth='100%' border="2">
                 <thead>
                     <th>Cod Garantia</th>
                     <th> Duracion (Meses)</th>
@@ -16,7 +17,7 @@
                 <tr>
                     <td>{{$datos->Cod_Garantia}}</td>
                     <td>{{$datos->Duracion}}</td>
-                    <td><a  href="{{route('Garantia.edit',$datos->Id)}}">Editar</a></td>
+                    <td><a class="btn btn-info btn-sm" href="{{route('Garantia.edit',$datos->Id)}}">Editar</a></td>
                 </tr>
                 @endforeach
 

@@ -1,8 +1,12 @@
 @extends('layout')
 
 @section('contenido')
+<nav class="navbar navbar-dark bg-primary">
+    <a href="" class="navbar-brand">TODOS LOS PRODUCTOS</a>
+</nav>
+    <P></P>
+    <p><a class="btn btn-success" href="{{route('Producto.create')}}">Añadir Producto</a></p>
 
-    <h1>Todos los Productos</h1>
     <table width='80%' border="1">
         <thead>
             <th>Cod Producto</th>
@@ -23,11 +27,11 @@
             <td>{{$datosProducto->Precio}}</td>
             <td>{{$datosProducto->PrecioPromedio}}</td>
             <td>{{$datosProducto->Stock}}</td>
-            <td><a  href="{{route('Producto.edit',$datosProducto->Id)}}">Editar</a>
+            <td><a class="btn btn-info btn-sm" href="{{route('Producto.edit',$datosProducto->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Producto.destroy', $datosProducto->Id)}}" method="post">
-                        {!!csrf_field()!!}
                         {!!method_field('DELETE')!!}
-                        <button type="submit">Elimnar</button>
+                        {!!csrf_field()!!}
+                        <button type="submit"class="btn btn-danger btn-sm" >Elimnar</button>
                     </form>
                 </td>
             </tr>

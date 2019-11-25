@@ -2,17 +2,24 @@
 @section('contenido')
 
 
-<h1>Registrar Ciudad</h1>
+<nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand">REGISTRAR CIUDAD</a>
+    </nav>
+<p></p>
+
 
 <form action="{{route('Ciudad.store')}}" method="post">
 
     {!!csrf_field()!!}
+    <div class="container">
+            <div class="form-group">
+                    <label for="">Nombre Ciudad</label>
+                    <input type="text" name="Nombre" class="form-control">
+            </div>
 
-    <p><label for="Nombre">
-        Nombre Ciudad
-        <input type="text" name="Nombre">
-    </label></p>
-    <input type="submit" value="Enviar">
+        <button type="submit" class="btn btn-primary">Guardar </button>
+        <a style="display:inline" class="btn btn-secondary" href="{{route('Ciudad.index')}}">Volver</a>
+    </div>
 </form>
 
 <p></p>

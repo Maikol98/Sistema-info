@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Baja;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class bajaController extends Controller
 {
@@ -14,8 +15,10 @@ class bajaController extends Controller
      */
     public function index()
     {
-        $baja=Baja::all();
-
+        $baja=DB::table('baja')
+        ->join('producto','producto.Id','=','baja.id')
+        ->select('baja.Id as Id','Fecha','Descripcion','TipoBaja','Nombre','Marca')
+        ->get();
         return view('Producto/Baja/index', compact('baja'));
     }
 
@@ -37,11 +40,15 @@ class bajaController extends Controller
      */
     public function store(Request $request)
     {
+        $producto=DB::table('producto')
+        ->select('Id')->where('Cod_Producto','=',$request->input('Id'))
+        ->pluck('Id');
+
         $baja=new Baja();
-        $baja->Fecha=date('d-m-Y H:i:s');
+        $baja->Fecha=date('Y-m-d H:i:s');
         $baja->Descripcion=$request->input('Descripcion');
         $baja->TipoBaja=$request->input('Tipo');
-        $baja->Id_Producto=$request->input('Id');
+        $baja->Id_Producto=$producto[0];
 
         $baja->save();
 
@@ -90,6 +97,8 @@ class bajaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Baja::findOrFail($id)->delete();
+
+        return redirect()->route('Baja.index');
     }
 }

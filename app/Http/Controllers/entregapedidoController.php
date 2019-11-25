@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Chofer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class choferController extends Controller
+class entregapedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +13,7 @@ class choferController extends Controller
      */
     public function index()
     {
-        $chofer=DB::table('chofer')
-        ->select('Id','Ci_Chofer','Nombre','Telefono','Direccion')
-        ->where('Estado','=','1')->get();
-
-        return view('Pedido/Chofer/index',compact('chofer'));
+        //
     }
 
     /**
@@ -29,7 +23,7 @@ class choferController extends Controller
      */
     public function create()
     {
-        return view('Pedido/Chofer/create');
+        //
     }
 
     /**
@@ -40,16 +34,7 @@ class choferController extends Controller
      */
     public function store(Request $request)
     {
-        $chofer=new Chofer();
-        $chofer->Ci_Chofer=$request->input('Ci');
-        $chofer->Nombre=$request->input('nombre');
-        $chofer->Telefono=$request->input('telefono');
-        $chofer->Direccion=$request->input('direccion');
-        $chofer->Estado=1;
-
-        $chofer->save();
-
-        return redirect()->route('Chofer.index');
+        //
     }
 
     /**
@@ -71,9 +56,7 @@ class choferController extends Controller
      */
     public function edit($id)
     {
-        $chofer=Chofer::findOrFail($id);
-
-        return view('Pedido/Chofer/edit',compact('chofer'));
+        //
     }
 
     /**
@@ -85,14 +68,7 @@ class choferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $chofer=Chofer::findOrFail($id);
-        $chofer->Nombre=$request->input('nombre');
-        $chofer->Telefono=$request->input('telefono');
-        $chofer->Direccion=$request->input('direccion');
-
-        $chofer->update();
-
-        return redirect()->route('Chofer.index');
+        //
     }
 
     /**
@@ -103,10 +79,6 @@ class choferController extends Controller
      */
     public function destroy($id)
     {
-        $chofer=Chofer::findOrFail($id);
-        $chofer->Estado=0;
-        $chofer->update();
-
-        return redirect()->route('Chofer.index');
+        //
     }
 }

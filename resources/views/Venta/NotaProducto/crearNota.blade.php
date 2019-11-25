@@ -1,27 +1,32 @@
 @extends('layout')
 
 @section('contenido')
-    <h1>Registrar Detalle de Venta</h1>
-    <hr>
-<form action="{{route('DetalleVenta.store',$dato)}}" method="post">
-    {!! csrf_field() !!}
+    <nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand">REGISTRAR DETALLE DE VENTA</a>
+    </nav>
+    <form action="{{route('DetalleVenta.store',$dato)}}" method="post">
 
-    <p><label for="Id_Producto">
-    Codigo Producto
-    <input type="text" name="CodProducto">
-    </label></p>
+         {!! csrf_field() !!}
 
-    <p><label for="Id_NotaVenta">
-    Id Venta
-    <input type="text" name="IdVenta" value="{{$dato}}">
-    </label></p>
-
-    <p><label for="Cantidad">
-    Cantidad
-    <input type="text" name="Cantidad">
-    </label></p>
-
-    <p><input type="submit" value="Enviar"></p>
-
-</form>
+         <div class="container">
+                <div class="form-group">
+                        <label for="">Nro Nota</label>
+                        <input type="text" name="nota" value="{{$dato}}" class="form-control">
+                    </div>
+                <div class="form-group">
+                        <label for="">Codigo Producto</label>
+                        <input type="text" name="Codigo" class="form-control">
+                    </div>
+                <div class="form-group">
+                        <label for="">Cantidad</label>
+                        <input type="text" name="cantidad" class="form-control">
+                </div>
+                <div class="form-group">
+                        <label for="">Precio</label>
+                        <input type="text" name="Precio" class="form-control">
+                </div>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar </button>
+        <a class="btn btn-primary" href="<?php echo route('Notaventa.index')?>" role="button">lista de compras</a>
+    </form>
 @endsection

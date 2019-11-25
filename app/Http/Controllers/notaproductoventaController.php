@@ -10,24 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class notaproductoventaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $nota=DB::table('Notaproductoventa')
-        ->select('Id_Producto','Id_NotaVenta','Cantidad','PrecioUnitario')
-        ->get();
-        return view('Venta/NotaProducto/index',compact('nota'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('Venta/NotaProducto/crearNota');
@@ -41,85 +24,117 @@ class notaproductoventaController extends Controller
      */
     public function store(Request $request)
     {
-        //OBTENEMOS DATOS DEL PRODUCTO
-        $IdProducto=DB::table('producto')
+        $dato=DB::table('producto')
         ->select('Id')
-        ->where('Cod_Producto','=',$request->input('CodProducto'))
+        ->where('Cod_Producto','=',$request->input('Codigo'))
         ->pluck('Id');
 
-        $datos=Producto::findOrFail($IdProducto[0]);
 
-        $nota=new Notaproductoventa();
-        $nota->Id_Producto=$IdProducto[0];
-        $nota->Id_NotaVenta=$request->input('IdVenta');
-        $nota->Cantidad=$request->input('Cantidad');
-        //CALCULAMOS EL PRECIO
-        $nota->PrecioUnitario=($nota->Cantidad)*($datos->Precio);
-        //PRECIOTOTAL
-        $venta=Notaventa::findOrFail($nota->Id_NotaVenta);
-        $Total=($venta->PrecioTotal)+($nota->PrecioUnitario);
+        $detalleventa=new Notaproductoventa();
+        $detalleventa->Id_Producto=$dato[0];
+        $detalleventa->Id_NotaVenta=$request->input('nota');
+        $detalleventa->Cantidad=$request->input('cantidad');
+        $detalleventa->Precio=$request->input('Precio');
+        $detalleventa->PrecioUnitario=($detalleventa->Precio)*($detalleventa->Cantidad);
 
-        $dato=$nota->Id_NotaVenta;
+        //SACAMOS CALCULO DEL PRECIO TOTAL
+        $notaventa=Notacompra::findOrFail($detalleventa->Id_NotaVenta);
+        $precioTot=($notaventa->PrecioTotal)+($detalleventa->PrecioUnitario);
 
-        $nota->save();
+        //CALCULAMOS NUEVOS DATOS DEL PRODUCTO
+        $producto=Producto::findOrFail($dato[0]);
+        $stock=($producto->Stock)-($detalleventa->Cantidad);
 
-        //ACTUALIZAMOS EL PRECIOTOTAL
-        DB::table('notaventa')->where('Id',$venta->Id)
-        ->update(['PrecioTotal'=>$Total]);
+        //REGISTRAMOS EL DETALLE DE LA COMPRA
+        $detalleventa->save();
+
+        DB::table('producto')->where('Id',$producto->Id)
+        ->update(['Stock'=>$stock]);
+
+        //ACTUALIZAMOS EL VALOR DEL ATRIBUTO PRECIO TOTAL
+        DB::table('notacompra')->where('id',$notaventa->id)
+        ->update(['PrecioTotal'=>$precioTot]);
+        $dato=$notaventa->Id;
 
         return view('Venta/NotaProducto/crearNota', compact('dato'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    //NOS MANDA A LA INTERFACE PARA EDITAR
+    public function editar($Id,$IdVenta)
     {
-        //
+        $detalleventa=DB::table('notaproductoventa')
+        ->select('Id_Producto','Id_NotaVenta','Cantidad','Precio','PrecioUnitario')
+        ->where('Id_Producto','=',$Id)->where('Id_NotaVenta','=',$IdVenta)
+        ->first();
+        return view('Venta/NotaProducto/edit', compact('detalleventa'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    //ACTUALLIZA LOS DATOS
+    public function actualizar(Request $request,$id,$idVenta)
     {
-        $nota=Notaproductoventa::findOrFail($id);
-        return view('Venta/NotaProducto/edit',compact('nota'));
+        $Cantidad=$request->input('cantidad');
+        $PrecioUn=($Cantidad)*($request->input('Precio'));
+
+        $laststock=DB::table('notaproductoventa')->select('Cantidad')
+        ->where('Id_Producto','=',$id)->where('Id_NotaVenta','=',$idVenta)
+        ->first();
+
+        // ACTUALIZAMOS DATOS DEL DETALLE
+        DB::table('notaproductoventa')
+        ->where('Id_Producto','=',$id)->where('Id_NotaVenta','=',$idVenta)
+        ->update(['Cantidad'=>$Cantidad,'Precio'=>$request->input('Precio'),'PrecioUnitario'=>$PrecioUn]);
+
+        //ACTUALIZAMOS DATOS DE LA VENTA
+        $nota=DB::table('notaproductoventa')->select(DB::raw('SUM(PrecioUnitario) as PrecioTot'))
+        ->where('notaproductoventa.Id_NotaVenta','=',$idVenta)->first();
+
+        DB::table('notaventa')->where('notaventa.Id','=',$idVenta)
+        ->update(['PrecioTotal'=>$nota->PrecioTot]);
+
+        //ACTUALIZAMOS EL STOCK DEL PRODUCTO
+        $stock=DB::table('producto')->select('Stock')->where('Id','=',$id)
+        ->first();
+        $stock->Stock=($stock->Stock)-$Cantidad+($laststock->Cantidad);
+
+        DB::table('producto')->where('Id',$id)
+        ->update(['Stock'=>$stock->Stock]);
+
+        return redirect()->route('Notaventa.show',$idVenta);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+
+    public function eliminar($Id,$idVenta)
     {
-        $nota=Notaproductoventa::findOrFail($id);
-        $nota->Capacidad=$request->input('Capacidad');
-        $nota->PrecioUnitario=$request->input('Preciounitario');
+        //OBTENEMOS EL PRECIO UNITARIO
+        $detalleventa=DB::table('notaproductoventa')
+        ->select('Id_Producto','Id_NotaVenta','Cantidad','PrecioUnitario')
+        ->where('Id_Producto','=',$Id)->where('Id_NotaVenta','=',$idVenta)
+        ->first();
+        //ACTUALIZAMOS EL STOCK DEL PRODUCTO
+        $stock=DB::table('producto')->select('Stock')->where('Id','=',$Id)
+        ->first();
+        $stock->Stock=($stock->Stock)+($detalleventa->Cantidad);
 
-        $nota->update();
+        $lastPrecioUni=$detalleventa->PrecioUnitario;
+        //ELIMINAMOS EL DETALLE
+        $detalleventa=DB::table('notaproductoventa')
+        ->where('Id_Producto','=',$Id)->where('Id_NotaVenta','=',$idVenta)
+        ->delete();
 
-        return redirect()->route('DetalleVenta.index');
+        //ACTUALIZAMOS EL PRECIOTOTAL
+        $notaventa=Notacompra::findOrFail($idVenta);
+        $precioTot=($notaventa->PrecioTotal)-$lastPrecioUni;
+
+        DB::table('notacompra')->where('id',$notaventa->Id)
+        ->update(['PrecioTotal'=>$precioTot]);
+
+        DB::table('producto')->where('Id',$Id)
+        ->update(['Stock'=>$stock->Stock]);
+
+        return redirect()->route('Notaventa.show',$idVenta);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        Notaproductoventa::findOrFail($id)->delete();
-        return redirect()->route('DetalleVenta.index');
-    }
 }

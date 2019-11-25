@@ -1,8 +1,10 @@
 @extends('layout')
 
 @section('contenido')
-
-    <h1>Todos los Distritos</h1>
+<nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand">TODOS LOS DISTRITOS</a>
+    </nav>
+    <p></p>
     <table width="50%" border="1">
         <thead>
             <th>Nro Distrito</th>
@@ -16,15 +18,17 @@
                 <td>{{$datosDistrito->Nro_Distrito}}</td>
                 <td>{{$datosDistrito->Nombre}}</td>
                 <td>{{$datosDistrito->ciudad}}</td>
-                <td><a  href="{{route('Distrito.edit',$datosDistrito->Id)}}">Editar</a>
+                <td><a class="btn btn-primary btn-sm" href="{{route('Distrito.edit',$datosDistrito->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Distrito.destroy', $datosDistrito->Id)}}" method="post">
-                        {!!csrf_field()!!}
                         {!!method_field('DELETE')!!}
-                        <button type="submit">Elimnar</button>
+                        {!!csrf_field()!!}
+                        <button type="submit" class="btn btn-danger btn-sm">Elimnar</button>
                     </form>
                 </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    <p></p>
+    <a class="btn btn-primary btn-sm" href="{{route('Ciudad.index')}}">Volver</a>
 @endsection

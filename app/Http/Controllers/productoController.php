@@ -40,7 +40,10 @@ class productoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   $garantia=DB::table('garantia')
+        ->select('Id')->where('Cod_Garantia','=',$request->input('IdGarantia'))
+        ->pluck('Id');
+
         $producto=new Producto();
         $producto->Cod_producto=$request->input('Codigo');
         $producto->Nombre=$request->input('Nombre');
@@ -49,11 +52,11 @@ class productoController extends Controller
         $producto->PrecioPromedio=0;
         $producto->Stock=0;
         $producto->Estado=1;
-        $producto->Id_Garantia=$request->input('IdGarantia');
+        $producto->Id_Garantia=$garantia[0];
 
         $producto->save();
 
-        return redirect()->route('Producto.create');
+        return redirect()->route('Producto.index');
 
     }
 
@@ -109,6 +112,7 @@ class productoController extends Controller
         $producto=Producto::findOrFail($id);
         $producto->Estado=0;
         $producto->update();
-        redirect()->route('Producto.index');
+        
+        return redirect()->route('Producto.index');
     }
 }

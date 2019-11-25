@@ -15,7 +15,6 @@ class CreateAlmacenTable extends Migration
     {
         Schema::create('almacen', function (Blueprint $table) {
             $table->increments('Id');
-            $table->integer('Cod_Almacen')->unique();
             $table->string('Dimension');
             $table->integer('Capacidad');
             $table->string('Direccion');

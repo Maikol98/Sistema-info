@@ -29,6 +29,7 @@
     </div>
 </div>
 <button type="submit" class="btn btn-primary">Guardar </button>
+<a style="display:inline" class="btn btn-danger" href="{{route('Almacen.index')}}">Cancelar</a>
 </form>
 <br>
 @endsection

@@ -39,7 +39,8 @@
             <input type="text" name="id_Distrito" class="form-control">
         </div>
     </div>
-    <input type="submit" value="Enviar">
+    <input type="submit" class="btn btn-primary" value="Enviar">
+    <a style="display:inline" class="btn btn-secondary" href="{{route('Cliente.index')}}">Volver</a>
 </form>
 <hr>
 @endsection

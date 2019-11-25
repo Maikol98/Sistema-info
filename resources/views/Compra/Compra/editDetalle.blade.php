@@ -21,6 +21,7 @@
                 </div>
         </div>
         <button type="submit" class="btn btn-primary">Guardar </button>
+        <a class="btn btn-info" href="{{route('NotaCompra.show',$detallecompra->Id_Compra)}}" role="button">Volver</a>
     </form>
     <br>
 @endsection

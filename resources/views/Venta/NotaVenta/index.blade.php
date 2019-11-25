@@ -1,28 +1,29 @@
 @extends('layout')
 
 @section('contenido')
+<nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand">TODAS LAS VENTAS</a>
+      </nav>
+    <p></p>
+        <p><a class="btn btn-success" href="{{route('Notaventa.create')}}">Añadir Venta</a></p>
 
-    <h1>Todas las notas</h1>
-
-    <table width="50%" border="1">
-        <thead>
-            <th>PrecioTotal</th>
-            <th>FechaVenta</th>
-            <th>Id Cliente</th>
-            <th>Acciones</th>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Ci Cliente</th>
+                <th scope="col">FechaVenta</th>
+                <th scope="col">PrecioTotal</th>
+                <th scope="col">Acciones</th>
+            </tr>
         </thead>
         <tbody>
             @foreach ($notaventa as $datos)
                 <tr>
-                <td>{{$datos->PrecioTotal}}</td>
+                <th scope='raw'>{{$datos->Ci_Cliente}}</th>
                 <td>{{$datos->FechaVenta}}</td>
-                <td>{{$datos->Id_Cliente}}</td>
-                <td><form style="display:inline" action="{{route('Notaventa.destroy', $datos->Id)}}" method="post">
-                        {!!csrf_field()!!}
-                        {!!method_field('DELETE')!!}
-                        <button type="submit">Elimnar</button>
-                    </form>
-                </td>
+                <td>{{$datos->PrecioTotal}}</td>
+                <td><a class="btn btn-primary" href="{{route('Notaventa.show',$datos->Id)}}" role="button">Detalle</a>
+                    <a style="display:inline" class="btn btn-success" href="{{route('NotaCompra.detalle',$datos->Id)}}" role="button">Añadir Producto</a></td>
                 </tr>
             @endforeach
 

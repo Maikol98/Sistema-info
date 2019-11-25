@@ -19,7 +19,6 @@ class proveedorController extends Controller
         ->select('Id','Cod_Proveedor','Nombre','Direccion','Telefono','Email','Tipo')
         ->where('Estado','=','1')
         ->get();
-
         return view('Compra/Proveedor/index',compact('proveedor'));
     }
 

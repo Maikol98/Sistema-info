@@ -18,9 +18,7 @@ class CreateVehiculoTable extends Migration
             $table->string('Modelo');
             $table->string('Color');
             $table->integer('Capacidad');
-            $table->integer('Id_Chofer')->unsigned();
-            $table->foreign('Id_Chofer')->references('Id')->on('chofer')
-            ->onDelete('cascade');
+            $table->integer('Estado');
         });
     }
 
