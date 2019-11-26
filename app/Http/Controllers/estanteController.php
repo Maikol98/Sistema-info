@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class estanteController extends Controller
 {
+    public function index()
+    {
+        $estante=Estante::all();
+
+        return view('Almacen/Estante/index', compact('estante'));
+    }
 
     /**
      * Show the form for creating a new resource.
