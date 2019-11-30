@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 class notaproductoventaController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
     public function create()
     {
         return view('Venta/NotaProducto/crearNota');

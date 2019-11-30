@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Ciudad;
 use Illuminate\Http\Request;
+use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
 class ciudadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin'],['except'=>['index']]);
+    }
+//asd
+
     public function index()
     {
         $ciudad=Ciudad::all();
@@ -39,6 +43,12 @@ class ciudadController extends Controller
         $ciudad=new Ciudad();
         $ciudad->Nombre=$request->input('Nombre');
         $ciudad->save();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Inserto Nueva Ciudad: '.$ciudad->Nombre;
+        $bitacora->save();
 
         return redirect()-> route('Ciudad.index');
     }
@@ -81,6 +91,12 @@ class ciudadController extends Controller
         $ciudad->Nombre=$request->input('Nombre');
         $ciudad->update();
 
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Actualizo datos de la Ciudad: '.$ciudad->Nombre;
+        $bitacora->save();
+
         return redirect()-> route('Ciudad.index');
     }
 
@@ -93,6 +109,13 @@ class ciudadController extends Controller
     public function destroy($id)
     {
         Ciudad::findOrFail($id)->delete();
+
+        $bitacora = new Bitacora();
+
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'elimino Ciudad';
+        $bitacora->save();
 
         return redirect()-> route('Ciudad.index');
     }

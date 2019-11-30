@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
 class proveedorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
     public function index()
     {
         $proveedor=DB::table('proveedor')
@@ -50,6 +53,12 @@ class proveedorController extends Controller
         $proveedor->Estado=1;
 
         $proveedor->save();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Añadio nuevo Proveedor';
+        $bitacora->save();
 
         return redirect()->route('Proveedor.index');
 
@@ -98,6 +107,12 @@ class proveedorController extends Controller
 
         $proveedor->update();
 
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Actualizo datos del Proveedor';
+        $bitacora->save();
+
         return redirect()->route('Proveedor.index');
     }
 
@@ -112,6 +127,12 @@ class proveedorController extends Controller
         $proveedor=Proveedor::findOrFail($id);
         $proveedor->Estado=0;
         $proveedor->update();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'elimino Proveedor';
+        $bitacora->save();
 
         return redirect()->route('Proveedor.index');
     }

@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class choferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
     public function index()
     {
         $chofer=DB::table('chofer')

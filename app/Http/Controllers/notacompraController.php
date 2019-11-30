@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Notacompra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
 class notacompraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
     public function index()
     {
         $notacompra=DB::table('notacompra')
@@ -52,6 +55,12 @@ class notacompraController extends Controller
         $notacompra->Id_Proveedor=$IdProveedor[0];
 
         $notacompra->save();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Inserto Nueva Compra';
+        $bitacora->save();
 
         $dato=$notacompra->Id;
 

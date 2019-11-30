@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Almacen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
 class almacenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
     public function index()
     {
         $almacen=DB::table('almacen')
@@ -46,6 +49,13 @@ class almacenController extends Controller
         $almacen->Direccion=$request->input('Direccion');
         $almacen->Estado=1;
         $almacen->save();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Añadio Nuevo almacen';
+        $bitacora->save();
+
         return redirect()->route('Almacen.index');
     }
 
@@ -90,6 +100,13 @@ class almacenController extends Controller
         $almacen->Dimension=$request->input('Dimension');
         $almacen->Capacidad=$request->input('Capacidad');
 
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Actualizo datos del almacen';
+        $bitacora->save();
+
         $almacen->update();
         return redirect()->route('Almacen.index');
     }
@@ -105,6 +122,13 @@ class almacenController extends Controller
         $almacen=Almacen::findOrFail($id);
         $almacen->Estado=0;
         $almacen->update();
+
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Elimino almacen';
+        $bitacora->save();
 
         return redirect()->route('Almacen.index');
     }

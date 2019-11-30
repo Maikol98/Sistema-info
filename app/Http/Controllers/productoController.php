@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
 class productoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin'],['except'=>['index']]);
+    }
+
     public function index()
     {
         $producto=DB::table('producto')
@@ -56,6 +59,12 @@ class productoController extends Controller
 
         $producto->save();
 
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Inserto Nuevo Producto';
+        $bitacora->save();
+
         return redirect()->route('Producto.index');
 
     }
@@ -98,6 +107,14 @@ class productoController extends Controller
         $producto->Precio=$request->input('Precio');
 
         $producto->update();
+
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Actualizo datos del Producto';
+        $bitacora->save();
+
         return redirect()->route('Producto.index');
     }
 
@@ -112,7 +129,13 @@ class productoController extends Controller
         $producto=Producto::findOrFail($id);
         $producto->Estado=0;
         $producto->update();
-        
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'elimino Producto';
+        $bitacora->save();
+
         return redirect()->route('Producto.index');
     }
 }

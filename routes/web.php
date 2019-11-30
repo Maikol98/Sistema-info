@@ -95,6 +95,29 @@ Route::resource('Vehiculo', 'vehiculoController');
 //INGRESO SALIDA
 
 
+//LOGIN
+
+/*TEMPORAL
+Route::get('test', function () {
+$user=new App\User;
+$user->name='Henrry Roca';
+$user->email='Roca@gmail.com';
+$user->password=bcrypt('12345');
+$user->role='Admin';
+$user->save();
+return $user;
+});*/
+
+
+Route::get('login',['as'=>'login','uses'=>'Auth\LoginController@showLoginForm']);
+Route::post('login','Auth\LoginController@login');
+Route::get('logout','Auth\LoginController@logout');
+
+
+Route::resource('usuarios','UsersController');
+
+
+Route::get('Bitacora',['as'=>'Bitacora.index','uses'=>'bitacoraController@index']);
 
 
 

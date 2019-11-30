@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class administradorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
+
     public function index()
     {
         $admin=DB::table('administrador')

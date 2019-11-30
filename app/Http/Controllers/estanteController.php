@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class estanteController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
     public function index()
     {
         $estante=Estante::all();

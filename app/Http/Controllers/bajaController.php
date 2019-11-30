@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Baja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
 class bajaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
     public function index()
     {
         $baja=DB::table('baja')
@@ -51,6 +54,12 @@ class bajaController extends Controller
         $baja->Id_Producto=$producto[0];
 
         $baja->save();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Inserto Nueva Baja';
+        $bitacora->save();
 
         return redirect()->route('Baja.index');
     }
@@ -98,6 +107,12 @@ class bajaController extends Controller
     public function destroy($id)
     {
         Baja::findOrFail($id)->delete();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Elimino Baja';
+        $bitacora->save();
 
         return redirect()->route('Baja.index');
     }

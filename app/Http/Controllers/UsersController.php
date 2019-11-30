@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Categoria;
 use Illuminate\Http\Request;
+use App\User;
 
-class categoriaController extends Controller
+class UsersController extends Controller
 {
-
-    function __construct()
-    {
-        $this->middleware(['auth','roles:Admin']);
-    }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $categoria=Categoria::all();
-        return view('Almacen/categoria/index', compact('categoria'));
+        $users=User::all();
+        return view('auth/index',compact('users'));
     }
 
     /**
@@ -26,7 +25,7 @@ class categoriaController extends Controller
      */
     public function create()
     {
-        return view('Almacen/categoria/create');
+        //
     }
 
     /**
@@ -37,12 +36,7 @@ class categoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $categoria=new Categoria();
-        $categoria->Cod_Categoria=$request->input('codigo');
-        $categoria->Nombre=$request->input('Nombre');
-
-        $categoria->save();
-        return redirect()->route('Categoria.index');
+        //
     }
 
     /**
@@ -64,8 +58,7 @@ class categoriaController extends Controller
      */
     public function edit($id)
     {
-        $categoria=Categoria::findOrFail($id);
-        return view('Almacen/categoria/edit',compact('categoria'));
+        //
     }
 
     /**
@@ -77,12 +70,7 @@ class categoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categoria=Categoria::findOrFail($id);
-        $categoria->Nombre=$request->input('Nombre');
-
-        $categoria->update();
-
-        return redirect()->route('Categoria.index');
+        //
     }
 
     /**

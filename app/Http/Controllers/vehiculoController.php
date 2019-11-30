@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class vehiculoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin'],['except'=>['index']]);
+    }
+
     public function index()
     {
         $vehiculo=DB::table('vehiculo')

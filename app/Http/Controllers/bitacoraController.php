@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Categoria;
+use App\Bitacora;
 use Illuminate\Http\Request;
 
-class categoriaController extends Controller
+class bitacoraController extends Controller
 {
-
     function __construct()
     {
         $this->middleware(['auth','roles:Admin']);
     }
+    
 
     public function index()
     {
-        $categoria=Categoria::all();
-        return view('Almacen/categoria/index', compact('categoria'));
+        $bitacora=Bitacora::all();
+
+        return view('Bitacora/index', compact('bitacora'));
     }
 
     /**
@@ -26,7 +27,7 @@ class categoriaController extends Controller
      */
     public function create()
     {
-        return view('Almacen/categoria/create');
+        //
     }
 
     /**
@@ -37,12 +38,7 @@ class categoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $categoria=new Categoria();
-        $categoria->Cod_Categoria=$request->input('codigo');
-        $categoria->Nombre=$request->input('Nombre');
-
-        $categoria->save();
-        return redirect()->route('Categoria.index');
+        //
     }
 
     /**
@@ -64,8 +60,7 @@ class categoriaController extends Controller
      */
     public function edit($id)
     {
-        $categoria=Categoria::findOrFail($id);
-        return view('Almacen/categoria/edit',compact('categoria'));
+        //
     }
 
     /**
@@ -77,12 +72,7 @@ class categoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categoria=Categoria::findOrFail($id);
-        $categoria->Nombre=$request->input('Nombre');
-
-        $categoria->update();
-
-        return redirect()->route('Categoria.index');
+        //
     }
 
     /**

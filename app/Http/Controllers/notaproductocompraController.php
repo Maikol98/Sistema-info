@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class notaproductocompraController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
 
     public function create()
     {

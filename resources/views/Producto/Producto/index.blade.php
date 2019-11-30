@@ -7,31 +7,33 @@
     <P></P>
     <p><a class="btn btn-success" href="{{route('Producto.create')}}">Añadir Producto</a></p>
 
-    <table width='80%' border="1">
-        <thead>
-            <th>Cod Producto</th>
-            <th>Nombre</th>
-            <th>Marca</th>
-            <th>Precio</th>
-            <th>Precio Promedio</th>
-            <th>Stock</th>
-            <th>Acciones</th>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Cod Producto</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Precio Promedio</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Acciones</th>
+            </tr>
         </thead>
 
         <tbody>
             @foreach ($producto as $datosProducto)
             <tr>
-            <td>{{$datosProducto->Cod_Producto}}</td>
-            <td>{{$datosProducto->Nombre}}</td>
-            <td>{{$datosProducto->Marca}}</td>
-            <td>{{$datosProducto->Precio}}</td>
-            <td>{{$datosProducto->PrecioPromedio}}</td>
-            <td>{{$datosProducto->Stock}}</td>
-            <td><a class="btn btn-info btn-sm" href="{{route('Producto.edit',$datosProducto->Id)}}">Editar</a>
+            <th scope="raw">{{$datosProducto->Cod_Producto}}</th>
+            <td scope="raw">{{$datosProducto->Nombre}}</td>
+            <td scope="raw">{{$datosProducto->Marca}}</td>
+            <td scope="raw">{{$datosProducto->Precio}}</td>
+            <td scope="raw">{{$datosProducto->PrecioPromedio}}</td>
+            <td scope="raw">{{$datosProducto->Stock}}</td>
+            <td scope="raw"><a class="btn btn-info" href="{{route('Producto.edit',$datosProducto->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Producto.destroy', $datosProducto->Id)}}" method="post">
                         {!!method_field('DELETE')!!}
                         {!!csrf_field()!!}
-                        <button type="submit"class="btn btn-danger btn-sm" >Elimnar</button>
+                        <button type="submit"class="btn btn-danger" >Elimnar</button>
                     </form>
                 </td>
             </tr>

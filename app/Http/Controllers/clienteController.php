@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
-use App\Distrito;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
 class clienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
+
     public function index()
     {
         $cliente = DB::table('cliente')
@@ -64,6 +65,12 @@ class clienteController extends Controller
 
         $cliente->save();
 
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Inserto Nuevo Cliente';
+        $bitacora->save();
+
         return redirect()->route('Cliente.index');
     }
 
@@ -109,6 +116,13 @@ class clienteController extends Controller
         $cliente->Correo=$request->input('correo');
         $cliente->Id_Distrito=$distrito[0];
         $cliente->update();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Actualizo datos del Cliente';
+        $bitacora->save();
+
         //redireccionar
         return redirect()->route('Cliente.index');
     }
@@ -125,6 +139,13 @@ class clienteController extends Controller
         $cliente=Cliente::findOrFail($id);
         $cliente->Estado=0;
         $cliente->update();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Elimino Cliente';
+        $bitacora->save();
+
         //redireccionar
         return redirect()->route('Cliente.index');
     }
