@@ -12,7 +12,7 @@ class ciudadController extends Controller
 {
     function __construct()
     {
-        $this->middleware(['auth','roles:Admin'],['except'=>['index']]);
+        $this->middleware(['auth','roles:Admin']);
     }
 //asd
 

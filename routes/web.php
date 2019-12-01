@@ -86,6 +86,22 @@ Route::post('DetalleCompra/{Id_Producto}/{Id_Compra}/eliminar',['as'
 
 
 //PEDIDOS
+//PEDIDO
+Route::resource('Pedido', 'pedidoController');
+
+//DETALLE PEDIDO
+Route::get('Detallepedido/{id}',['as'=>'Detallepedido.create','uses'=>'detallepedidoController@create']);
+
+Route::post('Detallepedido',['as'=>'Detallepedido.store','uses'=>'detallepedidoController@store'] );
+
+Route::get('Detallepedido/{Id_Pedido}/{Id_Producto}/editar',['as'
+=>'Detallepedido.edit','uses'=>'detallepedidoController@edit']);
+
+Route::put('Detallepedido/{Id_Pedido}/{Id_Producto}',['as'
+=>'Detallepedido.update','uses'=>'detallepedidoController@update']);
+
+Route::post('Detallepedido/{Id_Pedido}/{Id_Producto}/eliminar',['as'
+=>'Detallepedido.destroy','uses'=>'detallepedidoController@destroy']);
 
 //CHOFER
 Route::resource('Chofer', 'choferController');
@@ -100,8 +116,8 @@ Route::resource('Vehiculo', 'vehiculoController');
 /*TEMPORAL
 Route::get('test', function () {
 $user=new App\User;
-$user->name='Henrry Roca';
-$user->email='Roca@gmail.com';
+$user->name='Maikol Sanchez;
+$user->email='maikol10@gmail.com';
 $user->password=bcrypt('12345');
 $user->role='Admin';
 $user->save();

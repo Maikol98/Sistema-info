@@ -11,7 +11,7 @@ class distritoController extends Controller
 
     function __construct()
     {
-        $this->middleware(['auth','roles:Admin'],['except'=>['index','show']]);
+        $this->middleware(['auth','roles:Admin']);
     }
 
     public function index()

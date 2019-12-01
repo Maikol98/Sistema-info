@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Pedido;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
 class pedidoController extends Controller
 {
@@ -13,7 +17,13 @@ class pedidoController extends Controller
      */
     public function index()
     {
-        //
+        $pedido=DB::table('pedido')
+        ->join('cliente','cliente.Id','=','pedido.Id_Cliente')
+        ->select('pedido.Id','PrecioTotal','FechaPedido','FechaEntrega','pedido.Direccion','Descripcion','pedido.Estado','cliente.Ci_Cliente')
+        ->where('pedido.Estado','=','No Entregado')
+        ->get();
+
+        return view('Pedido/Pedido/index',compact('pedido'));
     }
 
     /**
@@ -23,7 +33,7 @@ class pedidoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Pedido/Pedido/create');
     }
 
     /**
@@ -34,7 +44,28 @@ class pedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente=DB::table('cliente')
+        ->select('Id')->where('Ci_Cliente','=',$request->input('CiCliente'))
+        ->pluck('Id');
+
+        $pedido=new Pedido();
+        $pedido->PrecioTotal=0;
+        $pedido->FechaPedido=date('Y-m-d H:i:s');
+        $pedido->fechaEntrega=$request->input('fechaentrega');
+        $pedido->Direccion=$request->input('direccion');
+        $pedido->Descripcion=$request->input('descripcion');
+        $pedido->Estado='No Entregado';
+        $pedido->Id_Cliente=$cliente[0];
+
+        $pedido->save();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Inserto Nuevo Pedido';
+        $bitacora->save();
+
+        return redirect()->route('Pedido.index');
     }
 
     /**
@@ -45,7 +76,12 @@ class pedidoController extends Controller
      */
     public function show($id)
     {
-        //
+        $detalle=DB::table('detallepedido')
+        ->join('producto','producto.Id','=','detallepedido.Id_Producto')
+        ->select('detallepedido.Id','SubTotal','Cantidad','Descripcion','Id_Producto','Id_Pedido','Nombre')
+        ->where('Id_Pedido','=',$id)->get();
+
+        return view('Pedido/Pedido/indexDetalle',compact('detalle'));
     }
 
     /**
