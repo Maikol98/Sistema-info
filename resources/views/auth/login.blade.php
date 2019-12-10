@@ -12,18 +12,18 @@
 
     {!!csrf_field()!!}
     <div class="container">
-            <div class="form-group">
-                    <label for="">Email</label>
+            <div class="col-md-6 mb-2">
+                <b><label class="text-white" for="">Email</label></b>
                     <input type="email" name="email" placeholder="alguien@gmail.com" class="form-control">
             </div>
 
-            <div class="form-group">
-                <label for="">Password</label>
+            <div class="col-md-6 mb-2">
+               <b><label class="text-white" for="">Password</label></b>
                 <input type="password" name="password" placeholder="Password" class="form-control">
+                <p></p>
+                <button type="submit" class="btn btn-primary">Ingresar </button>
+               <a style="display:inline" class="btn btn-secondary" href="/">Volver</a>
             </div>
-
-        <button type="submit" class="btn btn-primary">Ingresar </button>
-        <a style="display:inline" class="btn btn-secondary" href="/">Volver</a>
     </div>
 </form>
 

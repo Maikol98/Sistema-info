@@ -9,8 +9,11 @@
         </form>
       </nav>
 <p></p>
+
+<div class="container">
     <p><a class="btn btn-success" href="{{route('Cliente.create')}}">Añadir Cliente</a></p>
 
+    <div class="text-center">
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -25,20 +28,20 @@
         <tbody>
             @foreach ($cliente as $datosCliente)
                 <tr>
-                <th scope="row">{{$datosCliente->Ci_Cliente}}</th>
-                <td>{{$datosCliente->Nombre}}</td>
-                <td>{{$datosCliente->Direccion}}</td>
-                <td>{{$datosCliente->Telefono}}</td>
-                <td>{{$datosCliente->Correo}}</td>
-                <td><a class="btn btn-primary btn-sm" href="{{route('Cliente.edit',$datosCliente->Id)}}">Editar</a>
+                <th class="text-white" scope="row">{{$datosCliente->Ci_Cliente}}</th>
+                <td class="text-white">{{$datosCliente->Nombre}}</td>
+                <td class="text-white">{{$datosCliente->Direccion}}</td>
+                <td class="text-white">{{$datosCliente->Telefono}}</td>
+                <td class="text-white">{{$datosCliente->Correo}}</td>
+                <td class="text-white"><a class="btn btn-primary" href="{{route('Cliente.edit',$datosCliente->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Cliente.destroy', $datosCliente->Id)}}" method="post">
                         {!!csrf_field()!!}
                         {!!method_field('DELETE')!!}
-                        <button type="submit" class="btn btn-danger btn-sm">Elimnar</button>
-                    </form>
-                </td>
-                </tr>
+                        <button type="submit" class="btn btn-danger">Elimnar</button>
+                    </form></td>
             @endforeach
         </tbody>
     </table>
+</div>
+</div>
 @endsection

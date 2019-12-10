@@ -18,10 +18,10 @@
         <tbody>
             @foreach ($detalleventa as $datos)
                 <tr>
-                    <th scope="raw">{{$datos->Id_Producto}}</th>
-                    <th scope="raw">{{$datos->Id_NotaVenta}}</th>
-                    <td>{{$datos->Cantidad}}</td>
-                    <td>{{$datos->PrecioUnitario}}</td>
+                    <th class="text-white" scope="raw">{{$datos->Id_Producto}}</th>
+                    <th class="text-white" scope="raw">{{$datos->Id_NotaVenta}}</th>
+                    <td class="text-white">{{$datos->Cantidad}}</td>
+                    <td class="text-white">{{$datos->PrecioUnitario}}</td>
                     <td><a class="btn btn-success" href="{{route('DetalleVenta.editar',[$datos->Id_Producto, $datos->Id_NotaVenta])}}">Editar</a>
                         <form style="display:inline"
                         action="{{route('DetalleVenta.eliminar',[$datos->Id_Producto, $datos->Id_NotaVenta])}}" method="post">

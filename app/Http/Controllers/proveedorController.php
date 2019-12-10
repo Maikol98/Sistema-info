@@ -72,7 +72,7 @@ class proveedorController extends Controller
      */
     public function show($id)
     {
-
+        
     }
 
     /**

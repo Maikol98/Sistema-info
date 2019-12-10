@@ -24,10 +24,6 @@
                 <label for="">Precio</label>
                 <input type="text" name="Precio" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="">Id Garantia</label>
-                <input type="text" name="IdGarantia" class="form-control">
-            </div>
         </div>
          <input type="submit" class="btn btn-primary" value="Enviar">
         <a class="btn btn-secondary" href="{{route('Producto.index')}}">Volver</a>

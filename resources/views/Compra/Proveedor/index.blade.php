@@ -26,13 +26,13 @@
                 <tbody>
                     @foreach ($proveedor as $datos)
                     <tr>
-                     <th scope="raw">{{$datos->Cod_Proveedor}}</th>
-                     <td>{{$datos->Nombre}}</td>
-                     <td>{{$datos->Direccion}}</td>
-                     <td>{{$datos->Telefono}}</td>
-                     <td>{{$datos->Email}}</td>ç
-                     <td>{{$datos->Tipo}}</td>
-                     <td><a class="btn btn-primary" href="{{route('Proveedor.edit',$datos->Id)}}">Editar</a>
+                     <th class="text-white" scope="raw">{{$datos->Cod_Proveedor}}</th>
+                     <td class="text-white">{{$datos->Nombre}}</td>
+                     <td class="text-white">{{$datos->Direccion}}</td>
+                     <td class="text-white">{{$datos->Telefono}}</td>
+                     <td class="text-white">{{$datos->Email}}</td>ç
+                     <td class="text-white">{{$datos->Tipo}}</td>
+                     <td class="text-white"><a class="btn btn-primary" href="{{route('Proveedor.edit',$datos->Id)}}">Editar</a>
                      <form style="display:inline" action="{{route('Proveedor.destroy', $datos->Id)}}" method="post">
                             {!!csrf_field()!!}
                             {!!method_field('DELETE')!!}

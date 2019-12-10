@@ -21,11 +21,11 @@
         <tbody>
             @foreach ($detalle as $datos)
                 <tr>
-                <th scope="row">{{$datos->Id_Pedido}}</th>
-                <th scope="row">{{$datos->Nombre}}</th>
-                <td>{{$datos->Descripcion}}</td>
-                <td>{{$datos->Cantidad}}</td>
-                <td>{{$datos->SubTotal}}</td>
+                <th class="text-white" scope="row">{{$datos->Id_Pedido}}</th>
+                <th class="text-white" scope="row">{{$datos->Nombre}}</th>
+                <td class="text-white">{{$datos->Descripcion}}</td>
+                <td class="text-white">{{$datos->Cantidad}}</td>
+                <td class="text-white">{{$datos->SubTotal}}</td>
                 <td><a class="btn btn-primary" href="{{route('Detallepedido.edit',[$datos->Id_Pedido,$datos->Id_Producto])}}">Editar</a>
                     <form style="display:inline"
                         action="{{route('Detallepedido.destroy',[$datos->Id_Pedido,$datos->Id_Producto])}}" method="post">

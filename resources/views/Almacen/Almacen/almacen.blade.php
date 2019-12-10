@@ -10,21 +10,31 @@
 
         {!! csrf_field() !!}
         <div class="container">
-                <div class="form-group">
-                        <label for="">Dimension</label>
-                        <input type="text" name="Dimension" class="form-control">
+                <div class="form-row">
+                    <div class="col md-6 mb-2">
+                            <label class="text-white"  for="">Direccion</label>
+                            <input type="text" name="Direccion" class="form-control">
+                    </div>
                 </div>
-                <div class="form-group">
-                         <label for="">Capacidad</label>
-                         <input type="text" name="Capacidad" class="form-control">
+
+                <div  class="form-row">
+
+                            <div class="col md-1 mb-2">
+                                    <label class="text-white" for="">Dimension</label>
+                                    <input type="text" name="Dimension" class="form-control">
+                            </div>
+
+                            <div class="col md-1 mb-2">
+                                <label class="text-white"  for="">Capacidad</label>
+                                <input type="text" name="Capacidad" class="form-control">
+                            </div>
                 </div>
-                <div class="form-group">
-                        <label for="">Direccion</label>
-                        <input type="text" name="Direccion" class="form-control">
-                </div>
+                
+                <p></p>
+                <button type="submit" class="btn btn-primary">Guardar </button>
+                <a style="display:inline" class="btn btn-success" href="{{route('Almacen.index')}}">Listado de Almacen</a>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar </button>
-        <a style="display:inline" class="btn btn-primary" href="{{route('Almacen.index')}}">Listado de Almacen</a>
+
     </form>
     <br>
 @endsection

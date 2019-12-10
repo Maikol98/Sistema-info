@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <style>
-        .active{
-            text-decoration: none;
-            color:green;
-
-        }
-    </style>
-
     <title>Sitecnol</title>
 
     {{-- Biblioteca de bootstrap css --}}
@@ -24,6 +16,14 @@
 
 </head>
 <body>
+
+        <style>
+                body {
+                    background-image: url("https://images5.alphacoders.com/510/thumb-1920-510410.jpg");
+                }
+
+            </style>
+
     <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a class="navbar-brand" href="/">
@@ -55,7 +55,7 @@
                                           Pedidos
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                          <a class="dropdown-item" href="#">Gestionar Pedido</a>
+                                          <a class="dropdown-item" href="<?php echo route('Pedido.index') ?>">Gestionar Pedido</a>
                                           <a class="dropdown-item" href="<?php echo route('Chofer.index')?>">Gestionar Chofer</a>
                                           <a class="dropdown-item" href="<?php echo route('Vehiculo.index')?>">Gestionar Vehiculo</a>
                                           <div class="dropdown-divider"></div>
@@ -68,7 +68,6 @@
                                           Inventario
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                          <a class="dropdown-item" href="<?php echo route('Garantia.index')?>">Registrar Garantia</a>
                                           <a class="dropdown-item" href="<?php echo route('Producto.index')?>">Gestionar Producto</a>
                                           <a class="dropdown-item" href="<?php echo route('Baja.index')?>">Registrar Baja</a>
                                           <div class="dropdown-divider"></div>
@@ -89,14 +88,13 @@
                                         </div>
                             </li>
 
-                            <ul class="navbar-right">
-                                @if (auth()->guest())
-                                <a class="nav-item nav-link" href="/login">Login</a>
-                                @else
-                                    <li>
-                                    <a class="nav-item nav-link" href="/logout">Cerrar Sesion de {{auth()->user()->name}}</a>
-                                    </li>
-                                @endif
+
+                              <ul class="navbar-right">
+                                    @if (auth()->guest())
+                                        <a class="nav-item nav-link" href="/login">Login</a>
+                                    @else
+                                        <a class="nav-item nav-link" href="/logout">Cerrar Sesion de {{auth()->user()->name}}</a>
+                                    @endif
                             </ul>
                       </ul>
                     </div>
@@ -105,6 +103,10 @@
         <nav>
 
      @yield('contenido')
+
+
+
+
 
 {{-- Bibliotecas de bootstrap js --}}
 <link rel="stylesheet"

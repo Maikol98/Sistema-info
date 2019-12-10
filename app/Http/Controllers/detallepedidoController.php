@@ -25,12 +25,12 @@ class detallepedidoController extends Controller
         ->where('Cod_Producto','=',$request->input('Codigo'))
         ->first();
 
-
         $detallepedido=new Detallepedido();
         $detallepedido->Id_Producto=$dato->Id;
         $detallepedido->Id_Pedido=$request->input('pedido');
         $detallepedido->Descripcion=$request->input('descripcion');
         $detallepedido->Cantidad=$request->input('cantidad');
+        $detallepedido->FechaFinal=$request->input('fecha');
         $detallepedido->SubTotal=($dato->Precio)*($detallepedido->Cantidad);
 
         //SACAMOS CALCULO DEL PRECIO TOTAL

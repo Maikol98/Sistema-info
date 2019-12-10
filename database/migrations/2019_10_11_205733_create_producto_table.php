@@ -22,9 +22,6 @@ class CreateProductoTable extends Migration
             $table->float('PrecioPromedio');
             $table->integer('Stock');
             $table->integer('Estado');
-            $table->integer('Id_Garantia')->unsigned();
-            $table->foreign('Id_Garantia')->references('Id')->on('garantia')
-            ->onDelete('cascade');
         });
     }
 

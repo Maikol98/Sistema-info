@@ -8,8 +8,9 @@
         <p><a class="btn btn-success" href="{{route('Estante.create')}}">Añadir Estante a Almacen</a>
         <a style="display:inline" class="btn btn-secondary" href="{{route('Almacen.index')}}">Atras</a>
         </p>
-        <table whidth='100%' border="1">
-                <thead>
+        <div class="text-center">
+        <table class="table">
+                <thead class="thead-dark">
                     <th>Capacidad</th>
                     <th>Descripcion</th>
                     <th>Codigo Almacen</th>
@@ -19,15 +20,15 @@
         <tbody>
                 @foreach ($estante as $datos)
                 <tr>
-                    <td>{{$datos->Capacidad}}</td>
-                    <td>{{$datos->Descripcion}}</td>
-                    <td>{{$datos->Id_Almacen}}</td>
-                    <td>{{$datos->Nombre}}</td>
-                    <td><a class="btn btn-primary btn-sm" href="{{route('Estante.edit',$datos->idEstante)}}">Editar</a>
+                    <td class="text-white">{{$datos->Capacidad}}</td>
+                    <td class="text-white">{{$datos->Descripcion}}</td>
+                    <td class="text-white">{{$datos->Id_Almacen}}</td>
+                    <td class="text-white">{{$datos->Nombre}}</td>
+                    <td><a class="btn btn-primary" href="{{route('Estante.edit',$datos->idEstante)}}">Editar</a>
                         <form style="display:inline" action="{{route('Estante.destroy', $datos->idEstante)}}" method="post">
                             {!!csrf_field()!!}
                             {!!method_field('DELETE')!!}
-                            <button type="submit" class="btn btn-danger btn-sm">Elimnar</button>
+                            <button type="submit" class="btn btn-danger">Elimnar</button>
                         </form>
                     </td>
                 </tr>
@@ -35,4 +36,5 @@
 
         </tbody>
     </table>
+</div>
 @endsection

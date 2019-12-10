@@ -28,14 +28,14 @@
         <tbody>
             @foreach ($pedido as $datos)
                 <tr>
-                <th scope="row">{{$datos->Id}}</th>
-                <th scope="row">{{$datos->Ci_Cliente}}</th>
-                <td>{{$datos->PrecioTotal}}</td>
-                <td>{{$datos->FechaPedido}}</td>
-                <td>{{$datos->FechaEntrega}}</td>
-                <td>{{$datos->Direccion}}</td>
-                <td>{{$datos->Descripcion}}</td>
-                <td>{{$datos->Estado}}</td>
+                <th class="text-white" scope="row">{{$datos->Id}}</th>
+                <th class="text-white" scope="row">{{$datos->Ci_Cliente}}</th>
+                <td class="text-white">{{$datos->PrecioTotal}}</td>
+                <td class="text-white">{{$datos->FechaPedido}}</td>
+                <td class="text-white">{{$datos->FechaEntrega}}</td>
+                <td class="text-white">{{$datos->Direccion}}</td>
+                <td class="text-white">{{$datos->Descripcion}}</td>
+                <td class="text-white">{{$datos->Estado}}</td>
                 <td><a class="btn btn-primary" href="{{route('Pedido.show',$datos->Id)}}">Detalle</a>
                     <a class="btn btn-success" href="{{route('Detallepedido.create', $datos->Id)}}" method="post">Añadir Detalle</a>
                 </td>

@@ -6,8 +6,11 @@
         </nav>
     <p></p>
         <p><a class="btn btn-success" href="{{route('Almacen.create')}}">Añadir Almacen</a></p>
-        <table whidth='100%' border="2">
-                <thead>
+        <div class="text-center">
+
+
+        <table class="table">
+                <thead  class="thead-dark">
                     <th>Cod Almacen</th>
                     <th> Dimension</th>
                     <th>Capacidad</th>
@@ -17,16 +20,16 @@
         <tbody>
                 @foreach ($almacen as $datosDelAlmacen)
                 <tr>
-                    <td>{{$datosDelAlmacen->Id}}</td>
-                    <td>{{$datosDelAlmacen->Dimension}}</td>
-                    <td>{{$datosDelAlmacen->Capacidad}}</td>
-                    <td>{{$datosDelAlmacen->Direccion}}</td>
-                    <td><a class="btn btn-primary btn-sm" href="{{route('Almacen.edit',$datosDelAlmacen->Id)}}">Editar</a>
-                        <a style="display:inline" class="btn btn-info btn-sm" href="{{route('Almacen.show',$datosDelAlmacen->Id)}}">Ver Estantes</a>
+                    <td class="text-white">{{$datosDelAlmacen->Id}}</td>
+                    <td class="text-white">{{$datosDelAlmacen->Dimension}}</td>
+                    <td class="text-white">{{$datosDelAlmacen->Capacidad}}</td>
+                    <td class="text-white">{{$datosDelAlmacen->Direccion}}</td>
+                    <td ><a class="btn btn-primary " href="{{route('Almacen.edit',$datosDelAlmacen->Id)}}">Editar</a>
+                        <a style="display:inline" class="btn btn-info " href="{{route('Almacen.show',$datosDelAlmacen->Id)}}">Ver Estantes</a>
                         <form style="display:inline" action="{{route('Almacen.destroy', $datosDelAlmacen->Id)}}" method="post">
                             {!!csrf_field()!!}
                             {!!method_field('DELETE')!!}
-                            <button type="submit" class="btn btn-danger btn-sm">Elimnar</button>
+                            <button type="submit" class="btn btn-danger ">Elimnar</button>
                         </form>
                     </td>
                 </tr>
@@ -34,4 +37,5 @@
 
         </tbody>
     </table>
+</div>
 @endsection

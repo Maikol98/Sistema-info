@@ -10,20 +10,22 @@
         {!! csrf_field() !!}
 
          <div class="container">
-            <div class="form-group">
-                <label for="">Cantidad</label>
-                <input type="text" name="cantidad" value="{{$detalle->Cantidad}}" class="form-control">
+             <div class="form-row">
+                <div class="col-md-6 mb-2">
+                    <label class="text-white" for="">Cantidad</label>
+                    <input type="text" name="cantidad" value="{{$detalle->Cantidad}}" class="form-control">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="">Descripcion</label>
-                <input type="text" name="descripcion" value="{{$detalle->Descripcion}}" class="form-control">
+            <div class="form-row">
+                <div class="col-md-6 mb-2">
+                    <label class="text-white" for="">Descripcion</label>
+                    <input type="text" name="descripcion" value="{{$detalle->Descripcion}}" class="form-control">
+                </div>
             </div>
             <p></p>
-            <button type="submit" class="btn btn-primary">Guardar </button>
-
-            <a class="btn btn-info" href="{{route('Pedido.show',$detalle->Id_Pedido)}}" role="button">Volver</a>
+            <button type="submit" class="btn btn-primary btn-lg">Guardar </button>
+            <a class="btn btn-info btn-lg" href="{{route('Pedido.show',$detalle->Id_Pedido)}}" role="button">Volver</a>
         </div>
     </form>
-<br>
 
 @endsection

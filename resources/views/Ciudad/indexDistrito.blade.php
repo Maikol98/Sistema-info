@@ -5,8 +5,8 @@
         <a href="" class="navbar-brand">TODOS LOS DISTRITOS</a>
     </nav>
     <p></p>
-    <table width="50%" border="1">
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
             <th>Nro Distrito</th>
             <th>Nombre</th>
             <th>Ciudad</th>
@@ -15,14 +15,14 @@
         <tbody>
             @foreach ($distrito as $datosDistrito)
                 <tr>
-                <td>{{$datosDistrito->Nro_Distrito}}</td>
-                <td>{{$datosDistrito->Nombre}}</td>
-                <td>{{$datosDistrito->ciudad}}</td>
-                <td><a class="btn btn-primary btn-sm" href="{{route('Distrito.edit',$datosDistrito->Id)}}">Editar</a>
+                <td class="text-white">{{$datosDistrito->Nro_Distrito}}</td>
+                <td class="text-white">{{$datosDistrito->Nombre}}</td>
+                <td class="text-white">{{$datosDistrito->ciudad}}</td>
+                <td class="text-white"><a class="btn btn-primary" href="{{route('Distrito.edit',$datosDistrito->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Distrito.destroy', $datosDistrito->Id)}}" method="post">
                         {!!method_field('DELETE')!!}
                         {!!csrf_field()!!}
-                        <button type="submit" class="btn btn-danger btn-sm">Elimnar</button>
+                        <button type="submit" class="btn btn-danger">Elimnar</button>
                     </form>
                 </td>
                 </tr>
@@ -30,5 +30,5 @@
         </tbody>
     </table>
     <p></p>
-    <a class="btn btn-primary btn-sm" href="{{route('Ciudad.index')}}">Volver</a>
+    <a class="btn btn-primary " href="{{route('Ciudad.index')}}">Volver</a>
 @endsection

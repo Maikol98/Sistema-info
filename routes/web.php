@@ -39,7 +39,6 @@ Route::resource('Distrito', 'distritoController');
 //PRODUCTO
 Route::resource('Producto', 'productoController');
 Route::resource('Baja', 'bajaController');
-Route::resource('Garantia', 'garantiaController');
 
 
 //NOTA VENTA
@@ -112,28 +111,20 @@ Route::resource('Vehiculo', 'vehiculoController');
 
 
 //LOGIN
-
-/*TEMPORAL
-Route::get('test', function () {
-$user=new App\User;
-$user->name='Maikol Sanchez;
-$user->email='maikol10@gmail.com';
-$user->password=bcrypt('12345');
-$user->role='Admin';
-$user->save();
-return $user;
-});*/
-
-
 Route::get('login',['as'=>'login','uses'=>'Auth\LoginController@showLoginForm']);
 Route::post('login','Auth\LoginController@login');
 Route::get('logout','Auth\LoginController@logout');
+
+
 
 
 Route::resource('usuarios','UsersController');
 
 
 Route::get('Bitacora',['as'=>'Bitacora.index','uses'=>'bitacoraController@index']);
+
+
+Route::get('Reporte',['as'=>'Reporte.reporte','uses'=>'reporteController@importReport']);
 
 
 

@@ -12,13 +12,15 @@
 
     {!!csrf_field()!!}
     <div class="container">
-            <div class="form-group">
-                    <label for="">Nombre Ciudad</label>
+            <div class="col-md-6 mb-2">
+                    <label class="text-white" for="">Nombre Ciudad</label>
                     <input type="text" name="Nombre" class="form-control">
-            </div>
 
-        <button type="submit" class="btn btn-primary">Guardar </button>
-        <a style="display:inline" class="btn btn-secondary" href="{{route('Ciudad.index')}}">Volver</a>
+                  <p></p>
+                  <button type="submit" class="btn btn-primary">Guardar </button>
+                  <a style="display:inline" class="btn btn-secondary" href="{{route('Ciudad.index')}}">Volver</a>
+
+            </div>
     </div>
 </form>
 

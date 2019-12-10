@@ -19,9 +19,9 @@
         <tbody>
                 @foreach ($notacompra as $datos)
                 <tr>
-                    <th scope="raw">{{$datos->Cod_Proveedor}}</th>
-                    <td>{{$datos->FechaCompra}}</td>
-                    <td>{{$datos->PrecioTotal}}</td>
+                    <th class="text-white" scope="raw">{{$datos->Cod_Proveedor}}</th>
+                    <td class="text-white">{{$datos->FechaCompra}}</td>
+                    <td class="text-white">{{$datos->PrecioTotal}}</td>
                     <td><a class="btn btn-primary" href="{{route('NotaCompra.show',$datos->id)}}" role="button">Detalle</a>
                     <a style="display:inline" class="btn btn-success" href="{{route('NotaCompra.detalle',$datos->id)}}" role="button">Añadir Producto</a></td>
                 </tr>

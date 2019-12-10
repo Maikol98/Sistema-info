@@ -12,13 +12,14 @@
         {!! csrf_field() !!}
 
         <div class="container">
-                <div class="form-group">
-                        <label for="">Duracion</label>
+                <div  class="col-md-6 mb-2">
+                        <label class="text-white" for="">Duracion</label>
                         <input type="text" name="duracion" value="{{$garantia->Duracion}}" class="form-control">
+                        <p></p>
+                        <button type="submit" class="btn btn-primary">Guardar </button>
+        <a style="display:inline" class="btn btn-info" href="{{route('Garantia.index')}}">Volver</a>
                 </div>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar </button>
-        <a style="display:inline" class="btn btn-info" href="{{route('Garantia.index')}}">Volver</a>
     </form>
     <br>
 @endsection

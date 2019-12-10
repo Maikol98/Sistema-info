@@ -17,6 +17,7 @@ class CreateDetallepedidoTable extends Migration
             $table->increments('Id');
             $table->float('SubTotal');
             $table->integer('Cantidad');
+            $table->date('FechaFinal');
             $table->string('Descripcion')->nullable();
             $table->integer('Id_Producto')->unsigned();
             $table->integer('Id_Pedido')->unsigned();

@@ -19,9 +19,9 @@
         <tbody>
             @foreach ($notaventa as $datos)
                 <tr>
-                <th scope='raw'>{{$datos->Ci_Cliente}}</th>
-                <td>{{$datos->FechaVenta}}</td>
-                <td>{{$datos->PrecioTotal}}</td>
+                <th class="text-white" scope='raw'>{{$datos->Ci_Cliente}}</th>
+                <td class="text-white">{{$datos->FechaVenta}}</td>
+                <td class="text-white">{{$datos->PrecioTotal}}</td>
                 <td><a class="btn btn-primary" href="{{route('Notaventa.show',$datos->Id)}}" role="button">Detalle</a>
                     <a style="display:inline" class="btn btn-success" href="{{route('Notaventa.detalle',$datos->Id)}}" role="button">Añadir Producto</a></td>
                 </tr>
