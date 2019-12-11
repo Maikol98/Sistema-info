@@ -38,6 +38,11 @@
                 <td class="text-white">{{$datos->Estado}}</td>
                 <td><a class="btn btn-primary" href="{{route('Pedido.show',$datos->Id)}}">Detalle</a>
                     <a class="btn btn-success" href="{{route('Detallepedido.create', $datos->Id)}}" method="post">Añadir Detalle</a>
+                    <form style="display:inline" action="{{route('Pedido.destroy',$datos->Id)}}" method="post">
+                        {!!csrf_field()!!}
+                        {!!method_field('DELETE')!!}
+
+                        <button type="submit" class="btn btn-danger">Cancelar</button></form>
                 </td>
                 </tr>
             @endforeach

@@ -31,8 +31,8 @@
                     <input type="text" name="cantidad" class="form-control">
                 </div>
                 <div class="col-md-4 mb-2">
-                    <label class="text-white" for="">Fecha de Entrega</label>
-                    <input type="text" name="fechaentrega" placeholder="Año/Mes/Dia" class="form-control">
+                    <label class="text-white" for="">Fecha limite para devolucion</label>
+                    <input type="text" name="fecha" placeholder="Año/Mes/Dia" class="form-control">
                 </div>
             </div>
             <button type="submit" class="btn btn-success btn-lg">Guardar </button>

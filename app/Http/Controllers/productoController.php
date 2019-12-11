@@ -16,6 +16,15 @@ class productoController extends Controller
         $this->middleware(['auth','roles:Admin'],['except'=>['index']]);
     }
 
+
+    public function listado()
+    {
+
+        $producto=DB::table('producto')
+        ->get();
+        return view('Listado/productos',compact('producto'));
+    }
+
     public function index()
     {
         $producto=DB::table('producto')
@@ -134,4 +143,6 @@ class productoController extends Controller
 
         return redirect()->route('Producto.index');
     }
+
+
 }

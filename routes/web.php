@@ -30,6 +30,8 @@ Route::resource('Almacen', 'almacenController');
 //ESTANTE
 Route::resource('Estante', 'estanteController');
 Route::resource('Categoria', 'categoriaController');
+//INGRESO SALIDA
+Route::resource('Ingresosalida', 'ingresosalidaController');
 
 //CIUDAD Y DISTRITO
 Route::resource('Ciudad', 'ciudadController');
@@ -38,6 +40,8 @@ Route::resource('Distrito', 'distritoController');
 
 //PRODUCTO
 Route::resource('Producto', 'productoController');
+Route::get('Listado',['as'=>'Producto.listado','uses'=>'productoController@listado']);
+
 Route::resource('Baja', 'bajaController');
 
 

@@ -6,6 +6,7 @@ use App\Pedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Bitacora;
+use App\Producto;
 use Illuminate\Support\Facades\Auth;
 
 class pedidoController extends Controller
@@ -115,6 +116,8 @@ class pedidoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pedido::findOrFail($id)->delete();
+
+        return redirect()->route('Pedido.index');
     }
 }

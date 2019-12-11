@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Ingresosalida;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ingresosalidaController extends Controller
 {
@@ -13,7 +15,8 @@ class ingresosalidaController extends Controller
      */
     public function index()
     {
-        //
+        $ingresosalida=Ingresosalida::all();
+        return view('Almacen/Ingresosalida/index',compact('ingresosalida'));
     }
 
     /**
@@ -23,7 +26,7 @@ class ingresosalidaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Almacen/Ingresosalida/create');
     }
 
     /**
@@ -34,7 +37,14 @@ class ingresosalidaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ingresosalida=new Ingresosalida();
+        $ingresosalida->Fecha=date('Y-m-d H:i:s');
+        $ingresosalida->Tipo=$request->input('tipo');
+        $ingresosalida->Id_Estante=$request->input('Nroestante');
+        $ingresosalida->save();
+
+        return redirect()->route('Ingresosalida.index');
+
     }
 
     /**
