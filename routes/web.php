@@ -118,14 +118,12 @@ Route::get('logout','Auth\LoginController@logout');
 
 
 
-Route::resource('usuarios','UsersController');
 
+Route::resource('usuarios','UsersController');
 
 Route::get('Bitacora',['as'=>'Bitacora.index','uses'=>'bitacoraController@index']);
 
-
 Route::get('Reporte',['as'=>'Reporte.reporte','uses'=>'reporteController@importReport']);
-
 
 
 
