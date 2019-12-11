@@ -55,9 +55,9 @@
             </div>
         </div>
         <p></p>
-        <input type="submit" class="btn btn-primary" value="Enviar">
-        <a style="display:inline" class="btn btn-secondary" href="{{route('Cliente.index')}}">Volver</a>
-        <a style="display:inline" class="btn btn-success" href="/">HOME</a>
+        <input type="submit" class="btn btn-primary btn-lg" value="Enviar">
+        <a style="display:inline" class="btn btn-secondary btn-lg" href="{{route('Cliente.index')}}">Volver</a>
+        <a style="display:inline" class="btn btn-success btn-lg" href="/">HOME</a>
     </div>
 </form>
 @endsection

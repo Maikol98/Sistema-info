@@ -129,5 +129,3 @@ Route::get('Reporte',['as'=>'Reporte.reporte','uses'=>'reporteController@importR
 
 
 
-
-

@@ -11,7 +11,7 @@ class reporteController extends Controller
     public function importReport()
     {
         $datos=DB::table('cliente')->get();
-        $pdf=PDF::loadView('pdf.reporte',compact('datos'));
+        $pdf=PDF::loadView('pdf.reporteventa',compact('datos'));
         return $pdf->download('Reporte.pdf');
     }
 }

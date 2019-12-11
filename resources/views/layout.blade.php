@@ -19,7 +19,7 @@
 
         <style>
                 body {
-                    background-image: url("https://images5.alphacoders.com/510/thumb-1920-510410.jpg");
+                    background-image: url("https://echozas.files.wordpress.com/2012/04/madera-vieja.jpg");
                 }
 
             </style>
