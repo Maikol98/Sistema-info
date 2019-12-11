@@ -23,12 +23,12 @@
         <tbody>
             @foreach ($producto as $datosProducto)
             <tr>
-            <th scope="raw">{{$datosProducto->Cod_Producto}}</th>
-            <td scope="raw">{{$datosProducto->Nombre}}</td>
-            <td scope="raw">{{$datosProducto->Marca}}</td>
-            <td scope="raw">{{$datosProducto->Precio}}</td>
-            <td scope="raw">{{$datosProducto->PrecioPromedio}}</td>
-            <td scope="raw">{{$datosProducto->Stock}}</td>
+            <th class="text-white">{{$datosProducto->Cod_Producto}}</th>
+            <td class="text-white">{{$datosProducto->Nombre}}</td>
+            <td class="text-white">{{$datosProducto->Marca}}</td>
+            <td class="text-white">{{$datosProducto->Precio}}</td>
+            <td class="text-white">{{$datosProducto->PrecioPromedio}}</td>
+            <td class="text-white">{{$datosProducto->Stock}}</td>
             <td scope="raw"><a class="btn btn-info" href="{{route('Producto.edit',$datosProducto->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Producto.destroy', $datosProducto->Id)}}" method="post">
                         {!!method_field('DELETE')!!}

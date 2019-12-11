@@ -43,10 +43,7 @@ class productoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $garantia=DB::table('garantia')
-        ->select('Id')->where('Cod_Garantia','=',$request->input('IdGarantia'))
-        ->pluck('Id');
-
+    {
         $producto=new Producto();
         $producto->Cod_producto=$request->input('Codigo');
         $producto->Nombre=$request->input('Nombre');
@@ -55,7 +52,6 @@ class productoController extends Controller
         $producto->PrecioPromedio=0;
         $producto->Stock=0;
         $producto->Estado=1;
-        $producto->Id_Garantia=$garantia[0];
 
         $producto->save();
 

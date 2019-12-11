@@ -21,7 +21,7 @@
             <div class="card-body text-info">
             <h5 class="card-title">REGISTRAR PRODUCTOS</h5>
             <P>Aqui usted podra registrar a los Productos de manera rapida y sencilla</P>
-            <a href="<?php echo route('Cliente.create')?>" class="btn btn-primary btn-lg btn-block">Registrar</a>
+            <a href="<?php echo route('Producto.create')?>" class="btn btn-primary btn-lg btn-block">Registrar</a>
           </div>
         </div>
         <div class="card border-secondary mb-3" style="max-width: 18rem;">
