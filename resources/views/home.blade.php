@@ -4,6 +4,7 @@
 <div class="container">
         <nav class="navbar navbar-dark bg-LIGTH">
                <h1 class="text-white">BIENVENIDOS A SITECNOL</h1>
+			   <h1 class="text-white">VIOLENTO PAPA</h1>
             </nav>
 
     <div class="card-deck">
