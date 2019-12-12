@@ -24,10 +24,10 @@
         <tbody>
             @foreach ($vehiculo as $datos)
                 <tr>
-                <th scope="row">{{$datos->Placa}}</th>
-                <td>{{$datos->Modelo}}</td>
-                <td>{{$datos->Color}}</td>
-                <td>{{$datos->Capacidad}}</td>
+                <th class="text-white" scope="row">{{$datos->Placa}}</th>
+                <td class="text-white">{{$datos->Modelo}}</td>
+                <td class="text-white">{{$datos->Color}}</td>
+                <td class="text-white">{{$datos->Capacidad}}</td>
                 <td><a class="btn btn-primary " href="{{route('Vehiculo.edit',$datos->Placa)}}">Editar</a>
                     <form style="display:inline" action="{{route('Vehiculo.destroy', $datos->Placa)}}" method="post">
                         {!!csrf_field()!!}

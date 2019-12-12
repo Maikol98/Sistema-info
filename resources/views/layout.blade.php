@@ -59,7 +59,7 @@
                                           <a class="dropdown-item" href="<?php echo route('Chofer.index')?>">Gestionar Chofer</a>
                                           <a class="dropdown-item" href="<?php echo route('Vehiculo.index')?>">Gestionar Vehiculo</a>
                                           <div class="dropdown-divider"></div>
-                                          <a class="dropdown-item" href="#">Registrar Devolucion</a>
+                                          <a class="dropdown-item" href="<?php echo route('Devolucion.lista')?>">Registrar Devolucion</a>
                                         </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -73,7 +73,7 @@
                                           <div class="dropdown-divider"></div>
                                           <a class="dropdown-item" href="<?php echo route('Almacen.index')?>">Gestionar Almacen</a>
                                           <a class="dropdown-item" href="<?php echo route('Categoria.index')?>">Gestionar Categoria</a>
-                                          <a class="dropdown-item" href="#">Gestionar salida/ingreso almacen</a>
+                                          <a class="dropdown-item" href="<?php echo route('Ingresosalida.index')?>">Gestionar salida/ingreso almacen</a>
                                         </div>
                             </li>
                             <li class="nav-item dropdown">

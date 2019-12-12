@@ -11,15 +11,15 @@
 
     <div class="container">
         <div class="form-group">
-            <label for="">Nombre</label>
+            <label class="text-white" for="">Nombre</label>
             <input type="text" name="nombre" value="{{$chofer->Nombre}}" class="form-control">
         </div>
         <div class="form -group">
-                <label for="">Telefono</label>
+                <label class="text-white" for="">Telefono</label>
                 <input type="text" name="telefono" value="{{$chofer->Telefono}}" class="form-control">
             </div>
         <div class="form-group">
-            <label for="">Direccion</label>
+            <label class="text-white" for="">Direccion</label>
             <input type="text" name="direccion" value="{{$chofer->Direccion}}" class="form-control">
         </div>
     </div>

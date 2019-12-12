@@ -18,10 +18,10 @@
         <tbody>
             @foreach ($bitacora as $datos)
                 <tr>
-                <th scope="row">{{$datos->id}}</th>
-                <td scope="raw">{{$datos->nombreUser}}</td>
-                <td scope="raw">{{$datos->fecha}}</td>
-                <td scope="raw">{{$datos->accion}}</td>
+                <th class="text-white" scope="row">{{$datos->id}}</th>
+                <td class="text-white" scope="raw">{{$datos->nombreUser}}</td>
+                <td class="text-white" scope="raw">{{$datos->fecha}}</td>
+                <td class="text-white" scope="raw">{{$datos->accion}}</td>
                 </tr>
             @endforeach
         </tbody>

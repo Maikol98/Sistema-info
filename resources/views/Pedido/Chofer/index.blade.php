@@ -6,8 +6,8 @@
     </nav>
 <p></p>
     <p><a class="btn btn-success" href="{{route('Chofer.create')}}">Añadir Chofer</a></p>
-    <table width="100%" border="1">
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
             <th>Carnet</th>
             <th>Nombre</th>
             <th>Telefono</th>
@@ -17,10 +17,10 @@
         <tbody>
             @foreach ($chofer as $datos)
                 <tr>
-                <td>{{$datos->Ci_Chofer}}</td>
-                <td>{{$datos->Nombre}}</td>
-                <td>{{$datos->Telefono}}</td>
-                <td>{{$datos->Direccion}}</td>
+                <td class="text-white">{{$datos->Ci_Chofer}}</td>
+                <td class="text-white">{{$datos->Nombre}}</td>
+                <td class="text-white">{{$datos->Telefono}}</td>
+                <td class="text-white">{{$datos->Direccion}}</td>
                 <td><a class="btn btn-primary btn-sm" href="{{route('Chofer.edit',$datos->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Chofer.destroy', $datos->Id)}}" method="post">
                         {!!csrf_field()!!}

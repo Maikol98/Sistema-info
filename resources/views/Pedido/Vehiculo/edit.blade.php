@@ -11,15 +11,15 @@
 
     <div class="container">
         <div class="form-group">
-            <label for="">Modelo</label>
+            <label class="text-white" for="">Modelo</label>
             <input type="text" name="modelo" value="{{$vehiculo->Modelo}}" class="form-control">
         </div>
         <div class="form-group">
-                <label for="">Color</label>
+                <label class="text-white" for="">Color</label>
                 <input type="text" name="color" value="{{$vehiculo->Color}}" class="form-control">
             </div>
         <div class="form -group">
-                <label for="">Capacidad</label>
+                <label class="text-white" for="">Capacidad</label>
                 <input type="text" name="capacidad" value="{{$vehiculo->Capacidad}}" class="form-control">
             </div>
     </div>

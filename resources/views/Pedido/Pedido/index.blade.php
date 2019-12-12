@@ -10,7 +10,7 @@
       </nav>
 <p></p>
     <p><a class="btn btn-success" href="{{route('Pedido.create')}}">Añadir Pedido</a></p>
-
+<div class="text-center">
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -47,5 +47,5 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
+    </table></div>
 @endsection

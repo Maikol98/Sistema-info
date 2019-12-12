@@ -11,19 +11,19 @@
 
     <div class="container">
         <div class="form-group">
-            <label for="">Ci Chofer</label>
+            <label class="text-white" for="">Ci Chofer</label>
             <input type="text" name="Ci" class="form-control">
         </div>
         <div class="form-group">
-            <label for="">Nombre</label>
+            <label class="text-white" for="">Nombre</label>
             <input type="text" name="nombre" class="form-control">
         </div>
         <div class="form -group">
-                <label for="">Telefono</label>
+                <label class="text-white" for="">Telefono</label>
                 <input type="text" name="telefono" class="form-control">
             </div>
         <div class="form-group">
-            <label for="">Direccion</label>
+            <label class="text-white" for="">Direccion</label>
             <input type="text" name="direccion" class="form-control">
         </div>
     </div>

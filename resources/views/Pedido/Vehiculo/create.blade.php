@@ -11,19 +11,19 @@
 
     <div class="container">
         <div class="form-group">
-            <label for="">Placa</label>
+            <label class="text-white" for="">Placa</label>
             <input type="text" name="placa" class="form-control">
         </div>
         <div class="form-group">
-            <label for="">Modelo</label>
+            <label class="text-white" for="">Modelo</label>
             <input type="text" name="modelo" class="form-control">
         </div>
         <div class="form-group">
-                <label for="">Color</label>
+                <label class="text-white" for="">Color</label>
                 <input type="text" name="color" class="form-control">
             </div>
         <div class="form -group">
-                <label for="">Capacidad</label>
+                <label class="text-white" for="">Capacidad</label>
                 <input type="text" name="capacidad" class="form-control">
             </div>
     </div>

@@ -9,7 +9,7 @@
         {!! csrf_field() !!}
          <div class="container">
             <div class="col-md-6 mb-2">
-                <label for="">Cantidad</label>
+                <label  class="text-white" for="">Cantidad</label>
                 <input type="text" name="cantidad" value="{{$detalleventa->Cantidad}}" class="form-control">
             </div>
         </div>

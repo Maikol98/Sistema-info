@@ -8,11 +8,11 @@
     <p><a class="btn btn-success" href="{{route('Categoria.create')}}">Añadir Categoria</a></p>
     <div class="text-center">
         <table class="table">
-                <thead class="thead-dark">
-                    <th>Cod Categoria</th>
-                    <th> Nombre</th>
-                    <th>Acciones</th>
-                </thead>
+            <thead class="thead-dark">
+                <th>Cod Categoria</th>
+                <th> Nombre</th>
+                <th>Acciones</th>
+            </thead>
             <tbody>
                 @foreach ($categoria as $datos)
                     <tr>

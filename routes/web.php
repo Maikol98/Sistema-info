@@ -27,9 +27,11 @@ Route::resource('Cliente', 'clienteController');
 
 //ALMACEN
 Route::resource('Almacen', 'almacenController');
+
 //ESTANTE
 Route::resource('Estante', 'estanteController');
 Route::resource('Categoria', 'categoriaController');
+
 //INGRESO SALIDA
 Route::resource('Ingresosalida', 'ingresosalidaController');
 
@@ -41,22 +43,17 @@ Route::resource('Distrito', 'distritoController');
 //PRODUCTO
 Route::resource('Producto', 'productoController');
 Route::get('Listado',['as'=>'Producto.listado','uses'=>'productoController@listado']);
-
 Route::resource('Baja', 'bajaController');
 
 
 //NOTA VENTA
 Route::resource('Notaventa', 'notaventaController');
 Route::get('Notaventa/{id}/Detalle',['as'=>'Notaventa.detalle','uses'=>'notaventaController@detalle'] );
-
 Route::resource('DetalleVenta', 'notaproductoventaController');
-
 Route::get('DetalleVenta/{Id_Producto}/{Id_Compra}/editar',['as'
 =>'DetalleVenta.editar','uses'=>'notaproductoventaController@editar']);
-
 Route::put('DetalleVenta/{Id_Producto}/{Id_Venta}',['as'
 =>'DetalleVenta.actualizar','uses'=>'notaproductoventaController@actualizar'] );
-
 Route::post('DetalleVenta/{Id_Producto}/{Id_Venta}/eliminar',['as'
 =>'DetalleVenta.eliminar','uses'=>'notaproductoventaController@eliminar'] );
 
@@ -76,13 +73,10 @@ Route::get('NotaCompra/{id}/Detalle',['as'=>'NotaCompra.detalle','uses'=>'notaco
 
 //DETALLE DE COMPRA //ELIMINAR ALGUNAS RUTAS
 Route::resource('DetalleCompra', 'notaproductocompraController');
-
 Route::get('DetalleCompra/{Id_Producto}/{Id_Compra}/editar',['as'
 =>'DetalleCompra.editar','uses'=>'notaproductocompraController@editar']);
-
 Route::put('DetalleCompra/{Id_Producto}/{Id_Compra}',['as'
 =>'DetalleCompra.actualizar','uses'=>'notaproductocompraController@actualizar'] );
-
 Route::post('DetalleCompra/{Id_Producto}/{Id_Compra}/eliminar',['as'
 =>'DetalleCompra.eliminar','uses'=>'notaproductocompraController@eliminar'] );
 
@@ -94,17 +88,19 @@ Route::resource('Pedido', 'pedidoController');
 
 //DETALLE PEDIDO
 Route::get('Detallepedido/{id}',['as'=>'Detallepedido.create','uses'=>'detallepedidoController@create']);
-
 Route::post('Detallepedido',['as'=>'Detallepedido.store','uses'=>'detallepedidoController@store'] );
-
 Route::get('Detallepedido/{Id_Pedido}/{Id_Producto}/editar',['as'
 =>'Detallepedido.edit','uses'=>'detallepedidoController@edit']);
-
 Route::put('Detallepedido/{Id_Pedido}/{Id_Producto}',['as'
 =>'Detallepedido.update','uses'=>'detallepedidoController@update']);
-
 Route::post('Detallepedido/{Id_Pedido}/{Id_Producto}/eliminar',['as'
 =>'Detallepedido.destroy','uses'=>'detallepedidoController@destroy']);
+
+//DEVOLUCION
+Route::resource('Devolucion', 'devolucionController');
+Route::get('listaPedido',['as'=>'Devolucion.lista','uses'=>'devolucionController@lista']);
+Route::get('detallePed/{Id}',['as'=>'Devolucion.detalle','uses'=>'devolucionController@detalle']);
+Route::get('create/{Id}',['as'=>'Devolucion.creates','uses'=>'devolucionController@create']);
 
 //CHOFER
 Route::resource('Chofer', 'choferController');
