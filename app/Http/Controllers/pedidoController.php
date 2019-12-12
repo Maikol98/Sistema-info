@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class pedidoController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -63,6 +67,7 @@ class pedidoController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Inserto Nuevo Pedido';
+        $bitacora->tipo='Pedido';
         $bitacora->save();
 
         return redirect()->route('Pedido.index');
@@ -116,6 +121,12 @@ class pedidoController extends Controller
     public function destroy($id)
     {
         Pedido::findOrFail($id)->delete();
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Elimino Pedido';
+        $bitacora->tipo='Pedido';
+        $bitacora->save();
 
         return redirect()->route('Pedido.index');
     }

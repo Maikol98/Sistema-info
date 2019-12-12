@@ -20,8 +20,8 @@ class detalleentregapedidoController extends Controller
     {
         DB::table('pedido')->where('Id',$Pedido)->update(['Estado'=>'Entregado']);
         $detalleentregapedido=new Detalleentregapedido();
-        $detalleentregapedido->IdPedido=$Pedido;
-        $detalleentregapedido->IdEntrega=$Entrega;
+        $detalleentregapedido->Id_Pedido=$Pedido;
+        $detalleentregapedido->Id_Entrega=$Entrega;
         $detalleentregapedido->save();
         return redirect()->route('DetalleEntregaPedido.index',$Pedido);
     }

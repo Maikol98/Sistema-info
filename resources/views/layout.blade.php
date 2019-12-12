@@ -82,9 +82,9 @@
                                           Bitacora
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                          <a class="dropdown-item" href="<?php echo route('Bitacora.index')?>">Bitacora Ventas</a>
-                                          <a class="dropdown-item" href="#">Bitacora Compras</a>
-                                          <a class="dropdown-item" href="#">Bitacora Pedidos</a>
+                                          <a class="dropdown-item" href="<?php echo route('Bitacora.Bitacora',$tipo='Nota venta')?>">Bitacora Ventas</a>
+                                          <a class="dropdown-item" href="<?php echo route('Bitacora.Bitacora',$tipo='Nota compra')?>">Bitacora Compras</a>
+                                          <a class="dropdown-item" href="<?php echo route('Bitacora.Bitacora',$tipo='Pedido')?>">Bitacora Pedidos</a>
                                         </div>
                             </li>
 

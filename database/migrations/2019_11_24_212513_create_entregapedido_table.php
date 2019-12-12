@@ -14,7 +14,7 @@ class CreateEntregapedidoTable extends Migration
     public function up()
     {
         Schema::create('entregapedido', function (Blueprint $table) {
-            $table->bigIncrements('Id');
+            $table->increments('Id');
             $table->date('Fecha');
             $table->integer('Id_Chofer')->unsigned();
             $table->foreign('Id_Chofer')->references('Id')->on('chofer')

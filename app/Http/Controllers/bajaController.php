@@ -59,6 +59,7 @@ class bajaController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Inserto Nueva Baja';
+        $bitacora->tipo='Baja';
         $bitacora->save();
 
         return redirect()->route('Baja.index');
@@ -112,6 +113,7 @@ class bajaController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Elimino Baja';
+        $bitacora->tipo='Baja';
         $bitacora->save();
 
         return redirect()->route('Baja.index');

@@ -18,6 +18,7 @@ class CreateBitacorasTable extends Migration
             $table->dateTime('fecha');
             $table->string('nombreUser');
             $table->string('accion');
+            $table->string('tipo');
         });
     }
 

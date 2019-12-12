@@ -11,6 +11,6 @@ class Bitacora extends Model
     public $timestamps=false;
 
     protected $fillable=[
-        'id','fecha','nombreUser','accion'
+        'id','fecha','nombreUser','accion','tipo'
     ];
 }

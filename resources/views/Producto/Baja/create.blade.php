@@ -9,15 +9,15 @@
         {!! csrf_field() !!}
         <div class="container">
                 <div class="form-group">
-                        <label for="">Descripcion</label>
+                        <label class="text-white" for="">Descripcion</label>
                         <input type="text" name="Descripcion" class="form-control">
                 </div>
                 <div class="form-group">
-                        <label for="">Tipo de Baja</label>
+                        <label class="text-white" for="">Tipo de Baja</label>
                         <input type="text" name="Tipo" class="form-control">
                 </div>
                 <div class="form-group">
-                         <label for="">Id Producto</label>
+                         <label class="text-white" for="">Id Producto</label>
                          <input type="text" name="Id" class="form-control">
                 </div>
         </div>

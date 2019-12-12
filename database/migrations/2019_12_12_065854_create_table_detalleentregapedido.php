@@ -14,13 +14,11 @@ class CreateTableDetalleentregapedido extends Migration
     public function up()
     {
         Schema::create('detalleentregapedido', function (Blueprint $table) {
-            $table->integer('IdPedido')->unsigned();
-            $table->integer('IdEntrega')->unsigned();
-            $table->primary(['IdPedido','IdEntrega']);
-            $table->foreign('IdPedido')->references('Id')->on('pedido')
-            ->onDelete('cascade');
-            $table->foreign('IdEntrega')->references('Id')->on('entregapedido')
-            ->onDelete('cascade');
+            $table->integer('Id_Pedido')->unsigned();
+            $table->integer('Id_Entrega')->unsigned();
+            $table->primary(['Id_Pedido','Id_Entrega']);
+            $table->foreign('Id_Pedido')->references('Id')->on('pedido');
+            $table->foreign('Id_Entrega')->references('Id')->on('entregapedido');
         });
     }
 

@@ -60,6 +60,7 @@ class notacompraController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Inserto Nueva Compra';
+        $bitacora->tipo='Nota compra';
         $bitacora->save();
 
         $dato=$notacompra->Id;

@@ -69,6 +69,7 @@ class clienteController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Inserto Nuevo Cliente';
+        $bitacora->tipo='Cliente';
         $bitacora->save();
 
         return redirect()->route('Cliente.index');
@@ -121,6 +122,7 @@ class clienteController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Actualizo datos del Cliente';
+        $bitacora->tipo='Cliente';
         $bitacora->save();
 
         //redireccionar
@@ -144,6 +146,7 @@ class clienteController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Elimino Cliente';
+        $bitacora->tipo='Cliente';
         $bitacora->save();
 
         //redireccionar

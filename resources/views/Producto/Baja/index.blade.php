@@ -7,8 +7,8 @@
     <p></p>
     <p><a class="btn btn-success" href="{{route('Baja.create')}}">Añadir Baja</a></p>
 
-        <table whidth='100%' border="2">
-                <thead>
+        <table class="table">
+                <thead class="thead-dark">
                     <th>Fecha</th>
                     <th>Descripcion</th>
                     <th>Tipo de Baja</th>
@@ -19,11 +19,11 @@
         <tbody>
                 @foreach ($baja as $datos)
                 <tr>
-                    <td>{{$datos->Fecha}}</td>
-                    <td>{{$datos->Descripcion}}</td>
-                    <td>{{$datos->TipoBaja}}</td>
-                    <td>{{$datos->Nombre}}</td>
-                    <td>{{$datos->Marca}}</td>
+                    <td  class="text-white">{{$datos->Fecha}}</td>
+                    <td class="text-white">{{$datos->Descripcion}}</td>
+                    <td class="text-white">{{$datos->TipoBaja}}</td>
+                    <td class="text-white">{{$datos->Nombre}}</td>
+                    <td class="text-white">{{$datos->Marca}}</td>
                     <td><form action="{{route('Baja.destroy', $datos->Id)}}" method="post">
                             {!!method_field('DELETE')!!}
                             {!!csrf_field()!!}

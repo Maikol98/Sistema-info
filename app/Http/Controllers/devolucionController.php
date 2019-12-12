@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Bitacora;
 use App\Devolucion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 class devolucionController extends Controller
 {
     /**
@@ -62,6 +63,13 @@ class devolucionController extends Controller
         $devolucion->Id_DetallePedido=$request->input('iddetalle');
 
         $devolucion->save();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Registro devolucion';
+        $bitacora->tipo='Devolucion';
+        $bitacora->save();
 
         return redirect()->route('Devolucion.index');
     }

@@ -59,6 +59,7 @@ class notaventaController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Inserto Nueva Venta';
+        $bitacora->tipo='Nota venta';
         $bitacora->save();
 
         $dato=$notaventa->Id;
@@ -120,6 +121,14 @@ class notaventaController extends Controller
     public function destroy($id)
     {
         Notaventa::findOrFail($id)->delete();
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Elimino Venta';
+        $bitacora->tipo='Nota venta';
+        $bitacora->save();
+
         return redirect()->route('Notaventa.index');
     }
 }

@@ -68,6 +68,7 @@ class productoController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Inserto Nuevo Producto';
+        $bitacora->tipo='Producto';
         $bitacora->save();
 
         return redirect()->route('Producto.index');
@@ -118,6 +119,7 @@ class productoController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Actualizo datos del Producto';
+        $bitacora->tipo='Producto';
         $bitacora->save();
 
         return redirect()->route('Producto.index');
@@ -139,6 +141,7 @@ class productoController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'elimino Producto';
+        $bitacora->tipo='Producto';
         $bitacora->save();
 
         return redirect()->route('Producto.index');

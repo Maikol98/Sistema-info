@@ -124,9 +124,10 @@ Route::get('logout','Auth\LoginController@logout');
 
 Route::resource('usuarios','UsersController');
 
-Route::get('Bitacora',['as'=>'Bitacora.index','uses'=>'bitacoraController@index']);
+Route::get('Bitacora/{tipo}',['as'=>'Bitacora.Bitacora','uses'=>'bitacoraController@Bitacora']);
 
-Route::get('Reporte',['as'=>'Reporte.reporte','uses'=>'reporteController@importReport']);
-
+Route::get('ReporteNotaventa',['as'=>'Reporte.notas','uses'=>'reporteController@ReporteVenta']);
+Route::get('ReportePedido',['as'=>'Reporte.pedidos','uses'=>'reporteController@ReportePedido']);
+Route::get('ReporteNotacompra',['as'=>'Reporte.compras','uses'=>'reporteController@ReporteCompra']);
 
 

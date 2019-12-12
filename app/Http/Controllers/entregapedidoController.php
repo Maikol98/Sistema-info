@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Bitacora;
 use App\Entregapedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class entregapedidoController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware(['auth','roles:Admin']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,6 +52,13 @@ class entregapedidoController extends Controller
         $entregapedido->PlacaVehiculo=$request->input('placa');
         $entregapedido->save();
         $Id=$entregapedido->Id;
+
+        $bitacora = new Bitacora();
+        $bitacora->fecha = date('Y-m-d H:i:s');
+        $bitacora->nombreUser = Auth::user()->name;
+        $bitacora->accion = 'Registro nueva entrega de pedido';
+        $bitacora->tipo='Entrega Pedido';
+        $bitacora->save();
 
         return redirect()->route('DetalleEntregaPedido.index',$Id);
     }

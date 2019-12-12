@@ -54,6 +54,7 @@ class almacenController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Añadio Nuevo almacen';
+        $bitacora->tipo='Almacen';
         $bitacora->save();
 
         return redirect()->route('Almacen.index');
@@ -105,6 +106,7 @@ class almacenController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Actualizo datos del almacen';
+        $bitacora->tipo='Almacen';
         $bitacora->save();
 
         $almacen->update();
@@ -128,6 +130,7 @@ class almacenController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Elimino almacen';
+        $bitacora->tipo='Almacen';
         $bitacora->save();
 
         return redirect()->route('Almacen.index');
