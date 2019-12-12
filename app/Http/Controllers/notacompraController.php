@@ -45,6 +45,8 @@ class notacompraController extends Controller
      */
     public function store(Request $request)
     {
+        
+        
         $IdProveedor=DB::table('proveedor')
         ->select('Id')->where('Cod_Proveedor','=',$request->input('Codigo'))
         ->pluck('Id');

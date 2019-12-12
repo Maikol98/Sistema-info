@@ -5,6 +5,15 @@
         <a href="" class="navbar-brand">REGISTRAR PRODUCTO</a>
     </nav>
     <p></p>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+           @foreach ($errors->all() as $errorActual)
+               <ul>
+                    <li>{{$errorActual}}</li>
+               </ul>
+               @endforeach
+            </div>
+       @endif
     <form action="{{route('Producto.store')}}" method="POST">
         {!! csrf_field() !!}
         <div class="container">

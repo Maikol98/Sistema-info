@@ -29,11 +29,15 @@ class notaproductocompraController extends Controller
      */
     public function store(Request $request)
     {
+        $datosValidos = $request->validate([
+            'Codigo'=>'required|integer',
+            'cantidad'=>'required',
+            'Precio'=> 'required'
+        ]);
         $dato=DB::table('producto')
         ->select('Id')
         ->where('Cod_Producto','=',$request->input('Codigo'))
         ->pluck('Id');
-
 
         $detallecompra=new Notaproductocompra();
         $detallecompra->Id_Producto=$dato[0];

@@ -5,6 +5,15 @@
 <nav class="navbar navbar-dark bg-primary">
                 <a href="" class="navbar-brand">REGISTRAR DETALLE</a>
 </nav>
+@if ($errors->any())
+<div class="alert alert-danger">
+   @foreach ($errors->all() as $errorActual)
+       <ul>
+            <li>{{$errorActual}}</li>
+       </ul>
+       @endforeach
+    </div>
+@endif
     <form action="{{route('DetalleCompra.store',$dato)}}" method="POST">
 
         {!! csrf_field() !!}

@@ -44,6 +44,14 @@ class productoController extends Controller
      */
     public function store(Request $request)
     {
+        // validando datos del producto
+        $datosValidos = $request->validate([
+            'Codigo'=> 'required|integer',
+            'Nombre'=>'required|string',
+            'Marca'=>'required|string',
+            'Precio'=>'required'
+        ]);
+
         $producto=new Producto();
         $producto->Cod_producto=$request->input('Codigo');
         $producto->Nombre=$request->input('Nombre');

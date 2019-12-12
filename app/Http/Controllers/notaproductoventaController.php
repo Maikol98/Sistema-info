@@ -30,11 +30,9 @@ class notaproductoventaController extends Controller
     public function store(Request $request)
     {
         $dato=DB::table('producto')
-        ->select('Id','Precio')
+        ->select('Id','Precio','Stock')
         ->where('Cod_Producto','=',$request->input('Codigo'))
         ->first();
-
-
         $detalleventa=new Notaproductoventa();
         $detalleventa->Id_Producto=$dato->Id;
         $detalleventa->Id_NotaVenta=$request->input('nota');
@@ -45,9 +43,15 @@ class notaproductoventaController extends Controller
         $notaventa=Notaventa::findOrFail($detalleventa->Id_NotaVenta);
         $precioTot=($notaventa->PrecioTotal)+($detalleventa->PrecioUnitario);
         //CALCULAMOS NUEVOS DATOS DEL PRODUCTO
-        $producto=Producto::findOrFail($dato->Id);
-        $stock=($producto->Stock)-($detalleventa->Cantidad);
-
+        $producto=Producto::findOrFail($dato->Id);  
+        if(($dato->Stock)>=($detalleventa->Cantidad)){
+            $stock=($producto->Stock)-($detalleventa->Cantidad); 
+        } else{
+            
+          return $messages = [
+            'ERROR' => 'La cantidad sobrepasa el Stock del producto'
+        ];
+     }
         //REGISTRAMOS EL DETALLE DE LA COMPRA
         $detalleventa->save();
 
@@ -58,8 +62,8 @@ class notaproductoventaController extends Controller
         DB::table('notaventa')->where('Id',$notaventa->Id)
         ->update(['PrecioTotal'=>$precioTot]);
         $dato=$notaventa->Id;
-
         return view('Venta/NotaProducto/crearNota', compact('dato'));
+       
     }
 
 
