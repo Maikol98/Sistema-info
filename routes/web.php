@@ -107,8 +107,11 @@ Route::resource('Chofer', 'choferController');
 //VEHICULO
 Route::resource('Vehiculo', 'vehiculoController');
 
-//INGRESO SALIDA
-
+//ENTREGA PEDIDO
+Route::resource('EntregaPedido', 'entregapedidoController');
+//DETALLE ENTREGAPEDIDO
+Route::get('DetalleEntregaPedido/{Id}',['as'=>'DetalleEntregaPedido.index','uses'=>'detalleentregapedidoController@index']);
+Route::post('DetalleEntregaPedido/{Pedido}/{Entrega}',['as'=>'DetalleEntregaPedido.crear','uses'=>'detalleentregapedidoController@crear']);
 
 //LOGIN
 Route::get('login',['as'=>'login','uses'=>'Auth\LoginController@showLoginForm']);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Entregapedido;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class entregapedidoController extends Controller
 {
@@ -13,7 +15,8 @@ class entregapedidoController extends Controller
      */
     public function index()
     {
-        //
+        $entregapedido=Entregapedido::all();
+        return view('Pedido/EntregaPedido/index',compact('entregapedido'));
     }
 
     /**
@@ -23,7 +26,7 @@ class entregapedidoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Pedido/EntregaPedido/create');
     }
 
     /**
@@ -34,7 +37,16 @@ class entregapedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dato=DB::table('chofer')->select('Id')
+        ->where('Ci_Chofer',$request->input('CiChofer'))->first();
+        $entregapedido= new Entregapedido();
+        $entregapedido->Fecha=date('Y-m-d H:i:s');
+        $entregapedido->Id_Chofer=$dato->Id;
+        $entregapedido->PlacaVehiculo=$request->input('placa');
+        $entregapedido->save();
+        $Id=$entregapedido->Id;
+
+        return redirect()->route('DetalleEntregaPedido.index',$Id);
     }
 
     /**
@@ -45,7 +57,8 @@ class entregapedidoController extends Controller
      */
     public function show($id)
     {
-        //
+        $datos=DB::table('detalleentregapedido')->where('IdPedido',$id)->get();
+        return view('Pedido/EntregaPedido/inde',compact('datos'));
     }
 
     /**

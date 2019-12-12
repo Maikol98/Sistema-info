@@ -21,7 +21,6 @@ class pedidoController extends Controller
         $pedido=DB::table('pedido')
         ->join('cliente','cliente.Id','=','pedido.Id_Cliente')
         ->select('pedido.Id','PrecioTotal','FechaPedido','FechaEntrega','pedido.Direccion','Descripcion','pedido.Estado','cliente.Ci_Cliente')
-        ->where('pedido.Estado','=','No Entregado')
         ->get();
 
         return view('Pedido/Pedido/index',compact('pedido'));

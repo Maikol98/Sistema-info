@@ -46,7 +46,7 @@
                                       <div class="dropdown-divider"></div>
                                       <a class="dropdown-item" href="<?php echo route('Notaventa.index')?>">Registrar Ventas</a>
                                       <a class="dropdown-item" href="<?php echo route('NotaCompra.index')?>">Registrar Compra</a>
-                                      <a class="dropdown-item" href="#">Gestionar EntregaPedido</a>
+                                      <a class="dropdown-item" href="<?php echo route('EntregaPedido.index')?>">Gestionar EntregaPedido</a>
                                     </div>
                             </li>
                             <li class="nav-item dropdown">
