@@ -4,16 +4,24 @@
 <nav class="navbar navbar-dark bg-primary">
     <a href="" class="navbar-brand">REGISTRAR CLIENTE</a>
 </nav>
+<!--AQUIE EMPEZARA VERIFICAR LAS VALIDACIONES -->
+       @if ($errors->any())
+        <div class="alert alert-danger">
+           @foreach ($errors->all() as $errorActual)
+               <ul>
+                    <li>{{$errorActual}}</li>
+               </ul>
+               @endforeach
+            </div>
+       @endif
 
 <form action="{{route('Cliente.store')}}" method="post">
-
         {!!csrf_field()!!}
-
     <div class="container">
         <div class="form-row">
             <div class="col-md-6 mb-2">
                 <label class="text-white" for="">Ci Cliente</label>
-                <input type="text" name="CiCliente" class="form-control">
+            <input type="text" name="CiCliente" class="form-control">
             </div>
         </div>
 
@@ -41,7 +49,7 @@
         <div class="form-row">
             <div class="col-md-6 mb-2">
                 <label class="text-white" for="">Correo</label>
-                <input type="text" name="correo" class="form-control">
+                <input type="email" name="correo" class="form-control">
             </div>
         </div>
         <div class="form-row">

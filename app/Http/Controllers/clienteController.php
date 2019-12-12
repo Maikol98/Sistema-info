@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Bitacora;
 use Illuminate\Support\Facades\Auth;
+use\App\Http\Requests\storeClienteRequest;
 
 class clienteController extends Controller
 {
@@ -40,8 +41,9 @@ class clienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(storeClienteRequest $request)
+    {   
+      
 
         //añadir distrito
         $distrito=DB::table('distrito')
@@ -53,7 +55,7 @@ class clienteController extends Controller
 
 
         //dd($distrito);
-
+        
         $cliente=new Cliente();
         $cliente->Ci_Cliente=$request->input('CiCliente');
         $cliente->Nombre=$request->input('nombre');
@@ -62,7 +64,6 @@ class clienteController extends Controller
         $cliente->Correo=$request->input('correo');
         $cliente->Estado=1;
         $cliente->Id_Distrito=$distrito[0];
-
         $cliente->save();
 
         $bitacora = new Bitacora();
@@ -70,7 +71,6 @@ class clienteController extends Controller
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Inserto Nuevo Cliente';
         $bitacora->save();
-
         return redirect()->route('Cliente.index');
     }
 
