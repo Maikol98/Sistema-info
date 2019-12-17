@@ -11,6 +11,6 @@ class Notaproductocompra extends Model
     public $timestamps=false;
 
     protected $fillable=[
-        'Id_Producto','Id_Compra','Cantidad','PrecioUnitario'
+        'Id_Producto','Id_Compra','Cantidad','PrecioUnitario','Precio'
     ];
 }
