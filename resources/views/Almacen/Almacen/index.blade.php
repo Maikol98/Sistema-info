@@ -2,7 +2,7 @@
 
 @section('contenido')
         <nav class="navbar navbar-dark bg-primary">
-            <a href="" class="navbar-brand">TODOS LOS ALMACEN</a>
+            <a href="" class="navbar-brand">TODOS LOS ALMACENES</a>
         </nav>
     <p></p>
         <p><a class="btn btn-success" href="{{route('Almacen.create')}}">Añadir Almacen</a></p>

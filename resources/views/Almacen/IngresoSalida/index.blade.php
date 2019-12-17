@@ -9,7 +9,7 @@
     <div class="text-center">
         <table class="table">
                 <thead class="thead-dark">
-                    <th>Fecha</th>
+                    <th>Fecha de Ingreso o salida</th>
                     <th> Tipo</th>
                     <th> id Estante</th>
                 </thead>

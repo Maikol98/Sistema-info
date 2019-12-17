@@ -9,7 +9,7 @@
     <div class="container">
         <div class="form-row">
             <div class="col-md-6 mb-2">
-                <label class="text-white" for="">Tipo</label>
+                <label class="text-white" for="">Tipo (Ingreso/salida)</label>
                 <input type="text" name="tipo" class="form-control">
             </div>
         </div>
