@@ -45,7 +45,7 @@ class UsersController extends Controller
         $users->role=$request->input('rol');
         $users->save();
 
-        return redirect()->route('/');
+        return view('home');
     }
 
     /**
