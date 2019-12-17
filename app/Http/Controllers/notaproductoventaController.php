@@ -30,7 +30,7 @@ class notaproductoventaController extends Controller
     public function store(Request $request)
     {
         $dato=DB::table('producto')
-        ->select('Id','Precio')
+        ->select('Id','Precio','Stock')
         ->where('Cod_Producto','=',$request->input('Codigo'))
         ->first();
 
@@ -46,7 +46,11 @@ class notaproductoventaController extends Controller
         $precioTot=($notaventa->PrecioTotal)+($detalleventa->PrecioUnitario);
         //CALCULAMOS NUEVOS DATOS DEL PRODUCTO
         $producto=Producto::findOrFail($dato->Id);
-        $stock=($producto->Stock)-($detalleventa->Cantidad);
+        if(($dato->Stock)>=($detalleventa->Cantidad)){
+            $stock=($producto->Stock)-($detalleventa->Cantidad);
+        }else{
+            return view('cantidad');
+        }
 
         //REGISTRAMOS EL DETALLE DE LA COMPRA
         $detalleventa->save();

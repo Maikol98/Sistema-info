@@ -38,8 +38,12 @@ class detallepedidoController extends Controller
         $precioTot=($pedido->PrecioTotal)+($detallepedido->SubTotal);
 
         //CALCULAMOS NUEVOS DATOS DEL PRODUCTO
-        $stock=($dato->Stock)-($detallepedido->Cantidad);
-
+        if(($dato->Stock)>=($detallepedido->Cantidad)){
+            $stock=($dato->Stock)-($detallepedido->Cantidad);
+        }else{
+            return view('cantidad');
+        }
+        
         //REGISTRAMOS EL DETALLE DE LA COMPRA
         $detallepedido->save();
 

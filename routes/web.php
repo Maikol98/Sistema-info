@@ -119,6 +119,11 @@ Route::post('login','Auth\LoginController@login');
 Route::get('logout','Auth\LoginController@logout');
 
 
+//CREAR USUARIO
+Route::get('users',['as'=>'user.create','uses'=>'UsersController@create']);
+Route::post('users',['as'=>'user.store','uses'=>'UsersController@store']);
+
+
 
 
 
