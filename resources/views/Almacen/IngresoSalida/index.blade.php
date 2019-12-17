@@ -2,7 +2,7 @@
 
 @section('contenido')
 <nav class="navbar navbar-dark bg-primary">
-        <a href="" class="navbar-brand">TODOS LOS INGRESOS Y SALIDAS</a>
+        <a href="" class="navbar-brand">TODOS LOS INGRESOS Y SALIDAS </a>
     </nav>
     <p></p>
     <p><a class="btn btn-success" href="{{route('Ingresosalida.create')}}">Añadir Ingreso/Salida</a></p>

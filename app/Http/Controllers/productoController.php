@@ -28,7 +28,8 @@ class productoController extends Controller
     public function index()
     {
         $producto=DB::table('producto')
-        ->select('Id','Cod_Producto','Nombre','Marca','Precio','PrecioPromedio','Stock')
+        ->select('Id','Cod_producto','Nombre','Marca','Precio','PrecioPromedio','Stock')
+        ->where('Estado','=',1)
         ->get();
 
         return view('Producto/Producto/index',compact('producto'));
