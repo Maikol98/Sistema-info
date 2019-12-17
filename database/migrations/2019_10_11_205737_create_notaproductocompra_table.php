@@ -19,7 +19,7 @@ class CreateNotaproductocompraTable extends Migration
             $table->primary(['Id_Producto','Id_Compra']);
             $table->foreign('Id_Producto')->references('Id')->on('producto')
             ->onDelete('cascade');
-            $table->foreign('Id_Compra')->references('Id')->on('notacompra')
+            $table->foreign('Id_Compra')->references('id')->on('notacompra')
             ->onDelete('cascade');
             $table->integer('Cantidad');
             $table->float('Precio');
