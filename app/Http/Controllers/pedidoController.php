@@ -55,7 +55,7 @@ class pedidoController extends Controller
         $pedido=new Pedido();
         $pedido->PrecioTotal=0;
         $pedido->FechaPedido=date('Y-m-d H:i:s');
-        $pedido->fechaEntrega=$request->input('fechaentrega');
+        $pedido->FechaEntrega=$request->input('fechaentrega');
         $pedido->Direccion=$request->input('direccion');
         $pedido->Descripcion=$request->input('descripcion');
         $pedido->Estado='No Entregado';
