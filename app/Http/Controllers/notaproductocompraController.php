@@ -31,7 +31,7 @@ class notaproductocompraController extends Controller
     {
         $dato=DB::table('producto')
         ->select('Id')
-        ->where('Cod_Producto','=',$request->input('Codigo'))
+        ->where('Cod_producto','=',$request->input('Codigo'))
         ->pluck('Id');
 
 
