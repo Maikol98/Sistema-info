@@ -6,6 +6,7 @@
 <div class="container">
 <nav class="navbar navbar-dark bg-primary">
     <a href="" class="navbar-brand">LOGIN</a>
+    <a style="display:inline" class="btn btn-primary" href="{{route('user.create')}}">Crear Usuario</a>
 </nav>
 
 <form action="/login" method="post">
