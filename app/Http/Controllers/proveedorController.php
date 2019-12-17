@@ -58,7 +58,7 @@ class proveedorController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Añadio nuevo Proveedor';
-        $bitacora->Tipo='Proveedor';
+        $bitacora->tipo='Proveedor';
         $bitacora->save();
 
         return redirect()->route('Proveedor.index');
@@ -113,7 +113,7 @@ class proveedorController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Actualizo datos Proveedor';
-        $bitacora->Tipo='Proveedor';
+        $bitacora->tipo='Proveedor';
         $bitacora->save();
 
         return redirect()->route('Proveedor.index');
@@ -135,7 +135,7 @@ class proveedorController extends Controller
         $bitacora->fecha = date('Y-m-d H:i:s');
         $bitacora->nombreUser = Auth::user()->name;
         $bitacora->accion = 'Elimino Proveedor';
-        $bitacora->Tipo='Proveedor';
+        $bitacora->tipo='Proveedor';
         $bitacora->save();
 
         return redirect()->route('Proveedor.index');
