@@ -63,7 +63,7 @@ class notacompraController extends Controller
         $bitacora->tipo='Nota compra';
         $bitacora->save();
 
-        $dato=$notacompra->Id;
+        $dato=$notacompra->id;
 
         return view('Compra/Compra/DetalleCompra',compact('dato'));
     }
