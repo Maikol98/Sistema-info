@@ -14,7 +14,6 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Precio</th>
-                <th scope="col">Precio Promedio</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -27,7 +26,6 @@
             <td class="text-white">{{$datosProducto->Nombre}}</td>
             <td class="text-white">{{$datosProducto->Marca}}</td>
             <td class="text-white">{{$datosProducto->Precio}}</td>
-            <td class="text-white">{{$datosProducto->PrecioPromedio}}</td>
             <td class="text-white">{{$datosProducto->Stock}}</td>
             <td scope="raw"><a class="btn btn-info" href="{{route('Producto.edit',$datosProducto->Id)}}">Editar</a>
                     <form style="display:inline" action="{{route('Producto.destroy', $datosProducto->Id)}}" method="post">
