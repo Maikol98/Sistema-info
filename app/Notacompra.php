@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Notacompra extends Model
 {
     protected $table ='notacompra';
-    protected $primaryKey='Id';
+    protected $primaryKey='id';
     public $timestamps=false;
 
     protected $fillable=[
-        'Id','FechaCompra','PrecioTotal','Id_Proveedor'
+        'id','FechaCompra','PrecioTotal','Id_Proveedor'
     ];
 }

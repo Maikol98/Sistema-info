@@ -34,7 +34,7 @@ class notaventaController extends Controller
      */
     public function create()
     {
-        return view('Venta/Notaventa/createVentas');
+        return view('Venta/NotaVenta/createVentas');
     }
 
     /**
