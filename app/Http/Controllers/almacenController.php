@@ -20,7 +20,6 @@ class almacenController extends Controller
     {
         $almacen=DB::table('almacen')
         ->select('Id','Dimension','Capacidad','Direccion')
-        ->where('Estado','=','1')
         ->get();
         return view('Almacen/almacen/index',compact('almacen'));
     }

@@ -29,7 +29,6 @@ class productoController extends Controller
     {
         $producto=DB::table('producto')
         ->select('Id','Cod_Producto','Nombre','Marca','Precio','PrecioPromedio','Stock')
-        ->where('Estado','=','1')
         ->get();
 
         return view('Producto/Producto/index',compact('producto'));

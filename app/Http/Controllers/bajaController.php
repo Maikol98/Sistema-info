@@ -19,7 +19,7 @@ class bajaController extends Controller
     public function index()
     {
         $baja=DB::table('baja')
-        ->join('producto','producto.Id','=','baja.id')
+        ->join('producto','producto.Id','=','baja.Id')
         ->select('baja.Id as Id','Fecha','Descripcion','TipoBaja','Nombre','Marca')
         ->get();
         return view('Producto/Baja/index', compact('baja'));
