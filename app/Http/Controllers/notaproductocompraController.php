@@ -57,7 +57,7 @@ class notaproductocompraController extends Controller
         $preciopromedio=DB::table('notaproductocompra')
         ->select(DB::raw('AVG(notaproductocompra.Precio) as Promedio'))
         ->where('Id_Producto','=',$producto->Id)->first();
-
+        dd($preciopromedio);
         DB::table('producto')->where('Id',$producto->Id)
         ->update(['Stock'=>$stock,'PrecioPromedio'=>$preciopromedio->Promedio]);
 
