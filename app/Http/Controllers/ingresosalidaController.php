@@ -16,7 +16,7 @@ class ingresosalidaController extends Controller
     public function index()
     {
         $ingresosalida=Ingresosalida::all();
-        return view('Almacen/Ingresosalida/index',compact('ingresosalida'));
+        return view('Almacen/IngresoSalida/index',compact('ingresosalida'));
     }
 
     /**

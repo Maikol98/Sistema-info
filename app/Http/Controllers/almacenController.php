@@ -21,7 +21,7 @@ class almacenController extends Controller
         $almacen=DB::table('almacen')
         ->select('Id','Dimension','Capacidad','Direccion')
         ->get();
-        return view('Almacen/IngresoSalida/index',compact('almacen'));
+        return view('Almacen/Almacen/index',compact('almacen'));
     }
 
     /**
