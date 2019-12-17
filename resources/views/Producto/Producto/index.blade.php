@@ -23,7 +23,7 @@
         <tbody>
             @foreach ($producto as $datosProducto)
             <tr>
-            <th class="text-white">{{$datosProducto->Cod_Producto}}</th>
+            <th class="text-white">{{$datosProducto->Cod_producto}}</th>
             <td class="text-white">{{$datosProducto->Nombre}}</td>
             <td class="text-white">{{$datosProducto->Marca}}</td>
             <td class="text-white">{{$datosProducto->Precio}}</td>
