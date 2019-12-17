@@ -54,11 +54,12 @@ class notaproductocompraController extends Controller
         $detallecompra->save();
 
         //ACTUALIZAMOS EL STOCK DEL PRODUCTO
+        $ol=$producto->Id;
         $preciopromedio=DB::table('notaproductocompra')
-        ->select(DB::raw('AVG(Precio) as Promedio'))->from('notaproductocompra')
-        ->where('Id_Producto',$producto->Id)->first();
+        ->select(DB::raw('AVG(notaproductocompra.Precio) as Promedio'))
+        ->where('Id_Producto',$ol)->first();
         //dd($preciopromedio);
-        DB::table('producto')->where('Id',$producto->Id)
+        DB::table('producto')->where('Id',$ol)
         ->update(['Stock'=>$stock,'PrecioPromedio'=>$preciopromedio->Promedio]);
 
         //ACTUALIZAMOS EL VALOR DEL ATRIBUTO PRECIO TOTAL
